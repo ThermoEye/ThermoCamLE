@@ -1,0 +1,2001 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThermoEngine</name>
+    </assembly>
+    <members>
+        <member name="T:ThermoEngine.Camera">
+            <summary>
+            Abstract class for camera control
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.Name">
+            <summary>
+            Product Name
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.Width">
+            <summary>
+            Frame width
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.Height">
+            <summary>
+            Frame height
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.FPS">
+            <summary>
+            Frame rate, Frames per second
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.IsOpen">
+            <summary>
+            State of video streaming, true=play / false=stop
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.ColorMap">
+            <summary>
+            Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.TempUnit">
+            <summary> 
+            Temperature unit, 0=Raw / 1=Celsius / 2=Fahrenheit / 3=Kelvin
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.TempUnitSymbol">
+            <summary>
+            Temperature unit symbol
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.MinRaw">
+            <summary>
+            Minimum raw value in frame
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.AvgRaw">
+            <summary>
+            Average raw value in frame
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.MaxRaw">
+            <summary>
+            Maximum raw value in frame
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.MinTemp">
+            <summary>
+            Minimum temperature in frame
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.AvgTemp">
+            <summary>
+            Average temperature in frame
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Camera.MaxTemp">
+            <summary>
+            Maximum temperature in frame
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Camera.Open(System.Int32,System.String)">
+            <summary>
+            Opens local camera device connection via USB UVC and CDC
+            </summary>
+            <param name="index">camera device index to be connected via UVC</param>
+            <param name="comPort">camera device serial port name (COMx) to be connected via CDC</param>
+            <returns>
+            True if this method opens camera connection successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.Open(System.String,System.Int32)">
+            <summary>
+            Opens remote camera device connection via Ethernet RTSP and RTP
+            </summary>
+            <param name="ipAddr">camera device IP address to be connected</param>
+            <param name="portNum">camera device port number to be connected, RTSP port supports 554 only</param>
+            <returns>
+            True if this method opens camera connection successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.Close">
+            <summary>
+            Closes camera device connection
+            </summary>
+            <returns>
+            True if this method closes camera connection successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.QueryFrame(System.Int32,System.Int32)">
+            <summary>
+            Queries a resized frame
+            </summary>
+            <param name="width">desired width</param>
+            <param name="height">desired height</param>
+            <returns>
+            Frame object if this method gets a captured frame successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.Start">
+            <summary>
+            Starts camera video streaming
+            </summary>
+            <returns>
+            True if this method starts camera video streaming successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.Stop">
+            <summary>
+            Stops camera video streaming
+            </summary>
+            <returns>
+            True if this method stops camera video streaming successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.Dispose">
+            <summary>
+            Cleans up resources being used
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Camera.Control">
+            <summary>
+            Prepares camera control interface.
+            Must use this field to call camera control methods as below:
+            <code>
+              mCamera.Control.GetSensorModelName();
+            </code>
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Camera.SendPacket(ThermoEngine.Packet)">
+            <summary>
+            Sends packet data to camera device to control camera functions
+            </summary>
+            <param name="packet">packet data to be transfered</param>
+            <returns>
+            True if this method opens camera connection successfully;
+            otherwise false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.GetMaxPacketSize">
+            <summary>
+            Gets maximum packet size of to be able to transfer in one data packet
+            </summary>
+            <returns>
+            Packet size.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.ICameraControl">
+            <summary>
+            Interface for camera sensor control
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetProductModelName">
+            <summary>
+            Gets product model name of camera device
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetProductSerialNumber">
+            <summary>
+            Gets product serial number of camera device
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetHardwareVersion">
+            <summary>
+            Gets hardware version of camera device
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetBootloaderVersion">
+            <summary>
+            Gets bootloader version of camera device software
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetFirmwareVersion">
+            <summary>
+            Gets firmware version of camera device software
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetSensorModelName">
+            <summary>
+            Gets sensor model name of camera sensor
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetSensorSerialNumber">
+            <summary>
+            Gets sensor serial number of camera device
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetSensorUptime">
+            <summary>
+            Gets current uptime in milliseconds of camera sensor
+            </summary>
+            <returns>
+            Text string if this method gets value from device successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets flux parameters of camera sensor for ThermoCam160E
+            </summary>
+            <param name="sceneEmissivity">obtained ratio value for scene emissivity, 0.01 ~ 1</param>
+            <param name="backgroundTemperature">obtained Celsius value for background temperature, -273.15 ~ 382.2</param>
+            <param name="windowTransmission">obtained ratio value for window transmission, 0.01 ~ 1</param>
+            <param name="windowTemperature">obtained Celsius value for window temperature, -273.15 ~ 382.2</param>
+            <param name="atmosphericTransmission">obtained ratio value for atmospheric transmission, 0.01 ~ 1</param>
+            <param name="atmosphericTemperature">obtained Celsius value for atmospheric temperature, -273.15 ~ 382.2</param>
+            <param name="windowReflection">obtained ratio value for window reflection, 0 ~ 1-windowTransmission</param>
+            <param name="windowReflectedTemperature">obtained Celsius value for window reflected temperature, -273.15 ~ 382.2</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                   Minimum  Maximum               Default Unit
+                sceneEmissivity             0.01     1                     1
+                backgroundTemperature       -273.15  382.2                 22      ℃
+                windowTransmission          0.01     1                     1
+                windowTemperature           -273.15  382.2                 22      ℃
+                atmosphericTransmission     0.01     1                     1
+                atmosphericTemperature      -273.15  382.2                 22      ℃
+                windowReflection            0        1-windowTransmission  0
+                windowReflectedTemperature  -273.15  382.2                 22      ℃
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets flux parameters of camera sensor for ThermoCam256E
+            </summary>
+            <param name="emissivity">obtained ratio value for emissivity, 0.01 ~ 1</param>
+            <param name="atmosphericTransmittance">obtained ratio value for atmospheric transmittance, 0.01 ~ 1</param>
+            <param name="atmosphericTemperature">obtained Celsius value for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <param name="ambientReflectionTemperature">obtained Celsius value for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                     Minimum  Maximum                             Default Unit
+                emissivity                    0.01     1                                   1
+                atmosphericTransmittance      0.01     1                                   1
+                atmosphericTemperature        -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+                ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets flux parameters of camera sensor for ThermoCam160E
+            </summary>
+            <param name="sceneEmissivity">ratio value to be set for scene emissivity, 0.01 ~ 1</param>
+            <param name="backgroundTemperature">Celsius value to be set for background temperature, -273.15 ~ 382.2</param>
+            <param name="windowTransmission">ratio value to be set for window transmission, 0.01 ~ 1</param>
+            <param name="windowTemperature">Celsius value to be set for window temperature, -273.15 ~ 382.2</param>
+            <param name="atmosphericTransmission">ratio value to be set for atmospheric transmission, 0.01 ~ 1</param>
+            <param name="atmosphericTemperature">Celsius value to be set for atmospheric temperature, -273.15 ~ 382.2</param>
+            <param name="windowReflection">ratio value to be set for window reflection, 0 ~ 1-windowTransmission</param>
+            <param name="windowReflectedTemperature">Celsius value to be set for window reflected temperature, -273.15 ~ 382.2</param>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                   Minimum  Maximum               Default Unit
+                sceneEmissivity             0.01     1                     1
+                backgroundTemperature       -273.15  382.2                 22      ℃
+                windowTransmission          0.01     1                     1
+                windowTemperature           -273.15  382.2                 22      ℃
+                atmosphericTransmission     0.01     1                     1
+                atmosphericTemperature      -273.15  382.2                 22      ℃
+                windowReflection            0        1-windowTransmission  0
+                windowReflectedTemperature  -273.15  382.2                 22      ℃
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets flux parameters of camera sensor for ThermoCam256E
+            </summary>
+            <param name="emissivity">ratio value to be set for emissivity, 0.01 ~ 1</param>
+            <param name="atmosphericTransmittance">ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
+            <param name="atmosphericTemperature">Celsius value to be set for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <param name="ambientReflectionTemperature">Celsius value to be set for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                     Minimum  Maximum                             Default Unit
+                emissivity                    0.01     1                                   1
+                atmosphericTransmittance      0.01     1                                   1
+                atmosphericTemperature        -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+                ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Sets flux parameters of camera sensor to factory default values for ThermoCam160E
+            </summary>
+            <param name="sceneEmissivity">obtained default ratio value for scene emissivity, 0.01 ~ 1</param>
+            <param name="backgroundTemperature">obtained default Celsius value for background temperature, -273.15 ~ 382.2</param>
+            <param name="windowTransmission">obtained default ratio value for window transmission, 0.01 ~ 1</param>
+            <param name="windowTemperature">obtained default Celsius value for window temperature, -273.15 ~ 382.2</param>
+            <param name="atmosphericTransmission">obtained default ratio value for atmospheric transmission, 0.01 ~ 1</param>
+            <param name="atmosphericTemperature">obtained default Celsius value for atmospheric temperature, -273.15 ~ 382.2</param>
+            <param name="windowReflection">obtained default ratio value for window reflection, 0 ~ 1-windowTransmission</param>
+            <param name="windowReflectedTemperature">obtained default Celsius value for window reflected temperature, -273.15 ~ 382.2</param>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                   Minimum  Maximum               Default Unit
+                sceneEmissivity             0.01     1                     1
+                backgroundTemperature       -273.15  382.2                 22      ℃
+                windowTransmission          0.01     1                     1
+                windowTemperature           -273.15  382.2                 22      ℃
+                atmosphericTransmission     0.01     1                     1
+                atmosphericTemperature      -273.15  382.2                 22      ℃
+                windowReflection            0        1-windowTransmission  0
+                windowReflectedTemperature  -273.15  382.2                 22      ℃
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Sets flux parameters of camera sensor to factory default values for ThermoCam256E
+            </summary>
+            <param name="emissivity">obtained default ratio value to be set for emissivity, 0.01 ~ 1</param>
+            <param name="atmosphericTransmittance">obtained default ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
+            <param name="atmosphericTemperature">obtained default Celsius value to be set for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <param name="ambientReflectionTemperature">obtained default Celsius value to be set for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                     Minimum  Maximum                             Default Unit
+                emissivity                    0.01     1                                   1
+                atmosphericTransmittance      0.01     1                                   1
+                atmosphericTemperature        -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+                ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetFlatFieldCorrectionMode">
+            <summary>
+            Gets Flat Field Correction mode of camera sensor
+            </summary>
+            <returns>
+            0 if mode is manual or 1 if mode is automatic;
+            otherwise, -1 if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetFlatFieldCorrectionMode(System.Int32)">
+            <summary>
+            Sets Flat Field Correction mode of camera sensor
+            </summary>
+            <param name="mode">Flat Field Correction mode value to be set, 0 = manual or 1 = automatic</param>
+            <returns>
+            True if this method sets mode to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.RunFlatFieldCorrection">
+            <summary>
+            Executes Flat Field Correction of camera sensor
+            </summary>
+            <returns>
+            True if camera sensor executes Flat Field Correction successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.ConvertRawToCelsius(System.Double)">
+            <summary>
+            Converts raw value to Celsius value
+            </summary>
+            <param name="raw">raw value to be converted</param>
+            <returns>
+            Celsius value
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.ConvertRawToFahrenheit(System.Double)">
+            <summary>
+            Converts raw value to Fahrenheit value
+            </summary>
+            <param name="raw">raw value to be converted</param>
+            <returns>
+            Fahrenheit value
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.ConvertRawToKelvin(System.Double)">
+            <summary>
+            Converts raw value to Kelvin value
+            </summary>
+            <param name="raw">raw value to be converted</param>
+            <returns>
+            Kelvin value
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetNetworkConfiguration(System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            Gets network configuration of camera device
+            </summary>
+            <param name="mac">obtained value for MAC address</param>
+            <param name="ipAssign">obtained value for IP assignment, Static or DHCP</param>
+            <param name="ip">obtained value for IP address, IPv4 only</param>
+            <param name="netmask">obtained value for netmask address, IPv4 only</param>
+            <param name="gateway">obtained value for gateway address, IPv4 only</param>
+            <param name="dns">obtained value for main DNS address, IPv4 only</param>
+            <param name="dns2">obtained value for sub DNS address, IPv4 only</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetNetworkConfiguration(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Sets network configuration of camera device
+            </summary>
+            <param name="ipAssign">value to be set for IP assignment, Static or DHCP</param>
+            <param name="ip">value to be set for IP address, IPv4 only</param>
+            <param name="netmask">value to be set for netmask address, IPv4 only</param>
+            <param name="gateway">value to be set for gateway address, IPv4 only</param>
+            <param name="dns">value to be set for main DNS address, IPv4 only</param>
+            <param name="dns2">value to be set for sub DNS address, IPv4 only</param>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetDefaultNetworkConfiguration(System.String@,System.String@,System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            Sets network configuration of camera device to factory default values
+            </summary>
+            <param name="ipAssign">obtained default value for IP assignment, Static or DHCP</param>
+            <param name="ip">obtained default value for IP address, IPv4 only</param>
+            <param name="netmask">obtained default value for netmask address, IPv4 only</param>
+            <param name="gateway">obtained default value for gateway address, IPv4 only</param>
+            <param name="dns">obtained default value for main DNS address, IPv4 only</param>
+            <param name="dns2">obtained default value for sub DNS address, IPv4 only</param>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.RebootDevice">
+            <summary>
+            Reboots camera device
+            </summary>
+            <returns>
+            True if camera device starts reboot successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.OpenFirmware(System.String)">
+            <summary>
+            Opens firmware file to update new firmware of camera device
+            </summary>
+            <param name="fwFilePath">firmware file path to be updated</param>
+            <returns>
+            Binary size if device opens a firmware file successfully;
+            otherwise, -1 if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.UpdateFirmware">
+            <summary>
+            Updates chunk data of firmware binary to camera device
+            </summary>
+            <returns>
+            Percentage value in progress if this method updates chunk data to device successfully;
+            otherwise, -1 if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.CloseFirmware">
+            <summary>
+            Closes opened firmware file
+            </summary>
+            <returns>
+            True if this method closes firmware file successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remark>Device will reboot automatically.</remark>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetGainModeState">
+            <summary>
+            Gets Gain Mode state of camera sensor
+            </summary>
+            <returns>
+            0 if mode is high or 1 if mode is low or 2 if mode is auto;
+            otherwise, -1 if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetGainModeState(System.Int32)">
+            <summary>
+            Sets Gain Mode state of camera sensor
+            </summary>
+            <param name="state">Gain Mode state value to be set, 0 = high or 1 = low or 2 = auto</param>
+            <returns>
+            True if this method sets state to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetGainModeObject(System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@)">
+            <summary>
+            Gets Gain Mode Object of camera sensor
+            </summary>
+            <param name="roiStartColumn">obtained start column position in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
+            <param name="roiStartRow">obtained start row position in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
+            <param name="roiEndColumn">obtained end column position in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
+            <param name="roiEndRow">obtained end row position in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
+            <param name="thresholdPopH2L">obtained population threshold in percent of gain mode ROI used to determine when an Auto switch to Low (while in High) should occur, 0 ~ 100</param>
+            <param name="thresholdPopL2H">obtained population threshold in percent of gain mode ROI used to determine when an Auto switch to High (while in Low) should occur, 0 ~ 100</param>
+            <param name="thresholdCelH2L">obtained temperature threshold in Celsius used to determine when an Auto switch to Low (while in High) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
+            <param name="thresholdCelL2H">obtained temperature threshold in Celsius used to determine when an Auto switch to High (while in Low) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
+            <param name="thresholdKelH2L">obtained temperature threshold in Kelvin used to determine when an Auto switch to Low (while in High) should occur in TLinear mode, 0 ~ 900</param>
+            <param name="thresholdKelL2H">obtained temperature threshold in Kelvin used to determine when an Auto switch to High (while in Low) should occur in TLinear mode, 0 ~ 900</param>
+            <param name="roiPopSize">obtained population size in pixels within ROI, 0 ~ 19200</param>
+            <param name="tlinearEnable">obtained T-Linear enable state, 0 = false or 1 = true</param>
+            <param name="fluxThresholdH2L">obtained flux threshold counts calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>\
+            <param name="fluxThresholdL2H">obtained flux threshold counts calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter         Minimum  Maximum  Default     Unit
+                roiStartColumn    0        159      0           Pixels
+                roiStartRow       0        119      0           Pixels
+                roiEndColumn      0        159      159         Pixels
+                roiEndRow         0        119      119         Pixels
+                thresholdPopH2L   0        100      25          %
+                thresholdPopL2H   0        100      90          %
+                thresholdCelH2L   0        600      115         ℃
+                thresholdCelL2H   0        600      85          ℃
+                thresholdKelH2L   0        900      388         Κ
+                thresholdKelL2H   0        900      358         Κ
+                roiPopSize        0        19200    19200       Pixels
+                tlinearEnable     0        1        0           Boolean
+                fluxThresholdH2L  0        16383    Calibrated  Counts
+                                                    per camera
+                fluxThresholdL2H  0        16383    Calibrated  Counts
+                                                    per camera
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetGainModeObject(System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Sets Gain Mode Object of camera sensor
+            </summary>
+            <param name="roiStartColumn">start column position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
+            <param name="roiStartRow">start row position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
+            <param name="roiEndColumn">end column position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
+            <param name="roiEndRow">end row position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
+            <param name="thresholdPopH2L">population threshold to be set in percent of gain mode ROI used to determine when an Auto switch to Low (while in High) should occur, 0 ~ 100</param>
+            <param name="thresholdPopL2H">population threshold to be set in percent of gain mode ROI used to determine when an Auto switch to High (while in Low) should occur, 0 ~ 100</param>
+            <param name="thresholdCelH2L">temperature threshold to be set in Celsius used to determine when an Auto switch to Low (while in High) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
+            <param name="thresholdCelL2H">temperature threshold to be set in Celsius used to determine when an Auto switch to High (while in Low) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
+            <param name="thresholdKelH2L">temperature threshold to be set in Kelvin used to determine when an Auto switch to Low (while in High) should occur in TLinear mode, 0 ~ 900</param>
+            <param name="thresholdKelL2H">temperature threshold to be set in Kelvin used to determine when an Auto switch to High (while in Low) should occur in TLinear mode, 0 ~ 900</param>
+            <param name="roiPopSize">population size to be set in pixels within ROI, 0 ~ 19200</param>
+            <param name="tlinearEnable">T-Linear enable state to be set, 0 = false or 1 = true</param>
+            <param name="fluxThresholdH2L">flux threshold counts to be set calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>\
+            <param name="fluxThresholdL2H">flux threshold counts to be set calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter         Minimum  Maximum  Default     Unit
+                roiStartColumn    0        159      0           Pixels
+                roiStartRow       0        119      0           Pixels
+                roiEndColumn      0        159      159         Pixels
+                roiEndRow         0        119      119         Pixels
+                thresholdPopH2L   0        100      25          %
+                thresholdPopL2H   0        100      90          %
+                thresholdCelH2L   0        600      115         ℃
+                thresholdCelL2H   0        600      85          ℃
+                thresholdKelH2L   0        900      388         Κ
+                thresholdKelL2H   0        900      358         Κ
+                roiPopSize        0        19200    19200       Pixels
+                tlinearEnable     0        1        0           Boolean
+                fluxThresholdH2L  0        16383    Calibrated  Counts
+                                                    per camera
+                fluxThresholdL2H  0        16383    Calibrated  Counts
+                                                    per camera
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetDefaultGainModeObject">
+            <summary>
+            Sets Gain Mode Object of camera sensor to factory default values
+            </summary>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter         Minimum  Maximum  Default     Unit
+                roiStartColumn    0        159      0           Pixels
+                roiStartRow       0        119      0           Pixels
+                roiEndColumn      0        159      159         Pixels
+                roiEndRow         0        119      119         Pixels
+                thresholdPopH2L   0        100      25          %
+                thresholdPopL2H   0        100      90          %
+                thresholdCelH2L   0        600      115         ℃
+                thresholdCelL2H   0        600      85          ℃
+                thresholdKelH2L   0        900      388         Κ
+                thresholdKelL2H   0        900      358         Κ
+                roiPopSize        0        19200    19200       Pixels
+                tlinearEnable     0        1        0           Boolean
+                fluxThresholdH2L  0        16383    Calibrated  Counts
+                                                    per camera
+                fluxThresholdL2H  0        16383    Calibrated  Counts
+                                                    per camera
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetSecureConfiguration(System.String,System.String@,System.String@,System.String@)">
+            <summary>
+            Gets secure admin configuration of camera device
+            </summary>
+            <param name="password">key value for admin password authentication</param>
+            <param name="prodSN">obtained value for product serial number</param>
+            <param name="hwVer">obtained value for hardware version</param>
+            <param name="mac">obtained value for MAC address</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>This method is for internal use only</remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetSecureConfiguration(System.String,System.String,System.String,System.String)">
+            <summary>
+            Sets secure admin configuration of camera device
+            </summary>
+            <param name="password">key value for admin password authentication</param>
+            <param name="prodSN">value to be set for product serial number</param>
+            <param name="hwVer">value to be set for hardware version</param>
+            <param name="mac">value to be set for MAC address</param>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>This method is for internal use only</remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetDefaultSecureConfiguration(System.String,System.String@,System.String@,System.String@)">
+            <summary>
+            Sets secure admin configuration of camera device to factory default values
+            </summary>
+            <param name="password">key value for admin password authentication</param>
+            <param name="prodSN">obtained default value to be set for product serial number</param>
+            <param name="hwVer">obtained default value to be set for hardware version</param>
+            <param name="mac">obtained default value to be set for MAC address</param>
+            <returns>
+            True if this method sets values to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.ChangeSecureAdminPassword(System.String,System.String)">
+            <summary>
+            Changes secure admin password of camera device
+            </summary>
+            <param name="currentPW">current key value for admin password authentication</param>
+            <param name="newPW">new key value to be change for admin password authentication</param>
+            <returns>
+            True if this method changes value on device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>This method is for internal use only</remarks>
+        </member>
+        <member name="T:ThermoEngine.CamInfo">
+            <summary>
+            Abstract class for camera information store
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.LocalCamInfo">
+            <summary>
+            Inheritance class for local camera information store
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.LocalCamInfo.Name">
+            <summary>
+            Camera device name
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.LocalCamInfo.ComPort">
+            <summary>
+            Serial port name
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.LocalCamInfo.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the LocalCamInfo class
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.RemoteCamInfo">
+            <summary>
+            Inheritance class for remote camera information store
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RemoteCamInfo.Name">
+            <summary>
+            Camera device name
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RemoteCamInfo.SerialNumber">
+            <summary>
+            Product serial number
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RemoteCamInfo.AddrMAC">
+            <summary>
+            MAC address
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RemoteCamInfo.AddrIP">
+            <summary>
+            IP address
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RemoteCamInfo.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the RemoteCamInfo class
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.LocalCamera">
+            <summary>
+            Inheritance class for local camera control
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.LocalCamera.GetCameraList">
+            <summary>
+            Gets local camera list
+            </summary>
+            <returns>
+            Camera information list if this method gets connectable camera information successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.RemoteCamera">
+            <summary>
+            Inheritance class for remote camera control
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RemoteCamera.GetCameraList">
+            <summary>
+            Gets remote camera list
+            </summary>
+            <returns>
+            Camera information list if this method gets connectable camera information successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.Frame">
+            <summary>
+            Class for frame control
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Frame._colorMap">
+            <summary>
+            Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Frame.#ctor(OpenCvSharp.Mat)">
+            <summary>
+            Initializes a new instance of the Frame class
+            </summary>
+            <param name="frm">frame data array</param>
+        </member>
+        <member name="M:ThermoEngine.Frame.#ctor(OpenCvSharp.Mat,System.Int32)">
+            <summary>
+            Initializes a new instance of the Frame class with color map
+            </summary>
+            <param name="frm">frame data array</param>
+            <param name="palette">color map</param>
+        </member>
+        <member name="M:ThermoEngine.Frame.DoMeasure(ThermoEngine.RoiObject@)">
+            <summary>
+            Measures location and temperature by ROI
+            </summary>
+            <param name="item">measured ROI object</param>
+        </member>
+        <member name="M:ThermoEngine.Frame.DoMeasure(System.Collections.Generic.List{ThermoEngine.RoiObject}@)">
+            <summary>
+            Measures location and temperature by ROI list
+            </summary>
+            <param name="items">measured ROI objects list</param>
+        </member>
+        <member name="M:ThermoEngine.Frame.ToBitmap(System.Int32,System.Int32)">
+            <summary>
+            Converts a captured frame to Bitmap image object
+            </summary>
+            <param name="width">width size to be resized</param>
+            <param name="height">height size to be resized</param>
+            <returns>
+            Bitmap image object if this method converts a frame successfully;
+            otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Frame.Dispose">
+            <summary>
+            Releases all resources used by the Frame
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.RoiManager">
+            <summary>
+            Class for ROI management
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiManager.Items">
+            <summary>
+            ROI object list
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.RoiManager.SelectedType">
+            <summary>
+            Selected ROI type
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.RoiManager.SelectedItem">
+            <summary>
+            Selected ROI object
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiManager.Clear">
+            <summary>
+            Clear ROI object
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiManager.MouseDown(System.Object,System.Drawing.Point)">
+            <summary>
+            Mouse down event handler
+            </summary>
+            <param name="sender">event sender</param>
+            <param name="pt">point coordinates</param>
+            <returns>
+            True if this method does successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.RoiManager.MouseMove(System.Object,System.Drawing.Point)">
+            <summary>
+            Mouse move event handler
+            </summary>
+            <param name="sender">event sender</param>
+            <param name="pt">point coordinates</param>
+            <returns>
+            True if this method does successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.RoiManager.MouseUp(System.Object,System.Drawing.Point)">
+            <summary>
+            Mouse up event handler
+            </summary>
+            <param name="sender">event sender</param>
+            <param name="pt">point coordinates</param>
+            <returns>
+            True if this method does successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.LocItem">
+            <summary>
+            ROI location and temperature value
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.LocItem.Value">
+            <summary>
+            Temperature value
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.LocItem.Location">
+            <summary>
+            Location coordinates
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.RoiType">
+            <summary>
+            ROI types
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.RoiObject">
+            <summary>
+            Abstract class for ROI object
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiObject.Index">
+            <summary>
+            ROI object index
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiObject.RoiType">
+            <summary>
+            ROI type, Hand=0 / Spot=1 / Line=2 / Rect=3 / Ellipse=4 / Polygon=5
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiObject.MinLoc">
+            <summary>
+            Location for minimum temperature in ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiObject.AvgLoc">
+            <summary>
+            Location for average temperature in ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiObject.MaxLoc">
+            <summary>
+            Location for maximum temperature in ROI
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.RoiSpot">
+            <summary>
+            Inheritance class for Spot type ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiSpot.Spot">
+            <summary>
+            Coordinates of Spot
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiSpot.#ctor">
+            <summary>
+            Constructor of RoiSpot
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiSpot.#ctor(System.Int32)">
+            <summary>
+            Constructor of RoiSpot
+            </summary>
+            <param name="index">object index</param>
+        </member>
+        <member name="M:ThermoEngine.RoiSpot.#ctor(System.Drawing.Point)">
+            <summary>
+            Constructor of RoiSpot
+            </summary>
+            <param name="spot">point coordinates</param>
+        </member>
+        <member name="M:ThermoEngine.RoiSpot.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiSpot
+            </summary>
+            <param name="x">x-coordinate</param>
+            <param name="y">y-coordinate</param>
+        </member>
+        <member name="T:ThermoEngine.RoiLine">
+            <summary>
+            Inheritance class for Line type ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiLine.Start">
+            <summary>
+            Start, end coordinates of Line
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiLine.End">
+            <summary>
+            Start, end coordinates of Line
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiLine.#ctor">
+            <summary>
+            Constructor of RoiLine
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiLine.#ctor(System.Int32)">
+            <summary>
+            Constructor of RoiLine
+            </summary>
+            <param name="index">object index</param>
+        </member>
+        <member name="M:ThermoEngine.RoiLine.#ctor(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Constructor of RoiLine
+            </summary>
+            <param name="start">start point coordinates</param>
+            <param name="end">end point coordinates</param>
+        </member>
+        <member name="M:ThermoEngine.RoiLine.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiLine
+            </summary>
+            <param name="startX">start x-coordinate</param>
+            <param name="startY">start y-coordinate</param>
+            <param name="endX">end x-coordinate</param>
+            <param name="endY">end y-coordinate</param>
+        </member>
+        <member name="T:ThermoEngine.RoiRect">
+            <summary>
+            Inheritance class for Rectangle type ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiRect.Rect">
+            <summary>
+            Location and size of Rectangle
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiRect.#ctor">
+            <summary>
+            Constructor of RoiRect
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiRect.#ctor(System.Int32)">
+            <summary>
+            Constructor of RoiRect
+            </summary>
+            <param name="index">object index</param>
+        </member>
+        <member name="M:ThermoEngine.RoiRect.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            Constructor of RoiRect
+            </summary>
+            <param name="rect">rectangle location and size</param>
+        </member>
+        <member name="M:ThermoEngine.RoiRect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiRect
+            </summary>
+            <param name="x">start x-coordinate</param>
+            <param name="y">start y-coordinate</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
+        <member name="T:ThermoEngine.RoiEllipse">
+            <summary>
+            Inheritance class for Ellipse type ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiEllipse.Ellipse">
+            <summary>
+            Location and size of Ellipse
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiEllipse.#ctor">
+            <summary>
+            Constructor of RoiEllipse
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiEllipse.#ctor(System.Int32)">
+            <summary>
+            Constructor of RoiEllipse
+            </summary>
+            <param name="index">object index</param>
+        </member>
+        <member name="M:ThermoEngine.RoiEllipse.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            Constructor of RoiEllipse
+            </summary>
+            <param name="rect">ellipse location and size</param>
+        </member>
+        <member name="M:ThermoEngine.RoiEllipse.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiEllipse
+            </summary>
+            <param name="x">start x-coordinate</param>
+            <param name="y">start y-coordinate</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
+        <member name="T:ThermoEngine.RoiPolygon">
+            <summary>
+            Inheritance class for Polygon type ROI
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.RoiPolygon.Points">
+            <summary>
+            Coordinates list of Polygon
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiPolygon.#ctor">
+            <summary>
+            Constructor of RoiPolygon
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RoiPolygon.#ctor(System.Int32)">
+            <summary>
+            Constructor of RoiPolygon
+            </summary>
+            <param name="index">object index</param>
+        </member>
+        <member name="P:ThermoEngine.RoiPolygon.Item(System.Int32)">
+            <summary>
+            Coordinates list
+            </summary>
+            <param name="index">point index</param>
+        </member>
+        <member name="M:ThermoEngine.RoiPolygon.Add(System.Drawing.Point)">
+            <summary>
+            Add a point of polygon
+            </summary>
+            <param name="point">point coordinates</param>
+        </member>
+        <member name="M:ThermoEngine.RoiPolygon.Insert(System.Int32,System.Drawing.Point)">
+            <summary>
+            Insert a point of polygon
+            </summary>
+            <param name="index">point index</param>
+            <param name="point">point coordinates</param>
+        </member>
+        <member name="M:ThermoEngine.RoiPolygon.Remove(System.Drawing.Point)">
+            <summary>
+            Remove a point of polygon
+            </summary>
+            <param name="point">point coordinates</param>
+        </member>
+        <member name="M:ThermoEngine.RoiPolygon.RemoveAt(System.Int32)">
+            <summary>
+            Remove a point by index of polygon
+            </summary>
+            <param name="index">point index</param>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.IRtspTransport">
+            <summary>
+            Interface for Transport of Rtsp (TCP, TCP+SSL,..)
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.IRtspTransport.GetStream">
+            <summary>
+            Gets the stream of the transport.
+            </summary>
+            <returns>A stream</returns>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.IRtspTransport.RemoteAddress">
+            <summary>
+            Gets the remote address.
+            </summary>
+            <value>The remote address.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.IRtspTransport.Close">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.IRtspTransport.Connected">
+            <summary>
+            Gets a value indicating whether this <see cref="T:ThermoEngine.Rtsp.IRtspTransport"/> is connected.
+            </summary>
+            <value><c>true</c> if connected; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.IRtspTransport.Reconnect">
+            <summary>
+            Reconnect this instance.
+            <remarks>Must do nothing if already connected.</remarks>
+            </summary>
+            <exception cref="T:System.Net.Sockets.SocketException">Error during socket </exception>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.PortCouple">
+            <summary>
+            Describe a couple of port used to transfer video and command.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.PortCouple.First">
+            <summary>
+            Gets or sets the first port number.
+            </summary>
+            <value>The first port.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.PortCouple.Second">
+            <summary>
+            Gets or sets the second port number.
+            </summary>
+            <remarks>If not present the value is 0</remarks>
+            <value>The second port.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.PortCouple.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.Messages.PortCouple"/> class.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.PortCouple.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.Messages.PortCouple"/> class.
+            </summary>
+            <param name="first">The first port.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.PortCouple.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.Messages.PortCouple"/> class.
+            </summary>
+            <param name="first">The first port.</param>
+            <param name="second">The second port.</param>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.PortCouple.IsSecondPortPresent">
+            <summary>
+            Gets a value indicating whether this instance has second port.
+            </summary>
+            <value>
+            	<c>true</c> if this instance has second port; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.PortCouple.Parse(System.String)">
+            <summary>
+            Parses the int values of port.
+            </summary>
+            <param name="stringValue">A string value.</param>
+            <returns>The port couple</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.PortCouple.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspChunk">
+            <summary>
+            Class wich represent each message echanged on Rtsp socket.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspChunk.LogMessage">
+            <summary>
+            Logs the message to debug.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspChunk.LogMessage(NLog.LogLevel)">
+            <summary>
+            Logs the message.
+            </summary>
+            <param name="aLevel">The log level.</param>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspChunk.Data">
+            <summary>
+            Gets or sets the data associate with the message.
+            </summary>
+            <value>Array of byte transmit with the message.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspChunk.SourcePort">
+            <summary>
+            Gets or sets the source port wich receive the message.
+            </summary>
+            <value>The source port.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspChunk.Clone">
+            <summary>
+            Crée un nouvel objet qui est une copie de l'instance en cours.
+            </summary>
+            <returns>
+            Nouvel objet qui est une copie de cette instance.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspData">
+            <summary>
+            Message wich represent data. ($ limited message)
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspData.LogMessage(NLog.LogLevel)">
+            <summary>
+            Logs the message to debug.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspData.Clone">
+            <summary>
+            Clones this instance.
+            <remarks>Listner is not cloned</remarks>
+            </summary>
+            <returns>a clone of this instance</returns>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspHeaderNames">
+            <summary>
+            Class containing helper constant for general use headers.
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Rtsp.Messages.RtspMessage._rtspVersionTest">
+            <summary>
+            The regex to validate the Rtsp message.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.GetRtspMessage(System.String)">
+            <summary>
+            Create the good type of Rtsp Message from the header.
+            </summary>
+            <param name="aRequestLine">A request line.</param>
+            <returns>An Rtsp message</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.Messages.RtspMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.Creation">
+            <summary>
+            Gets or sets the creation time.
+            </summary>
+            <value>The creation time.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.Command">
+            <summary>
+            Gets or sets the command of the message (first line).
+            </summary>
+            <value>The command.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.Method">
+            <summary>
+            Gets the Method of the message (eg OPTIONS, DESCRIBE, SETUP, PLAY).
+            </summary>
+            <value>The Method</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.Headers">
+            <summary>
+            Gets the headers of the message.
+            </summary>
+            <value>The headers.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.AddHeader(System.String)">
+            <summary>
+            Adds one header from a string.
+            </summary>
+            <param name="line">The string containing header of format Header: Value.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="line"/> is null</exception>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.CSeq">
+            <summary>
+            Gets or sets the Ccommande Seqquence number.
+            <remarks>If the header is not define or not a valid number it return 0</remarks>
+            </summary>
+            <value>The sequence number.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.Session">
+            <summary>
+            Gets the session ID.
+            </summary>
+            <value>The session ID.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspMessage.ContentType">
+            <summary>
+            Gets or sets the content type.
+            </summary>
+            <value>The content type.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.InitialiseDataFromContentLength">
+            <summary>
+            Initialises the length of the data byte array from content lenth header.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.AdjustContentLength">
+            <summary>
+            Adjusts the content length header.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.SendTo(System.IO.Stream)">
+            <summary>
+            Sends to the message to a stream.
+            </summary>
+            <param name="stream">The stream.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is empty</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="stream"/> can't be written.</exception>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.LogMessage(NLog.LogLevel)">
+            <summary>
+            Logs the message.
+            </summary>
+            <param name="aLevel">A log level.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.Clone">
+            <summary>
+            Crée un nouvel objet qui est une copie de l'instance en cours.
+            </summary>
+            <returns>
+            Nouvel objet qui est une copie de cette instance.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspRequest">
+            <summary>
+            An Rtsp Request
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspRequest.RequestType">
+            <summary>
+            Request type.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspRequest.ParseRequest(System.String)">
+            <summary>
+            Parses the request command.
+            </summary>
+            <param name="aStringRequest">A string request command.</param>
+            <returns>The typed request.</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspRequest.GetRtspRequest(System.String[])">
+            <summary>
+            Gets the Rtsp request.
+            </summary>
+            <param name="aRequestParts">A request parts.</param>
+            <returns>the parsed request</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.Messages.RtspRequest"/> class.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspRequest.Request">
+            <summary>
+            Gets the request.
+            </summary>
+            <value>The request in string format.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspRequest.RequestTyped">
+            <summary>
+            Gets the request.
+            <remarks>The return value is typed with <see cref="T:ThermoEngine.Rtsp.Messages.RtspRequest.RequestType"/> if the value is not
+            reconise the value is sent. The string value can be get by <see cref="P:ThermoEngine.Rtsp.Messages.RtspRequest.Request"/></remarks>
+            </summary>
+            <value>The request.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspRequest.RtspUri">
+            <summary>
+            Gets or sets the Rtsp asked URI.
+            </summary>
+            <value>The Rtsp asked URI.</value>
+            <remarks>The request with uri * is return with null URI</remarks>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspRequest.CreateResponse">
+            <summary>
+            Gets the assiociate OK response with the request.
+            </summary>
+            <returns>an Rtsp response correcponding to request.</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspRequestOptions.CreateResponse">
+            <summary>
+            Gets the assiociate OK response with the request.
+            </summary>
+            <returns>
+            an Rtsp response corresponding to request.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspRequestSetup.GetTransports">
+            <summary>
+            Gets the transports associate with the request.
+            </summary>
+            <value>The transport.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspResponse.GetDefaultError(System.Int32)">
+            <summary>
+            Gets the default error message for an error code.
+            </summary>
+            <param name="aErrorCode">An error code.</param>
+            <returns>The default error message associate</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.Messages.RtspResponse"/> class.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.ReturnCode">
+            <summary>
+            Gets or sets the return code of the response.
+            </summary>
+            <value>The return code.</value>
+            <remarks>On change the error message is set to the default one associate with the code</remarks>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.ReturnMessage">
+            <summary>
+            Gets or sets the error/return message.
+            </summary>
+            <value>The return message.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.IsOk">
+            <summary>
+            Gets a value indicating whether this instance correspond to an OK response.
+            </summary>
+            <value><c>true</c> if this instance is OK; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.Timeout">
+            <summary>
+            Gets the timeout in second.
+            <remarks>The default timeout is 60.</remarks>
+            </summary>
+            <value>The timeout.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.Session">
+            <summary>
+            Gets the session ID.
+            </summary>
+            <value>The session ID.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.OriginalRequest">
+            <summary>
+            Gets or sets the original request associate with the response.
+            </summary>
+            <value>The original request.</value>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspTransport.TransportType">
+            <summary>
+            List of transport
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Rtsp.Messages.RtspTransport.TransportType.RTP">
+            <summary>
+            RTP for now
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspTransport.ProfileType">
+            <summary>
+            Profile type
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Rtsp.Messages.RtspTransport.ProfileType.AVP">
+            <summary>
+            RTP/AVP of now
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Messages.RtspTransport.LowerTransportType">
+            <summary>
+            Transport type.
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Rtsp.Messages.RtspTransport.LowerTransportType.UDP">
+            <summary>
+            UDP transport.
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Rtsp.Messages.RtspTransport.LowerTransportType.TCP">
+            <summary>
+            TCP transport.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Transport">
+            <summary>
+            Gets or sets the transport.
+            </summary>
+            <value>The transport.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Profile">
+            <summary>
+            Gets or sets the profile.
+            </summary>
+            <value>The profile.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.LowerTransport">
+            <summary>
+            Gets or sets the lower transport.
+            </summary>
+            <value>The lower transport.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.IsMulticast">
+            <summary>
+            Gets or sets a value indicating whether this instance is multicast.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is multicast; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Destination">
+            <summary>
+            Gets or sets the destination.
+            </summary>
+            <value>The destination.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Source">
+            <summary>
+            Gets or sets the source.
+            </summary>
+            <value>The source.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Interleaved">
+            <summary>
+            Gets or sets the interleaved.
+            </summary>
+            <value>The interleaved.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.IsAppend">
+            <summary>
+            Gets or sets a value indicating whether this instance is append.
+            </summary>
+            <value><c>true</c> if this instance is append; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.TTL">
+            <summary>
+            Gets or sets the TTL.
+            </summary>
+            <value>The TTL.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Layers">
+            <summary>
+            Gets or sets the layers.
+            </summary>
+            <value>The layers.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Port">
+            <summary>
+            Gets or sets the port.
+            </summary>
+            <value>The port.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.ClientPort">
+            <summary>
+            Gets or sets the client port.
+            </summary>
+            <value>The client port.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.ServerPort">
+            <summary>
+            Gets or sets the server port.
+            </summary>
+            <value>The server port.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.SSrc">
+            <summary>
+            Gets or sets the S SRC.
+            </summary>
+            <value>The S SRC.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Mode">
+            <summary>
+            Gets or sets the mode.
+            </summary>
+            <value>The mode.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspTransport.Parse(System.String)">
+            <summary>
+            Parses the specified transport string.
+            </summary>
+            <param name="aTransportString">A transport string.</param>
+            <returns>The transport class.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="aTransportString"/> is null.</exception>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspTransport.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.RtspListener">
+            <summary>
+            Rtsp lister
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.#ctor(ThermoEngine.Rtsp.IRtspTransport)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspListener"/> class from a TCP connection.
+            </summary>
+            <param name="connection">The connection.</param>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspListener.RemoteAdress">
+            <summary>
+            Gets the remote address.
+            </summary>
+            <value>The remote adress.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspListener.AutoReconnect">
+            <summary>
+            Enable auto reconnect.
+            </summary>
+        </member>
+        <member name="E:ThermoEngine.Rtsp.RtspListener.MessageReceived">
+            <summary>
+            Occurs when message is received.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.OnMessageReceived(ThermoEngine.Rtsp.RtspChunkEventArgs)">
+            <summary>
+            Raises the <see cref="E:MessageReceived"/> event.
+            </summary>
+            <param name="e">The <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="E:ThermoEngine.Rtsp.RtspListener.DataReceived">
+            <summary>
+            Occurs when Data is received.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.OnDataReceived(ThermoEngine.Rtsp.RtspChunkEventArgs)">
+            <summary>
+            Raises the <see cref="E:DataReceived"/> event.
+            </summary>
+            <param name="rtspChunkEventArgs">The <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.DoJob">
+            <summary>
+            Does the reading job.
+            </summary>
+            <remarks>
+            This method read one message from TCP connection.
+            If it a response it add the associate question.
+            The stopping is made by the closing of the TCP connection.
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.SendMessage(ThermoEngine.Rtsp.Messages.RtspMessage)">
+            <summary>
+            Sends the message.
+            </summary>
+            <param name="message">A message.</param>
+            <returns>true if it is Ok, otherwise false</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.Reconnect">
+            <summary>
+            Reconnect this instance of RtspListener.
+            </summary>
+            <exception cref="T:System.Net.Sockets.SocketException">Error during socket </exception>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.ReadOneMessage(System.IO.Stream)">
+            <summary>
+            Reads one message.
+            </summary>
+            <param name="commandStream">The Rtsp stream.</param>
+            <returns>Message readen</returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.BeginSendData(ThermoEngine.Rtsp.Messages.RtspData,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins the send data.
+            </summary>
+            <param name="aRtspData">A Rtsp data.</param>
+            <param name="asyncCallback">The async callback.</param>
+            <param name="state">A state.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.BeginSendData(System.Int32,System.Byte[],System.AsyncCallback,System.Object)">
+            <summary>
+            Begins the send data.
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="frame">The frame.</param>
+            <param name="asyncCallback">The async callback.</param>
+            <param name="state">A state.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.EndSendData(System.IAsyncResult)">
+            <summary>
+            Ends the send data.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.SendData(System.Int32,System.Byte[])">
+            <summary>
+            Send data (Synchronous)
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="frame">The frame.</param>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.RtspChunkEventArgs">
+            <summary>
+            Event args containing information for message events.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspChunkEventArgs.#ctor(ThermoEngine.Rtsp.Messages.RtspChunk)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> class.
+            </summary>
+            <param name="aMessage">A message.</param>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspChunkEventArgs.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.RtspTcpTransport">
+            <summary>
+            TCP Connection for Rtsp
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspTcpTransport"/> class.
+            </summary>
+            <param name="tcpConnection">The underlying TCP connection.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspTcpTransport"/> class.
+            </summary>
+            <param name="aHost">A host.</param>
+            <param name="aPortNumber">A port number.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.GetStream">
+            <summary>
+            Gets the stream of the transport.
+            </summary>
+            <returns>A stream</returns>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspTcpTransport.RemoteAddress">
+            <summary>
+            Gets the remote address.
+            </summary>
+            <value>The remote address.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.Close">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspTcpTransport.Connected">
+            <summary>
+            Gets a value indicating whether this <see cref="T:ThermoEngine.Rtsp.IRtspTransport"/> is connected.
+            </summary>
+            <value><c>true</c> if connected; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.Reconnect">
+            <summary>
+            Reconnect this instance.
+            <remarks>Must do nothing if already connected.</remarks>
+            </summary>
+            <exception cref="T:System.Net.Sockets.SocketException">Error during socket </exception>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspUtils.RegisterUri">
+            <summary>
+            Registers the URI.
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Connection.NumberOfAddress">
+            <summary>
+            Gets or sets the number of address specifed in connection.
+            </summary>
+            <value>The number of address.</value>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.Sdp.Origin">
+            <summary>
+            Object ot represent orgin in an Session Description Protocol 
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Sdp.Origin.Parse(System.String)">
+            <summary>
+            Parses the specified origin string.
+            </summary>
+            <param name="originString">The string to convert to origin object.</param>
+            <returns></returns>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Origin.Username">
+            <summary>
+            Gets or sets the username.
+            </summary>
+            <remarks>It is the user's login on the originating host, or it is "-"
+            if the originating host does not support the concept of user IDs.
+            This MUST NOT contain spaces</remarks>
+            <value>The username.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Origin.SessionId">
+            <summary>
+            Gets or sets the session id.
+            </summary>
+            <remarks>It is a numeric string such that the tuple of <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.Username"/>,
+            <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.SessionId"/>, <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.NetType"/>, <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.AddressType"/>, and <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.UnicastAddress"/> forms a
+            globally unique identifier for the session.  The method of
+            <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.SessionId"/> allocation is up to the creating tool, but it has been
+            suggested that a Network Time Protocol (NTP) format timestamp be
+            used to ensure uniqueness</remarks>
+            <value>The session id.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Origin.SessionVersion">
+            <summary>
+            Gets or sets the session version.
+            </summary>
+            <value>The session version.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Origin.NetType">
+            <summary>
+            Gets or sets the type of the net.
+            </summary>
+            <value>The type of the net.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Origin.AddressType">
+            <see cref="P:ThermoEngine.Rtsp.Sdp.Origin.SessionId"/><summary>
+            Gets or sets the type of the address.
+            </summary>
+            <value>The type of the address.</value>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.Sdp.Origin.UnicastAddress">
+            <summary>
+            Gets or sets the unicast address (IP or FDQN).
+            </summary>
+            <value>The unicast address.</value>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Sdp.SdpFile.Read(System.IO.TextReader)">
+            <summary>
+            Reads the specified SDP stream.
+            As define in RFC 4566
+            </summary>
+            <param name="sdpStream">The SDP stream.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.UDPSocket"/> class.
+            Creates two new UDP sockets using the start and end Port range
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.#ctor(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.UDPSocket"/> class.
+            Used with Multicast mode with the Multicast Address and Port
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="E:ThermoEngine.Rtsp.UDPSocket.DataReceived">
+            <summary>
+            Occurs when message is received.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.OnDataReceived(ThermoEngine.Rtsp.RtspChunkEventArgs)">
+            <summary>
+            Raises the <see cref="E:DataReceived"/> event.
+            </summary>
+            <param name="rtspChunkEventArgs">The <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.DoWorkerJob(System.Net.Sockets.UdpClient,System.Int32)">
+            <summary>
+            Does the video job.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.Write_To_Data_Port(System.Byte[],System.String,System.Int32)">
+            <summary>
+            Write to the RTP Data Port
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.Write_To_Control_Port(System.Byte[],System.String,System.Int32)">
+            <summary>
+            Write to the RTP Control Port
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.TempUnit">
+            <summary> 
+            Temperature unit type, 0=Raw / 1=Celsius / 2=Fahrenheit / 3=Kelvin
+            </summary>
+        </member>
+    </members>
+</doc>
