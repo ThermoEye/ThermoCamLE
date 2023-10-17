@@ -1,12 +1,6 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using ThermoEngine;
 
 namespace ThermoCamSDK
@@ -26,13 +20,13 @@ namespace ThermoCamSDK
                         strTemp = string.Format("{0:0} {1}", raw, mCamera.TempUnitSymbol);
                         break;
                     case TempUnit.Celsius:
-                        strTemp = string.Format("{0:0.00} {1}", mCamera.Control.ConvertRawToCelsius(raw), mCamera.TempUnitSymbol);
+                        strTemp = string.Format("{0:0.00} {1}", mCamera.GetTemperature(raw), mCamera.TempUnitSymbol);
                         break;
                     case TempUnit.Fahrenheit:
-                        strTemp = string.Format("{0:0.00} {1}", mCamera.Control.ConvertRawToFahrenheit(raw), mCamera.TempUnitSymbol);
+                        strTemp = string.Format("{0:0.00} {1}", mCamera.GetTemperature(raw), mCamera.TempUnitSymbol);
                         break;
                     case TempUnit.Kelvin:
-                        strTemp = string.Format("{0:0.00} {1}", mCamera.Control.ConvertRawToKelvin(raw), mCamera.TempUnitSymbol);
+                        strTemp = string.Format("{0:0.00} {1}", mCamera.GetTemperature(raw), mCamera.TempUnitSymbol);
                         break;
                 }
             }

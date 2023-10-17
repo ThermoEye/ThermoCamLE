@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using ThermoEngine;
@@ -14,6 +13,8 @@ namespace ThermoCamSDK
         private Thread captureThread = null;
         private Stopwatch stopwatch = new Stopwatch();
         private BackgroundWorker firmwareWorker;
+        private double minVal, avgVal, maxVal;
+        private System.Drawing.Point minLoc, maxLoc;
 
         #region Camera Preview
         private void frameCaptureThread()
@@ -27,30 +28,34 @@ namespace ThermoCamSDK
                     var frame = mCamera.QueryFrame(pictureBox_Preview.Width, pictureBox_Preview.Height);
                     if (frame != null)
                     {
-                        frame.DoMeasure(ref roiManager.Items);
-
-                        var bmp = frame.ToBitmap();
-                        if (bmp != null)
-                        {
-                            DrawShapeObjects(bmp);
-                            if (pictureBox_Preview.Image != null) pictureBox_Preview.Image.Dispose();
-                            pictureBox_Preview.Image = bmp;
-                        }
-
                         // Update values
                         Invoke(new Action(() =>
                         {
                             if (mCamera != null && mCamera.IsOpen == true)
                             {
-                                label_MinimumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.MinTemp, mCamera.TempUnitSymbol);
-                                label_AverageTemperature.Text = string.Format("{0:0.00} {1}", mCamera.AvgTemp, mCamera.TempUnitSymbol);
-                                label_MaximumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.MaxTemp, mCamera.TempUnitSymbol);
+                                // measure roi items
+                                frame.DoMeasure(ref roiManager.Items);
+
+                                // get minimum and maximum values and locations
+                                frame.MinMaxLoc(out minVal, out avgVal, out maxVal, out minLoc, out maxLoc);
+
+                                var bmp = frame.ToBitmap();
+                                if (bmp != null)
+                                {
+                                    DrawShapeObjects(bmp);
+                                    if (pictureBox_Preview.Image != null) pictureBox_Preview.Image.Dispose();
+                                    pictureBox_Preview.Image = bmp;
+                                }
+
+                                label_MinimumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(minVal), mCamera.TempUnitSymbol);
+                                label_AverageTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(avgVal), mCamera.TempUnitSymbol);
+                                label_MaximumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(maxVal), mCamera.TempUnitSymbol);
                             }
                         }));
 
                         if (stopwatch.ElapsedMilliseconds != 0)
                         {
-                            StatusLabel_fps.Text = $"{1000 / stopwatch.ElapsedMilliseconds}Hz";
+                            //StatusLabel_fps.Text = $"{1000 / stopwatch.ElapsedMilliseconds}Hz";
                         }
                         stopwatch.Restart();
                     }
@@ -125,31 +130,34 @@ namespace ThermoCamSDK
             {
                 if(btn.Text == "Connect")
                 {
-                    int index = listBox_LocalCameraScanList.SelectedIndex;
-                    if (index < 0)
+                    if (listBox_LocalCameraScanList.SelectedIndex < 0)
                     {
                         MessageBox.Show("Invalid Camera Index.", "Connect", MessageBoxButtons.OK);
                         return;
                     }
 
-                    string name = textBox_LocalCameraName.Text;
-                    if (string.IsNullOrWhiteSpace(name))
+                    if (string.IsNullOrWhiteSpace(textBox_LocalCameraName.Text))
                     {
                         MessageBox.Show("Invalid Camera Name.", "Connect", MessageBoxButtons.OK);
                         return;
                     }
 
-                    string comPort = textBox_LocalCameraComPort.Text;
-                    if (string.IsNullOrWhiteSpace(comPort))
+                    if (string.IsNullOrWhiteSpace(textBox_LocalCameraComPort.Text))
                     {
                         MessageBox.Show("Invalid COM Port.", "Connect", MessageBoxButtons.OK);
                         return;
                     }
 
+                    if(listBox_LocalCameraScanList.Tag == null)
+                    {
+                        MessageBox.Show("Invalid Camera List.", "Connect", MessageBoxButtons.OK);
+                        return;
+                    }
+
                     if (mCamera == null)
                     {
-                        mCamera = new ThermoEngine.LocalCamera(new LocalCamInfo(name, comPort));
-                        if(mCamera.Open(index, comPort))
+                        mCamera = new ThermoEngine.LocalCamera();
+                        if (mCamera.Open((listBox_LocalCameraScanList.Tag as LocalCamInfo[])[listBox_LocalCameraScanList.SelectedIndex]))
                         {
                             this.captureThread = new Thread(new ThreadStart(frameCaptureThread));
                             this.captureThread.Start();
@@ -164,19 +172,21 @@ namespace ThermoCamSDK
                             comboBox_ColorMap.Enabled = true;
                             comboBox_TemperatureUnit.Enabled = true;
 
-                            if (mCamera.Name.Equals("ThermoCam160E"))
+                            switch(mCamera.Name)
                             {
-                                groupBox_FluxParameters_160E.Visible = true;
-                                groupBox_FluxParameters_256E.Visible = false;
-                            }
-                            else if (mCamera.Name.Equals("ThermoCam256E"))
-                            {
-                                groupBox_FluxParameters_160E.Visible = false;
-                                groupBox_FluxParameters_256E.Visible = true;
+                                case "ThermoCam160E":
+                                    groupBox_FluxParameters_160E.Visible = true;
+                                    groupBox_FluxParameters_256E.Visible = false;
+                                    break;
+
+                                case "ThermoCam256E":
+                                    groupBox_FluxParameters_160E.Visible = false;
+                                    groupBox_FluxParameters_256E.Visible = true;
+                                    break;
                             }
 
                             StatusLabel_Name.Text = mCamera.Name;
-                            StatusLabel_CamInfo.Text = $"{mCamera.Width}x{mCamera.Height}";
+                            StatusLabel_CamInfo.Text = $"{mCamera.Width}x{mCamera.Height}@{mCamera.FPS}Hz";
                         }
                         else
                         {
@@ -280,8 +290,7 @@ namespace ThermoCamSDK
             {
                 if (btn.Text == "Connect")
                 {
-                    string ip_addr = textBox_RemoteCameraIPAddress.Text;
-                    if (string.IsNullOrEmpty(ip_addr))
+                    if (string.IsNullOrEmpty(textBox_RemoteCameraIPAddress.Text))
                     {
                         MessageBox.Show("Invalid AddrIP Address.", "Connect", MessageBoxButtons.OK);
                         return;
@@ -289,8 +298,8 @@ namespace ThermoCamSDK
 
                     if (mCamera == null)
                     {
-                        mCamera = new ThermoEngine.RemoteCamera(new RemoteCamInfo(textBox_RemoteCameraName.Text, textBox_RemoteCameraSerialNumber.Text, textBox_RemoteCameraMACAddress.Text, textBox_RemoteCameraIPAddress.Text));
-                        if (mCamera.Open(ip_addr))
+                        mCamera = new ThermoEngine.RemoteCamera();
+                        if (mCamera.Open((listBox_RemoteCameraScanList.Tag as RemoteCamInfo[])[listBox_RemoteCameraScanList.SelectedIndex]))
                         {
                             this.captureThread = new Thread(new ThreadStart(frameCaptureThread));
                             this.captureThread.Start();
@@ -305,20 +314,22 @@ namespace ThermoCamSDK
                             comboBox_ColorMap.Enabled = true;
                             comboBox_TemperatureUnit.Enabled = true;
 
-                            if(mCamera.Name.Equals("ThermoCam160E"))
+                            switch(mCamera.Name)
                             {
-                                groupBox_FluxParameters_160E.Visible = true;
-                                groupBox_FluxParameters_256E.Visible = false;
-                            }
-                            else if (mCamera.Name.Equals("ThermoCam256E"))
-                            {
-                                groupBox_FluxParameters_160E.Visible = false;
-                                groupBox_FluxParameters_256E.Visible = true;
+                                case "ThermoCam160E":
+                                    groupBox_FluxParameters_160E.Visible = true;
+                                    groupBox_FluxParameters_256E.Visible = false;
+                                    break;
+
+                                case "ThermoCam256E":
+                                    groupBox_FluxParameters_160E.Visible = false;
+                                    groupBox_FluxParameters_256E.Visible = true;
+                                    break;
                             }
 
                             StatusLabel_Name.Text = mCamera.Name;
                             StatusLabel_CamInfo.Text = $"{mCamera.Width}x{mCamera.Height}@{mCamera.FPS}Hz";
-                            StatusLabel_fps.Text = $"@{mCamera.FPS}Hz";
+                            //StatusLabel_fps.Text = $"@{mCamera.FPS}Hz";
                         }
                         else
                         {

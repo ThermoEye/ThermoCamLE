@@ -41,7 +41,7 @@
         </member>
         <member name="P:ThermoEngine.Camera.TempUnit">
             <summary> 
-            Temperature unit, 0=Raw / 1=Celsius / 2=Fahrenheit / 3=Kelvin
+            Temperature unit type, 0=Raw / 1=Celsius / 2=Fahrenheit / 3=Kelvin
             </summary>
         </member>
         <member name="P:ThermoEngine.Camera.TempUnitSymbol">
@@ -49,53 +49,21 @@
             Temperature unit symbol
             </summary>
         </member>
-        <member name="P:ThermoEngine.Camera.MinRaw">
-            <summary>
-            Minimum raw value in frame
-            </summary>
-        </member>
-        <member name="P:ThermoEngine.Camera.AvgRaw">
-            <summary>
-            Average raw value in frame
-            </summary>
-        </member>
-        <member name="P:ThermoEngine.Camera.MaxRaw">
-            <summary>
-            Maximum raw value in frame
-            </summary>
-        </member>
-        <member name="P:ThermoEngine.Camera.MinTemp">
-            <summary>
-            Minimum temperature in frame
-            </summary>
-        </member>
-        <member name="P:ThermoEngine.Camera.AvgTemp">
-            <summary>
-            Average temperature in frame
-            </summary>
-        </member>
-        <member name="P:ThermoEngine.Camera.MaxTemp">
-            <summary>
-            Maximum temperature in frame
-            </summary>
-        </member>
-        <member name="M:ThermoEngine.Camera.Open(System.Int32,System.String)">
+        <member name="M:ThermoEngine.Camera.Open(ThermoEngine.LocalCamInfo)">
             <summary>
             Opens local camera device connection via USB UVC and CDC
             </summary>
-            <param name="index">camera device index to be connected via UVC</param>
-            <param name="comPort">camera device serial port name (COMx) to be connected via CDC</param>
+            <param name="camInfo">device information to be connected via USB</param>
             <returns>
             True if this method opens camera connection successfully;
             otherwise, false if an exception is raised.
             </returns>
         </member>
-        <member name="M:ThermoEngine.Camera.Open(System.String,System.Int32)">
+        <member name="M:ThermoEngine.Camera.Open(ThermoEngine.RemoteCamInfo)">
             <summary>
             Opens remote camera device connection via Ethernet RTSP and RTP
             </summary>
-            <param name="ipAddr">camera device IP address to be connected</param>
-            <param name="portNum">camera device port number to be connected, RTSP port supports 554 only</param>
+            <param name="camInfo">device information to be conneced via Ethernet</param>
             <returns>
             True if this method opens camera connection successfully;
             otherwise, false if an exception is raised.
@@ -119,6 +87,15 @@
             <returns>
             Frame object if this method gets a captured frame successfully;
             otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Camera.GetTemperature(System.Double)">
+            <summary>
+            Get converted temperature by temperature unit
+            </summary>
+            <param name="raw">raw value to be converted</param>
+            <returns>
+            Converted temperature value
             </returns>
         </member>
         <member name="M:ThermoEngine.Camera.Start">
@@ -170,6 +147,64 @@
             <returns>
             Packet size.
             </returns>
+        </member>
+        <member name="T:ThermoEngine.VideoInputDevices.VideoInputDevice">
+            <summary>
+            A video input device that is detected in the system
+            </summary>
+        </member>
+        <member name="P:ThermoEngine.VideoInputDevices.VideoInputDevice.Index">
+            <summary>
+            The name of the video input device
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.VideoInputDevice.#ctor(System.Int32,System.Runtime.InteropServices.ComTypes.IMoniker)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.VideoInputDevices.VideoInputDevice"/> class
+            </summary>
+            <param name="moniker">A moniker object</param>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.VideoInputDevice.GetFriendlyName(System.Runtime.InteropServices.ComTypes.IMoniker)">
+            <summary>
+            Get the name represented by the moniker
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.VideoInputDevice.GetDevicePath(System.Runtime.InteropServices.ComTypes.IMoniker)">
+            <summary>
+            Get the name represented by the moniker
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.VideoInputDevice.GetDescription(System.Runtime.InteropServices.ComTypes.IMoniker)">
+            <summary>
+            Get the name represented by the moniker
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.VideoInputDevices.SystemDeviceEnumerator">
+            <summary>
+            A system device enumerator
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.SystemDeviceEnumerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.VideoInputDevices.SystemDeviceEnumerator"/> class
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.SystemDeviceEnumerator.ListVideoInputDevice">
+            <summary>
+            Lists the video input devices connected to the system
+            </summary>
+            <returns>A dictionary with the id and name of the device.</returns>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.SystemDeviceEnumerator.Dispose(System.Boolean)">
+            <summary>
+            rees, releases, or resets unmanaged resources
+            </summary>
+            <param name="disposing"><c>false</c> if invoked by the finalizer because the object is being garbage collected; otherwise, <c>true</c></param>
+        </member>
+        <member name="M:ThermoEngine.VideoInputDevices.SystemDeviceEnumerator.Dispose">
+            <summary>
+            Frees, releases, or resets unmanaged resources
+            </summary>
         </member>
         <member name="T:ThermoEngine.ICameraControl">
             <summary>
@@ -743,6 +778,11 @@
             Inheritance class for local camera information store
             </summary>
         </member>
+        <member name="F:ThermoEngine.LocalCamInfo.Index">
+            <summary>
+            Camera index
+            </summary>
+        </member>
         <member name="F:ThermoEngine.LocalCamInfo.Name">
             <summary>
             Camera device name
@@ -753,7 +793,7 @@
             Serial port name
             </summary>
         </member>
-        <member name="M:ThermoEngine.LocalCamInfo.#ctor(System.String,System.String)">
+        <member name="M:ThermoEngine.LocalCamInfo.#ctor(System.String,System.String,System.Int32)">
             <summary>
             Initializes a new instance of the LocalCamInfo class
             </summary>
@@ -838,6 +878,60 @@
             </summary>
             <param name="frm">frame data array</param>
             <param name="palette">color map</param>
+        </member>
+        <member name="M:ThermoEngine.Frame.GetPixel(System.Int32,System.Int32)">
+            <summary>
+            Gets pixel data in frame
+            </summary>
+            <param name="x">x position</param>
+            <param name="y">y position</param>
+            <returns>pixel data value</returns>
+        </member>
+        <member name="M:ThermoEngine.Frame.GetPixel(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets area pixel data in frame
+            </summary>
+            <param name="x">x position</param>
+            <param name="y">y position</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+            <returns>pixel data values</returns>
+        </member>
+        <member name="M:ThermoEngine.Frame.SetPixel(System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            Sets pixel data into frame
+            </summary>
+            <param name="x">x position</param>
+            <param name="y">y position</param>
+            <param name="value">raw value</param>
+            <returns>
+            True if this method set value successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Frame.SetPixel(System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            Sets pixel data into area in frame
+            </summary>
+            <param name="x">x position</param>
+            <param name="y">y position</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+            <param name="value">raw value</param>
+            <returns>
+            True if this method set value successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.Frame.MinMaxLoc(System.Double@,System.Double@,System.Double@,System.Drawing.Point@,System.Drawing.Point@)">
+            <summary>
+            Gets minimum, maximum and average values and locations
+            </summary>
+            <param name="minVal">minimum value</param>
+            <param name="maxVal">maximum value</param>
+            <param name="avgVal">average value</param>
+            <param name="minLoc">minimum location</param>
+            <param name="maxLoc">maximum location</param>
         </member>
         <member name="M:ThermoEngine.Frame.DoMeasure(ThermoEngine.RoiObject@)">
             <summary>
