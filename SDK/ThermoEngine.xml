@@ -88,6 +88,10 @@
             Frame object if this method gets a captured frame successfully;
             otherwise, null if an exception is raised.
             </returns>
+            <remarks>
+            If you want to get the original frame object, just call method without parameters as below:
+            <code>var frame = mCamera.QueryFrame();</code>
+            </remarks>
         </member>
         <member name="M:ThermoEngine.Camera.GetTemperature(System.Double)">
             <summary>
@@ -206,6 +210,31 @@
             Frees, releases, or resets unmanaged resources
             </summary>
         </member>
+        <member name="T:ThermoEngine.SysStatusCode">
+            <summary> 
+            Camera device system status code
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.SysErrorCode">
+            <summary> 
+            Camera device system error code
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.CameraStatus">
+            <summary> 
+            Camera device system status class
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.CameraStatus.SysStatus">
+            <summary> 
+            Camera device system status message dictionary
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.CameraStatus.SysError">
+            <summary> 
+            Camera device system error message dictionary
+            </summary>
+        </member>
         <member name="T:ThermoEngine.ICameraControl">
             <summary>
             Interface for camera sensor control
@@ -254,6 +283,24 @@
             <returns>
             Text string if this method gets value from device successfully;
             otherwise, null if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetSystemStatus">
+            <summary>
+            Gets system status of camera device
+            </summary>
+            <returns>
+            Status code with message of SysStatus if this method gets status from device successfully;
+            otherwise, 0xFFFF if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetSystemError">
+            <summary>
+            Gets system error of camera device
+            </summary>
+            <returns>
+            Error code with message of SysError if this method gets error from device successfully;
+            otherwise, 0xFFFF if an exception is raised.
             </returns>
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetSensorModelName">
@@ -858,26 +905,18 @@
         </member>
         <member name="T:ThermoEngine.Frame">
             <summary>
-            Class for frame control
+            Class for Frame control
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Frame.MatFrame">
+            <summary>
+            Mat array for a captured frame
             </summary>
         </member>
         <member name="F:ThermoEngine.Frame._colorMap">
             <summary>
             Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted
             </summary>
-        </member>
-        <member name="M:ThermoEngine.Frame.#ctor(OpenCvSharp.Mat)">
-            <summary>
-            Initializes a new instance of the Frame class
-            </summary>
-            <param name="frm">frame data array</param>
-        </member>
-        <member name="M:ThermoEngine.Frame.#ctor(OpenCvSharp.Mat,System.Int32)">
-            <summary>
-            Initializes a new instance of the Frame class with color map
-            </summary>
-            <param name="frm">frame data array</param>
-            <param name="palette">color map</param>
         </member>
         <member name="M:ThermoEngine.Frame.GetPixel(System.Int32,System.Int32)">
             <summary>

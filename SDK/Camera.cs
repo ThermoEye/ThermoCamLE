@@ -11,60 +11,106 @@ namespace ThermoCamSDK
     {
         ThermoEngine.Camera mCamera = default;
         private Thread captureThread = null;
-        private Stopwatch stopwatch = new Stopwatch();
-        private BackgroundWorker firmwareWorker;
-        private double minVal, avgVal, maxVal;
-        private System.Drawing.Point minLoc, maxLoc;
 
         #region Camera Preview
         private void frameCaptureThread()
         {
+            System.Drawing.Point minLoc, maxLoc;
+            double minVal, avgVal, maxVal;
+
+            ///Stopwatch stopwatch = new Stopwatch();
+
             try
             {
-                this.stopwatch.Start();
+                ///stopwatch.Start();
 
                 while (mCamera != null && mCamera.IsOpen == true)
                 {
-                    var frame = mCamera.QueryFrame(pictureBox_Preview.Width, pictureBox_Preview.Height);
-                    if (frame != null)
+                    using (var frame = mCamera.QueryFrame(pictureBox_Preview.Width, pictureBox_Preview.Height))
                     {
-                        // Update values
-                        Invoke(new Action(() =>
+                        if (frame != null)
                         {
-                            if (mCamera != null && mCamera.IsOpen == true)
+                            Invoke(new Action(() =>
                             {
-                                // measure roi items
-                                frame.DoMeasure(ref roiManager.Items);
-
-                                // get minimum and maximum values and locations
-                                frame.MinMaxLoc(out minVal, out avgVal, out maxVal, out minLoc, out maxLoc);
-
                                 var bmp = frame.ToBitmap();
                                 if (bmp != null)
                                 {
                                     DrawShapeObjects(bmp);
-                                    if (pictureBox_Preview.Image != null) pictureBox_Preview.Image.Dispose();
+
+                                    pictureBox_Preview.Image?.Dispose();
                                     pictureBox_Preview.Image = bmp;
+
+                                    // measure roi items
+                                    frame.DoMeasure(ref roiManager.Items);
+
+                                    // get minimum and maximum values and locations
+                                    frame.MinMaxLoc(out minVal, out avgVal, out maxVal, out minLoc, out maxLoc);
+
+                                    label_MinimumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(minVal), mCamera.TempUnitSymbol);
+                                    label_AverageTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(avgVal), mCamera.TempUnitSymbol);
+                                    label_MaximumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(maxVal), mCamera.TempUnitSymbol);
                                 }
+                            }));
 
-                                label_MinimumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(minVal), mCamera.TempUnitSymbol);
-                                label_AverageTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(avgVal), mCamera.TempUnitSymbol);
-                                label_MaximumTemperature.Text = string.Format("{0:0.00} {1}", mCamera.GetTemperature(maxVal), mCamera.TempUnitSymbol);
-                            }
-                        }));
-
-                        if (stopwatch.ElapsedMilliseconds != 0)
-                        {
-                            //StatusLabel_fps.Text = $"{1000 / stopwatch.ElapsedMilliseconds}Hz";
+                            ///if (stopwatch.ElapsedMilliseconds != 0)
+                            ///{
+                            ///    StatusLabel_fps.Text = String.Format("{0:D2} Hz", 1000 / stopwatch.ElapsedMilliseconds);
+                            ///    Debug.WriteLine(StatusLabel_fps.Text);
+                            ///    stopwatch.Restart();
+                            ///}
                         }
-                        stopwatch.Restart();
                     }
-                    //Thread.Sleep(1);
                 }
+            }
+            catch (TimeoutException)
+            {
+                Tuple<ushort, string> status = new Tuple<ushort, string>((ushort)SysStatusCode.SYS_UNKNOWN, "Unknown");
+                Tuple<ushort, string> error = new Tuple<ushort, string>((ushort)SysErrorCode.ERR_UNKNOWN, "Unknown");
 
                 pictureBox_Preview.Image = null;
+
+                if (mCamera != null)
+                {
+                    status = mCamera.Control.GetSystemStatus();
+                    error = mCamera.Control.GetSystemError();
+
+                    Console.WriteLine("System Status : [0x{0:X2}] {1}", status.Item1, status.Item2);
+                    Console.WriteLine("Error Status : [0x{0:X2}] {1}", error.Item1, error.Item2);
+
+                    System.Threading.Thread.Sleep(1000);
+
+                    mCamera.Close();
+                    mCamera = null;
+                }
+
+                if (DialogResult.OK == MessageBox.Show("Can't get video frame from Camera.\r\n"
+                                                      + "[0x" + status.Item1.ToString("X2") + "] " + status.Item2 + "\r\n"
+                                                      + "[0x" + error.Item1.ToString("X2") + "] " + error.Item2,
+                                                      "QueryFrame", MessageBoxButtons.OK))
+                {
+                    Invoke(new Action(() =>
+                    {
+                        tabControl2.Enabled = false;
+                        tabControl3.Enabled = false;
+                        comboBox_ColorMap.Enabled = false;
+                        comboBox_TemperatureUnit.Enabled = false;
+                        button_ConnectLocalCamera.Enabled = false;
+                        button_ScanLocalCamera.Enabled = false;
+                        button_ConnectRemoteCamera.Enabled = false;
+                        button_ScanRemoteCamera.Enabled = false;
+                        System.Threading.Thread.Sleep(2000);
+                        button_ConnectLocalCamera.Text = "Connect";
+                        button_ConnectLocalCamera.Enabled = true;
+                        button_ScanLocalCamera.Enabled = true;
+                        button_ConnectRemoteCamera.Text = "Connect";
+                        button_ConnectRemoteCamera.Enabled = true;
+                        button_ScanRemoteCamera.Enabled = true;
+                    }));
+                }
             }
-            catch { }
+            catch (ThreadInterruptedException) { }
+
+            pictureBox_Preview.Image = null;
         }
 
         private void comboBox_ColorMap_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,79 +209,22 @@ namespace ThermoCamSDK
                             this.captureThread.Start();
 
                             btn.Text = "Disconnect";
-
-                            button_ScanLocalCamera.Enabled = false;
-                            button_ConnectRemoteCamera.Enabled = false;
-                            button_ScanRemoteCamera.Enabled = false;
-                            tabControl2.Enabled = true;
-                            tabControl3.Enabled = true;
-                            comboBox_ColorMap.Enabled = true;
-                            comboBox_TemperatureUnit.Enabled = true;
-
-                            switch(mCamera.Name)
-                            {
-                                case "ThermoCam160E":
-                                    groupBox_FluxParameters_160E.Visible = true;
-                                    groupBox_FluxParameters_256E.Visible = false;
-                                    break;
-
-                                case "ThermoCam256E":
-                                    groupBox_FluxParameters_160E.Visible = false;
-                                    groupBox_FluxParameters_256E.Visible = true;
-                                    break;
-                            }
-
-                            StatusLabel_Name.Text = mCamera.Name;
-                            StatusLabel_CamInfo.Text = $"{mCamera.Width}x{mCamera.Height}@{mCamera.FPS}Hz";
+                            ConnectCamera();
                         }
                         else
                         {
                             MessageBox.Show("Fail to connect Local Camera.", "Connect", MessageBoxButtons.OK);
                             
                             btn.Text = "Connect";
-
-                            button_ScanLocalCamera.Enabled = true;
-                            button_ConnectRemoteCamera.Enabled = true;
-                            button_ScanRemoteCamera.Enabled = true;
-                            tabControl2.Enabled = false;
-                            tabControl3.Enabled = false;
-                            comboBox_ColorMap.Enabled = false;
-                            comboBox_TemperatureUnit.Enabled = false;
-
-                            groupBox_FluxParameters_160E.Visible = false;
-                            groupBox_FluxParameters_256E.Visible = false;
-
-                            StatusLabel_Name.Text = "";
-                            StatusLabel_CamInfo.Text = "";
-                            StatusLabel_fps.Text = "";
+                            DisconnectCamera();
                             return;
                         }
                     }
                 }
                 else
                 {
-                    if(mCamera != null) 
-                    {
-                        mCamera.Close();
-                        mCamera = null;
-
-                        btn.Text = "Connect";
-
-                        button_ScanLocalCamera.Enabled = true;
-                        button_ConnectRemoteCamera.Enabled = true;
-                        button_ScanRemoteCamera.Enabled = true;
-                        tabControl2.Enabled = false;
-                        tabControl3.Enabled = false;
-                        comboBox_ColorMap.Enabled = false;
-                        comboBox_TemperatureUnit.Enabled = false;
-
-                        groupBox_FluxParameters_160E.Visible = false;
-                        groupBox_FluxParameters_256E.Visible = false;
-
-                        StatusLabel_Name.Text = "";
-                        StatusLabel_CamInfo.Text = "";
-                        StatusLabel_fps.Text = "";
-                    }
+                    DisconnectCamera();
+                    btn.Text = "Connect";
                 }
             }
         }
@@ -306,84 +295,83 @@ namespace ThermoCamSDK
 
                             btn.Text = "Disconnect";
 
-                            button_ScanLocalCamera.Enabled = false;
-                            button_ConnectLocalCamera.Enabled = false;
-                            button_ScanRemoteCamera.Enabled = false;
-                            tabControl2.Enabled = true;
-                            tabControl3.Enabled = true;
-                            comboBox_ColorMap.Enabled = true;
-                            comboBox_TemperatureUnit.Enabled = true;
-
-                            switch(mCamera.Name)
-                            {
-                                case "ThermoCam160E":
-                                    groupBox_FluxParameters_160E.Visible = true;
-                                    groupBox_FluxParameters_256E.Visible = false;
-                                    break;
-
-                                case "ThermoCam256E":
-                                    groupBox_FluxParameters_160E.Visible = false;
-                                    groupBox_FluxParameters_256E.Visible = true;
-                                    break;
-                            }
-
-                            StatusLabel_Name.Text = mCamera.Name;
-                            StatusLabel_CamInfo.Text = $"{mCamera.Width}x{mCamera.Height}@{mCamera.FPS}Hz";
-                            //StatusLabel_fps.Text = $"@{mCamera.FPS}Hz";
+                            ConnectCamera();
                         }
                         else
                         {
                             MessageBox.Show("Fail to connect Remote Camera.", "Connect", MessageBoxButtons.OK);
 
-                            mCamera.Close();
-                            mCamera = null;
-
-                            button_ScanLocalCamera.Enabled = true;
-                            button_ConnectLocalCamera.Enabled = true;
-                            button_ScanRemoteCamera.Enabled = true;
-                            tabControl2.Enabled = false;
-                            tabControl3.Enabled = false;
-                            comboBox_ColorMap.Enabled = false;
-                            comboBox_TemperatureUnit.Enabled = false;
-
-                            groupBox_FluxParameters_160E.Visible = false;
-                            groupBox_FluxParameters_256E.Visible = false;
-
-                            StatusLabel_Name.Text = "";
-                            StatusLabel_CamInfo.Text = "";
-                            StatusLabel_fps.Text = "";
+                            DisconnectCamera();
                             return;
                         }
                     }
                 }
                 else
                 {
-                    if (mCamera != null)
-                    {
-                        mCamera.Close();
-                        mCamera = null;
-
-                        btn.Text = "Connect";
-
-                        button_ScanLocalCamera.Enabled = true;
-                        button_ConnectLocalCamera.Enabled = true;
-                        button_ScanRemoteCamera.Enabled = true;
-                        tabControl2.Enabled = false;
-                        tabControl3.Enabled = false;
-                        comboBox_ColorMap.Enabled = false;
-                        comboBox_TemperatureUnit.Enabled = false;
-
-                        groupBox_FluxParameters_160E.Visible = false;
-                        groupBox_FluxParameters_256E.Visible = false;
-
-                        StatusLabel_Name.Text = "";
-                        StatusLabel_CamInfo.Text = "";
-                        StatusLabel_fps.Text = "";
-                    }
-
+                    DisconnectCamera();
+                    btn.Text = "Connect";
                 }
             }
         }
         #endregion
+
+        private void ConnectCamera()
+        {
+            switch (mCamera.Name)
+            {
+                case "ThermoCam160E":
+                    groupBox_FluxParameters_160E.Visible = true;
+                    groupBox_FluxParameters_256E.Visible = false;
+                    break;
+
+                case "ThermoCam256E":
+                    groupBox_FluxParameters_160E.Visible = false;
+                    groupBox_FluxParameters_256E.Visible = true;
+                    break;
+            }
+
+            StatusLabel_Name.Text = mCamera.Name;
+            StatusLabel_CamInfo.Text = $"{mCamera.Width}x{mCamera.Height}@{mCamera.FPS}Hz";
+
+            button_ScanLocalCamera.Enabled = false;
+            button_ScanRemoteCamera.Enabled = false;
+            tabControl2.Enabled = true;
+            tabControl3.Enabled = true;
+            comboBox_ColorMap.Enabled = true;
+            comboBox_TemperatureUnit.Enabled = true;
+        }
+
+        private void DisconnectCamera()
+        {
+            if (mCamera != null)
+            {
+                if(this.captureThread != null && this.captureThread.IsAlive)
+                {
+                    // force to terminate frameThread
+                    this.captureThread.Interrupt();
+                    // Wait for frameThread to end.
+                    this.captureThread.Join();
+
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                mCamera.Close();
+                mCamera = null;
+            }
+
+            groupBox_FluxParameters_160E.Visible = false;
+            groupBox_FluxParameters_256E.Visible = false;
+
+            StatusLabel_Name.Text = "";
+            StatusLabel_CamInfo.Text = "";
+            StatusLabel_fps.Text = "";
+
+            button_ScanLocalCamera.Enabled = true;
+            button_ScanRemoteCamera.Enabled = true;
+            tabControl2.Enabled = false;
+            tabControl3.Enabled = false;
+            comboBox_ColorMap.Enabled = false;
+            comboBox_TemperatureUnit.Enabled = false;
+        }
     }
 }

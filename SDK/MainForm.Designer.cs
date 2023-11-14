@@ -185,12 +185,6 @@
             this.label_MinimumTemperature = new System.Windows.Forms.Label();
             this.label_AverageTemperature = new System.Windows.Forms.Label();
             this.label_MaximumTemperature = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.radioButton_ShapeEllipse = new System.Windows.Forms.RadioButton();
-            this.radioButton_ShapeRectangle = new System.Windows.Forms.RadioButton();
-            this.radioButton_ShapeLine = new System.Windows.Forms.RadioButton();
-            this.radioButton_ShapeSpot = new System.Windows.Forms.RadioButton();
-            this.radioButton_ShapeCursor = new System.Windows.Forms.RadioButton();
             this.panel_Preview = new System.Windows.Forms.Panel();
             this.label_ColorMap = new System.Windows.Forms.Label();
             this.comboBox_ColorMap = new System.Windows.Forms.ComboBox();
@@ -198,6 +192,14 @@
             this.comboBox_TemperatureUnit = new System.Windows.Forms.ComboBox();
             this.panel_VideoPreview = new System.Windows.Forms.Panel();
             this.pictureBox_Preview = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.radioButton_ShapeEllipse = new System.Windows.Forms.RadioButton();
+            this.radioButton_ShapeRectangle = new System.Windows.Forms.RadioButton();
+            this.radioButton_ShapeLine = new System.Windows.Forms.RadioButton();
+            this.radioButton_ShapeSpot = new System.Windows.Forms.RadioButton();
+            this.radioButton_ShapeCursor = new System.Windows.Forms.RadioButton();
+            this.button_RemoveAllRoi = new System.Windows.Forms.Button();
             this.tableLayoutPanelMain.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -240,10 +242,11 @@
             this.panel2.SuspendLayout();
             this.tableLayoutPanel_Preview.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel_Preview.SuspendLayout();
             this.panel_VideoPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Preview)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanelMain
@@ -2261,9 +2264,9 @@
             this.tableLayoutPanel_Preview.ColumnCount = 1;
             this.tableLayoutPanel_Preview.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_Preview.Controls.Add(this.panel5, 0, 1);
-            this.tableLayoutPanel_Preview.Controls.Add(this.panel3, 0, 2);
             this.tableLayoutPanel_Preview.Controls.Add(this.panel_Preview, 0, 3);
             this.tableLayoutPanel_Preview.Controls.Add(this.panel_VideoPreview, 0, 0);
+            this.tableLayoutPanel_Preview.Controls.Add(this.tableLayoutPanel7, 0, 2);
             this.tableLayoutPanel_Preview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Preview.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel_Preview.Name = "tableLayoutPanel_Preview";
@@ -2325,74 +2328,6 @@
             this.label_MaximumTemperature.TabIndex = 1;
             this.label_MaximumTemperature.Text = "MaxTemp";
             this.label_MaximumTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.radioButton_ShapeEllipse);
-            this.panel3.Controls.Add(this.radioButton_ShapeRectangle);
-            this.panel3.Controls.Add(this.radioButton_ShapeLine);
-            this.panel3.Controls.Add(this.radioButton_ShapeSpot);
-            this.panel3.Controls.Add(this.radioButton_ShapeCursor);
-            this.panel3.Location = new System.Drawing.Point(1, 397);
-            this.panel3.Margin = new System.Windows.Forms.Padding(1);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(491, 32);
-            this.panel3.TabIndex = 1;
-            // 
-            // radioButton_ShapeEllipse
-            // 
-            this.radioButton_ShapeEllipse.Location = new System.Drawing.Point(311, 6);
-            this.radioButton_ShapeEllipse.Name = "radioButton_ShapeEllipse";
-            this.radioButton_ShapeEllipse.Size = new System.Drawing.Size(73, 19);
-            this.radioButton_ShapeEllipse.TabIndex = 0;
-            this.radioButton_ShapeEllipse.Text = "Ellipse";
-            this.radioButton_ShapeEllipse.UseVisualStyleBackColor = true;
-            this.radioButton_ShapeEllipse.Click += new System.EventHandler(this.radioButton_Shape_Selected);
-            // 
-            // radioButton_ShapeRectangle
-            // 
-            this.radioButton_ShapeRectangle.Location = new System.Drawing.Point(223, 6);
-            this.radioButton_ShapeRectangle.Name = "radioButton_ShapeRectangle";
-            this.radioButton_ShapeRectangle.Size = new System.Drawing.Size(82, 19);
-            this.radioButton_ShapeRectangle.TabIndex = 0;
-            this.radioButton_ShapeRectangle.Text = "Rectangle";
-            this.radioButton_ShapeRectangle.UseVisualStyleBackColor = true;
-            this.radioButton_ShapeRectangle.Click += new System.EventHandler(this.radioButton_Shape_Selected);
-            // 
-            // radioButton_ShapeLine
-            // 
-            this.radioButton_ShapeLine.Location = new System.Drawing.Point(157, 6);
-            this.radioButton_ShapeLine.Name = "radioButton_ShapeLine";
-            this.radioButton_ShapeLine.Size = new System.Drawing.Size(60, 19);
-            this.radioButton_ShapeLine.TabIndex = 0;
-            this.radioButton_ShapeLine.Text = "Line";
-            this.radioButton_ShapeLine.UseVisualStyleBackColor = true;
-            this.radioButton_ShapeLine.Click += new System.EventHandler(this.radioButton_Shape_Selected);
-            // 
-            // radioButton_ShapeSpot
-            // 
-            this.radioButton_ShapeSpot.Location = new System.Drawing.Point(91, 6);
-            this.radioButton_ShapeSpot.Name = "radioButton_ShapeSpot";
-            this.radioButton_ShapeSpot.Size = new System.Drawing.Size(60, 19);
-            this.radioButton_ShapeSpot.TabIndex = 0;
-            this.radioButton_ShapeSpot.Text = "Spot";
-            this.radioButton_ShapeSpot.UseVisualStyleBackColor = true;
-            this.radioButton_ShapeSpot.Click += new System.EventHandler(this.radioButton_Shape_Selected);
-            // 
-            // radioButton_ShapeCursor
-            // 
-            this.radioButton_ShapeCursor.AutoSize = true;
-            this.radioButton_ShapeCursor.Checked = true;
-            this.radioButton_ShapeCursor.Location = new System.Drawing.Point(8, 6);
-            this.radioButton_ShapeCursor.Name = "radioButton_ShapeCursor";
-            this.radioButton_ShapeCursor.Size = new System.Drawing.Size(60, 19);
-            this.radioButton_ShapeCursor.TabIndex = 0;
-            this.radioButton_ShapeCursor.TabStop = true;
-            this.radioButton_ShapeCursor.Text = "Cursor";
-            this.radioButton_ShapeCursor.UseVisualStyleBackColor = true;
-            this.radioButton_ShapeCursor.Click += new System.EventHandler(this.radioButton_Shape_Selected);
             // 
             // panel_Preview
             // 
@@ -2501,6 +2436,102 @@
             this.pictureBox_Preview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_Preview_MouseMove);
             this.pictureBox_Preview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_Preview_MouseUp);
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel7.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.button_RemoveAllRoi, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(1, 396);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(1);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(491, 34);
+            this.tableLayoutPanel7.TabIndex = 5;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.radioButton_ShapeEllipse);
+            this.panel3.Controls.Add(this.radioButton_ShapeRectangle);
+            this.panel3.Controls.Add(this.radioButton_ShapeLine);
+            this.panel3.Controls.Add(this.radioButton_ShapeSpot);
+            this.panel3.Controls.Add(this.radioButton_ShapeCursor);
+            this.panel3.Location = new System.Drawing.Point(1, 1);
+            this.panel3.Margin = new System.Windows.Forms.Padding(1);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(409, 32);
+            this.panel3.TabIndex = 1;
+            // 
+            // radioButton_ShapeEllipse
+            // 
+            this.radioButton_ShapeEllipse.Location = new System.Drawing.Point(311, 6);
+            this.radioButton_ShapeEllipse.Name = "radioButton_ShapeEllipse";
+            this.radioButton_ShapeEllipse.Size = new System.Drawing.Size(73, 19);
+            this.radioButton_ShapeEllipse.TabIndex = 0;
+            this.radioButton_ShapeEllipse.Text = "Ellipse";
+            this.radioButton_ShapeEllipse.UseVisualStyleBackColor = true;
+            this.radioButton_ShapeEllipse.Click += new System.EventHandler(this.radioButton_Shape_Selected);
+            // 
+            // radioButton_ShapeRectangle
+            // 
+            this.radioButton_ShapeRectangle.Location = new System.Drawing.Point(223, 6);
+            this.radioButton_ShapeRectangle.Name = "radioButton_ShapeRectangle";
+            this.radioButton_ShapeRectangle.Size = new System.Drawing.Size(82, 19);
+            this.radioButton_ShapeRectangle.TabIndex = 0;
+            this.radioButton_ShapeRectangle.Text = "Rectangle";
+            this.radioButton_ShapeRectangle.UseVisualStyleBackColor = true;
+            this.radioButton_ShapeRectangle.Click += new System.EventHandler(this.radioButton_Shape_Selected);
+            // 
+            // radioButton_ShapeLine
+            // 
+            this.radioButton_ShapeLine.Location = new System.Drawing.Point(157, 6);
+            this.radioButton_ShapeLine.Name = "radioButton_ShapeLine";
+            this.radioButton_ShapeLine.Size = new System.Drawing.Size(60, 19);
+            this.radioButton_ShapeLine.TabIndex = 0;
+            this.radioButton_ShapeLine.Text = "Line";
+            this.radioButton_ShapeLine.UseVisualStyleBackColor = true;
+            this.radioButton_ShapeLine.Click += new System.EventHandler(this.radioButton_Shape_Selected);
+            // 
+            // radioButton_ShapeSpot
+            // 
+            this.radioButton_ShapeSpot.Location = new System.Drawing.Point(91, 6);
+            this.radioButton_ShapeSpot.Name = "radioButton_ShapeSpot";
+            this.radioButton_ShapeSpot.Size = new System.Drawing.Size(60, 19);
+            this.radioButton_ShapeSpot.TabIndex = 0;
+            this.radioButton_ShapeSpot.Text = "Spot";
+            this.radioButton_ShapeSpot.UseVisualStyleBackColor = true;
+            this.radioButton_ShapeSpot.Click += new System.EventHandler(this.radioButton_Shape_Selected);
+            // 
+            // radioButton_ShapeCursor
+            // 
+            this.radioButton_ShapeCursor.AutoSize = true;
+            this.radioButton_ShapeCursor.Checked = true;
+            this.radioButton_ShapeCursor.Location = new System.Drawing.Point(8, 6);
+            this.radioButton_ShapeCursor.Name = "radioButton_ShapeCursor";
+            this.radioButton_ShapeCursor.Size = new System.Drawing.Size(60, 19);
+            this.radioButton_ShapeCursor.TabIndex = 0;
+            this.radioButton_ShapeCursor.TabStop = true;
+            this.radioButton_ShapeCursor.Text = "Cursor";
+            this.radioButton_ShapeCursor.UseVisualStyleBackColor = true;
+            this.radioButton_ShapeCursor.Click += new System.EventHandler(this.radioButton_Shape_Selected);
+            // 
+            // button_RemoveAllRoi
+            // 
+            this.button_RemoveAllRoi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_RemoveAllRoi.Location = new System.Drawing.Point(412, 1);
+            this.button_RemoveAllRoi.Margin = new System.Windows.Forms.Padding(1);
+            this.button_RemoveAllRoi.Name = "button_RemoveAllRoi";
+            this.button_RemoveAllRoi.Size = new System.Drawing.Size(78, 32);
+            this.button_RemoveAllRoi.TabIndex = 2;
+            this.button_RemoveAllRoi.Text = "Remove All";
+            this.button_RemoveAllRoi.UseVisualStyleBackColor = true;
+            this.button_RemoveAllRoi.Click += new System.EventHandler(this.button_RemoveAllRoi_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2509,7 +2540,6 @@
             this.Controls.Add(this.tableLayoutPanelMain);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
@@ -2574,12 +2604,13 @@
             this.tableLayoutPanel_Preview.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel_Preview.ResumeLayout(false);
             this.panel_Preview.PerformLayout();
             this.panel_VideoPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Preview)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2754,6 +2785,8 @@
         private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionAutomatic;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_ListROI;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button button_RemoveAllRoi;
     }
 }
 

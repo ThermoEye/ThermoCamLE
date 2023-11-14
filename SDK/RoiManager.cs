@@ -9,6 +9,11 @@ namespace ThermoCamSDK
     {
         RoiManager roiManager = new RoiManager();
 
+        private void button_RemoveAllRoi_Click(object sender, EventArgs e)
+        {
+            roiManager?.Items.Clear();
+        }
+
         private string GetTempStringUnit(double raw)
         {
             string strTemp = string.Empty;

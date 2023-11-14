@@ -21,7 +21,7 @@ namespace ThermoCamSDK
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (mCamera != null) mCamera.Close();
+            DisconnectCamera();
         }
 
         private void panel_VideoPreview_SizeChanged(object sender, EventArgs e)

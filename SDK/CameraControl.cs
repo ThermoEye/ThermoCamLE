@@ -6,6 +6,8 @@ namespace ThermoCamSDK
 {
     public partial class MainForm
     {
+        private BackgroundWorker firmwareWorker;
+
         #region Product
         private void button_ProductControl_Click(object sender, EventArgs e)
         {
@@ -137,6 +139,16 @@ namespace ThermoCamSDK
                     case "button_StartSoftwareUpdate":
                         if (btn.Text == "Start")
                         {
+                            if (this.captureThread != null && this.captureThread.IsAlive)
+                            {
+                                // force to terminate frameThread
+                                this.captureThread.Interrupt();
+                                // Wait for frameThread to end.
+                                this.captureThread.Join();
+
+                                System.Threading.Thread.Sleep(1000);
+                            }
+
                             mCamera.Stop();
                             mCamera.Dispose();
 
@@ -214,7 +226,7 @@ namespace ThermoCamSDK
 
             System.Threading.Thread.Sleep(1000);
 
-            mCamera?.Close();
+            mCamera.Close();
             mCamera = null;
 
             System.Threading.Thread.Sleep(1000);
@@ -336,6 +348,16 @@ namespace ThermoCamSDK
                         break;
 
                     case "button_SystemReboot":
+                        if (this.captureThread != null && this.captureThread.IsAlive)
+                        {
+                            // force to terminate frameThread
+                            this.captureThread.Interrupt();
+                            // Wait for frameThread to end.
+                            this.captureThread.Join();
+
+                            System.Threading.Thread.Sleep(1000);
+                        }
+
                         mCamera.Control.RebootDevice();
 
                         System.Threading.Thread.Sleep(1000);
