@@ -120,21 +120,25 @@ namespace ThermoCamSDK
 
                     case "button_GetFluxParameters_256E":
                         if (mCamera.Control.GetFluxParameters(out double emissivity, out double atmosphericTransmittance,
-                                                              out double ambientAtmosphericTemperature, out double ambientReflectionTemperature))
+                                                              out double ambientAtmosphericTemperature, out double ambientReflectionTemperature,
+                                                              out double distance))
                         {
                             numericUpDown_FluxParam256E_Emissivity.Value = Convert.ToDecimal(emissivity);
                             numericUpDown_FluxParam256E_AtmosphericTransmittance.Value = Convert.ToDecimal(atmosphericTransmittance);
                             numericUpDown_FluxParam256E_AtmosphericTemperature.Value = Convert.ToDecimal(ambientAtmosphericTemperature);
                             numericUpDown_FluxParam256E_AmbientReflectionTemperature.Value = Convert.ToDecimal(ambientReflectionTemperature);
+                            numericUpDown_FluxParam256E_Distance.Value = Convert.ToDecimal(distance);
 
                             numericUpDown_FluxParam256E_Emissivity.Enabled = true;
                             numericUpDown_FluxParam256E_AtmosphericTransmittance.Enabled = true;
                             numericUpDown_FluxParam256E_AtmosphericTemperature.Enabled = true;
                             numericUpDown_FluxParam256E_AmbientReflectionTemperature.Enabled = true;
+                            numericUpDown_FluxParam256E_Distance.Enabled = true;
                             textBox_FluxParam256E_EmissivityRange.Enabled = true;
                             textBox_FluxParam256E_AtmosphericTransmittanceRange.Enabled = true;
                             textBox_FluxParam256E_AtmosphericTemperatureRange.Enabled = true;
                             textBox_FluxParam256E_AmbientReflectionTemperatureRange.Enabled = true;
+                            textBox_FluxParam256E_DistanceRange.Enabled = true;
                             button_SetFluxParameters_256E.Enabled = true;
                         }
                         else
@@ -149,9 +153,11 @@ namespace ThermoCamSDK
                         double atmosphericTransmittanceSet = Convert.ToDouble(numericUpDown_FluxParam256E_AtmosphericTransmittance.Value);
                         double ambientAtmosphericTemperatureSet = Convert.ToDouble(numericUpDown_FluxParam256E_AtmosphericTemperature.Value);
                         double ambientReflectionTemperatureSet = Convert.ToDouble(numericUpDown_FluxParam256E_AmbientReflectionTemperature.Value);
+                        double distanceSet = Convert.ToDouble(numericUpDown_FluxParam256E_Distance.Value);
 
                         if (mCamera.Control.SetFluxParameters(emissivitySet, atmosphericTransmittanceSet,
-                                                              ambientAtmosphericTemperatureSet, ambientReflectionTemperatureSet))
+                                                              ambientAtmosphericTemperatureSet, ambientReflectionTemperatureSet,
+                                                              distanceSet))
                         {
                             MessageBox.Show("Succes to set Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
                         }
@@ -167,21 +173,25 @@ namespace ThermoCamSDK
                         button_SetDefaultFluxParameters_256E.Enabled = false;
 
                         if (mCamera.Control.SetDefaultFluxParameters(out double emissivityDef, out double atmosphericTransmittanceDef,
-                                                                     out double ambientAtmosphericTemperatureDef, out double ambientReflectionTemperatureDef))
+                                                                     out double ambientAtmosphericTemperatureDef, out double ambientReflectionTemperatureDef,
+                                                                     out double distanceDef))
                         {
                             numericUpDown_FluxParam256E_Emissivity.Value = Convert.ToDecimal(emissivityDef);
                             numericUpDown_FluxParam256E_AtmosphericTransmittance.Value = Convert.ToDecimal(atmosphericTransmittanceDef);
                             numericUpDown_FluxParam256E_AtmosphericTemperature.Value = Convert.ToDecimal(ambientAtmosphericTemperatureDef);
                             numericUpDown_FluxParam256E_AmbientReflectionTemperature.Value = Convert.ToDecimal(ambientReflectionTemperatureDef);
+                            numericUpDown_FluxParam256E_Distance.Value = Convert.ToDecimal(distanceDef);
 
                             numericUpDown_FluxParam256E_Emissivity.Enabled = true;
                             numericUpDown_FluxParam256E_AtmosphericTransmittance.Enabled = true;
                             numericUpDown_FluxParam256E_AtmosphericTemperature.Enabled = true;
                             numericUpDown_FluxParam256E_AmbientReflectionTemperature.Enabled = true;
+                            numericUpDown_FluxParam256E_Distance.Enabled = true;
                             textBox_FluxParam256E_EmissivityRange.Enabled = true;
                             textBox_FluxParam256E_AtmosphericTransmittanceRange.Enabled = true;
                             textBox_FluxParam256E_AtmosphericTemperatureRange.Enabled = true;
                             textBox_FluxParam256E_AmbientReflectionTemperatureRange.Enabled = true;
+                            textBox_FluxParam256E_DistanceRange.Enabled = true;
                             button_SetFluxParameters_256E.Enabled = true;
 
                             MessageBox.Show("Succes to set Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
@@ -386,6 +396,11 @@ namespace ThermoCamSDK
         }
 
         private void numericUpDown_FluxParam256E_ReflectionTemperature_ValueChanged(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void numericUpDown_FluxParam256E_Distance_ValueChanged(object sender, EventArgs e)
         {
             Refresh();
         }

@@ -360,7 +360,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Gets flux parameters of camera sensor for ThermoCam256E
             </summary>
@@ -368,6 +368,7 @@
             <param name="atmosphericTransmittance">obtained ratio value for atmospheric transmittance, 0.01 ~ 1</param>
             <param name="atmosphericTemperature">obtained Celsius value for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
             <param name="ambientReflectionTemperature">obtained Celsius value for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <param name="distance">obtained meter value for distance, 0 ~ 200</param>
             <returns>
             True if this method gets values from device successfully;
             otherwise, false if an exception is raised.
@@ -379,6 +380,7 @@
                 atmosphericTransmittance      0.01     1                                   1
                 atmosphericTemperature        -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
                 ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+                distance                      0        200                                 0.25    m
             </code>
             </remarks>
         </member>
@@ -412,7 +414,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Sets flux parameters of camera sensor for ThermoCam256E
             </summary>
@@ -420,6 +422,7 @@
             <param name="atmosphericTransmittance">ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
             <param name="atmosphericTemperature">Celsius value to be set for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
             <param name="ambientReflectionTemperature">Celsius value to be set for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <param name="distance">meter value to be set for distance, 0 ~ 200</param>
             <returns>
             True if this method gets values from device successfully;
             otherwise, false if an exception is raised.
@@ -431,6 +434,7 @@
                 atmosphericTransmittance      0.01     1                                   1
                 atmosphericTemperature        -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
                 ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+                distance                      0        200                                 0.25    m
             </code>
             </remarks>
         </member>
@@ -464,7 +468,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
             Sets flux parameters of camera sensor to factory default values for ThermoCam256E
             </summary>
@@ -472,6 +476,7 @@
             <param name="atmosphericTransmittance">obtained default ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
             <param name="atmosphericTemperature">obtained default Celsius value to be set for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
             <param name="ambientReflectionTemperature">obtained default Celsius value to be set for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
+            <param name="distance">obtained default meter value to be set for distance, 0 ~ 200</param>
             <returns>
             True if this method gets values from device successfully;
             otherwise, false if an exception is raised.
@@ -483,6 +488,7 @@
                 atmosphericTransmittance      0.01     1                                   1
                 atmosphericTemperature        -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
                 ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
+                distance                      0        200                                 0.25    m
             </code>
             </remarks>
         </member>
@@ -1005,6 +1011,11 @@
             Class for ROI management
             </summary>
         </member>
+        <member name="F:ThermoEngine.RoiManager.roiCount">
+            <summary>
+            ROI creation count up
+            </summary>
+        </member>
         <member name="F:ThermoEngine.RoiManager.Items">
             <summary>
             ROI object list
@@ -1142,6 +1153,14 @@
             <param name="x">x-coordinate</param>
             <param name="y">y-coordinate</param>
         </member>
+        <member name="M:ThermoEngine.RoiSpot.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiSpot
+            </summary>
+            <param name="index">object index</param>
+            <param name="x">x-coordinate</param>
+            <param name="y">y-coordinate</param>
+        </member>
         <member name="T:ThermoEngine.RoiLine">
             <summary>
             Inheritance class for Line type ROI
@@ -1184,6 +1203,16 @@
             <param name="endX">end x-coordinate</param>
             <param name="endY">end y-coordinate</param>
         </member>
+        <member name="M:ThermoEngine.RoiLine.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiLine
+            </summary>
+            <param name="index">object index</param>
+            <param name="startX">start x-coordinate</param>
+            <param name="startY">start y-coordinate</param>
+            <param name="endX">end x-coordinate</param>
+            <param name="endY">end y-coordinate</param>
+        </member>
         <member name="T:ThermoEngine.RoiRect">
             <summary>
             Inheritance class for Rectangle type ROI
@@ -1220,6 +1249,16 @@
             <param name="width">width</param>
             <param name="height">height</param>
         </member>
+        <member name="M:ThermoEngine.RoiRect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiRect
+            </summary>
+            <param name="index">object index</param>
+            <param name="x">start x-coordinate</param>
+            <param name="y">start y-coordinate</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
         <member name="T:ThermoEngine.RoiEllipse">
             <summary>
             Inheritance class for Ellipse type ROI
@@ -1251,6 +1290,16 @@
             <summary>
             Constructor of RoiEllipse
             </summary>
+            <param name="x">start x-coordinate</param>
+            <param name="y">start y-coordinate</param>
+            <param name="width">width</param>
+            <param name="height">height</param>
+        </member>
+        <member name="M:ThermoEngine.RoiEllipse.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor of RoiEllipse
+            </summary>
+            <param name="index">object index</param>
             <param name="x">start x-coordinate</param>
             <param name="y">start y-coordinate</param>
             <param name="width">width</param>
