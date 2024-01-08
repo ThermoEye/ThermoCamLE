@@ -320,13 +320,13 @@ namespace ThermoCamSDK
             switch (mCamera.Name)
             {
                 case "ThermoCam160E":
-                    groupBox_FluxParameters_160E.Visible = true;
-                    groupBox_FluxParameters_256E.Visible = false;
+                    panel_SensorControl_160E.Visible = true;
+                    panel_SensorControl_256E.Visible = false;
                     break;
 
                 case "ThermoCam256E":
-                    groupBox_FluxParameters_160E.Visible = false;
-                    groupBox_FluxParameters_256E.Visible = true;
+                    panel_SensorControl_160E.Visible = false;
+                    panel_SensorControl_256E.Visible = true;
                     break;
             }
 
@@ -359,8 +359,8 @@ namespace ThermoCamSDK
                 mCamera = null;
             }
 
-            groupBox_FluxParameters_160E.Visible = false;
-            groupBox_FluxParameters_256E.Visible = false;
+            panel_SensorControl_160E.Visible = false;
+            panel_SensorControl_256E.Visible = false;
 
             StatusLabel_Name.Text = "";
             StatusLabel_CamInfo.Text = "";

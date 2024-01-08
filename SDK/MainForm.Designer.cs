@@ -111,10 +111,12 @@
             this.button_SetDefaultNetworkConfiguration = new System.Windows.Forms.Button();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage_SensorControl = new System.Windows.Forms.TabPage();
+            this.panel_SensorControl_256E = new System.Windows.Forms.Panel();
+            this.button_StoreUserSensorConfig_256E = new System.Windows.Forms.Button();
+            this.button_RestoreDefaultSensorConfig_256E = new System.Windows.Forms.Button();
             this.groupBox_FluxParameters_256E = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label_FluxParam256E_DistanceTitle = new System.Windows.Forms.Label();
-            this.button_SetDefaultFluxParameters_256E = new System.Windows.Forms.Button();
             this.label_FluxParam256E_EmissivityTitle = new System.Windows.Forms.Label();
             this.textBox_FluxParam256E_EmissivityRange = new System.Windows.Forms.TextBox();
             this.button_GetFluxParameters_256E = new System.Windows.Forms.Button();
@@ -134,6 +136,18 @@
             this.numericUpDown_FluxParam256E_Distance = new System.Windows.Forms.NumericUpDown();
             this.label_FluxParam256E_DistanceUnit = new System.Windows.Forms.Label();
             this.textBox_FluxParam256E_DistanceRange = new System.Windows.Forms.TextBox();
+            this.groupBox_GainModeState_256E = new System.Windows.Forms.GroupBox();
+            this.button_SetGainModeState_256E = new System.Windows.Forms.Button();
+            this.button_GetGainModeState_256E = new System.Windows.Forms.Button();
+            this.radioButton_GainModeStateLow_256E = new System.Windows.Forms.RadioButton();
+            this.radioButton_GainModeStateHigh_256E = new System.Windows.Forms.RadioButton();
+            this.groupBox_FlatFieldCorrection_256E = new System.Windows.Forms.GroupBox();
+            this.button_SetFlatFieldCorrectionMode_256E = new System.Windows.Forms.Button();
+            this.button_GetFlatFieldCorrectionMode_256E = new System.Windows.Forms.Button();
+            this.radioButton_FlatFieldCorrectionManual_256E = new System.Windows.Forms.RadioButton();
+            this.button_RunFlatFieldCorrection_256E = new System.Windows.Forms.Button();
+            this.radioButton_FlatFieldCorrectionAutomatic_256E = new System.Windows.Forms.RadioButton();
+            this.panel_SensorControl_160E = new System.Windows.Forms.Panel();
             this.groupBox_FluxParameters_160E = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label_FluxParam160E_WindowReflectedTemperatureUnit = new System.Windows.Forms.Label();
@@ -141,7 +155,6 @@
             this.label_FluxParam160E_WindowTemperatureUnit = new System.Windows.Forms.Label();
             this.label_FluxParam160E_BackgroundTemperatureUnit = new System.Windows.Forms.Label();
             this.numericUpDown_FluxParam160E_WindowReflectedTemperature = new System.Windows.Forms.NumericUpDown();
-            this.button_SetDefaultFluxParameters_160E = new System.Windows.Forms.Button();
             this.numericUpDown_FluxParam160E_WindowReflection = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_FluxParam160E_AtmosphericTemperature = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_FluxParam160E_AtmosphericTransmission = new System.Windows.Forms.NumericUpDown();
@@ -167,19 +180,19 @@
             this.numericUpDown_FluxParam160E_SceneEmissivity = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_FluxParam160E_BackgroundTemperature = new System.Windows.Forms.NumericUpDown();
             this.label_FluxParam160E_BackgroundTemperatureTitle = new System.Windows.Forms.Label();
-            this.tabPage_GainControl = new System.Windows.Forms.TabPage();
-            this.groupBox_GainModeState = new System.Windows.Forms.GroupBox();
-            this.button_SetGainModeState = new System.Windows.Forms.Button();
-            this.button_GetGainModeState = new System.Windows.Forms.Button();
-            this.radioButton_GainModeStateAuto = new System.Windows.Forms.RadioButton();
-            this.radioButton_GainModeStateLow = new System.Windows.Forms.RadioButton();
-            this.radioButton_GainModeStateHigh = new System.Windows.Forms.RadioButton();
-            this.groupBox_FlatFieldCorrection = new System.Windows.Forms.GroupBox();
-            this.button_SetFlatFieldCorrectionMode = new System.Windows.Forms.Button();
-            this.button_GetFlatFieldCorrectionMode = new System.Windows.Forms.Button();
-            this.radioButton_FlatFieldCorrectionManual = new System.Windows.Forms.RadioButton();
-            this.button_RunFlatFieldCorrection = new System.Windows.Forms.Button();
-            this.radioButton_FlatFieldCorrectionAutomatic = new System.Windows.Forms.RadioButton();
+            this.groupBox_GainModeState_160E = new System.Windows.Forms.GroupBox();
+            this.button_SetGainModeState_160E = new System.Windows.Forms.Button();
+            this.button_GetGainModeState_160E = new System.Windows.Forms.Button();
+            this.radioButton_GainModeStateAuto_160E = new System.Windows.Forms.RadioButton();
+            this.radioButton_GainModeStateLow_160E = new System.Windows.Forms.RadioButton();
+            this.radioButton_GainModeStateHigh_160E = new System.Windows.Forms.RadioButton();
+            this.groupBox_FlatFieldCorrection_160E = new System.Windows.Forms.GroupBox();
+            this.button_SetFlatFieldCorrectionMode_160E = new System.Windows.Forms.Button();
+            this.button_GetFlatFieldCorrectionMode_160E = new System.Windows.Forms.Button();
+            this.radioButton_FlatFieldCorrectionManual_160E = new System.Windows.Forms.RadioButton();
+            this.button_RunFlatFieldCorrection_160E = new System.Windows.Forms.Button();
+            this.radioButton_FlatFieldCorrectionAutomatic_160E = new System.Windows.Forms.RadioButton();
+            this.button_RestoreDefaultFluxParameters_160E = new System.Windows.Forms.Button();
             this.tabPage_RoiManager = new System.Windows.Forms.TabPage();
             this.button_RemoveRoiItem = new System.Windows.Forms.Button();
             this.button_AddRoiItem = new System.Windows.Forms.Button();
@@ -261,6 +274,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage_SensorControl.SuspendLayout();
+            this.panel_SensorControl_256E.SuspendLayout();
             this.groupBox_FluxParameters_256E.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_Emissivity)).BeginInit();
@@ -268,6 +282,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_AtmosphericTemperature)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_AmbientReflectionTemperature)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_Distance)).BeginInit();
+            this.groupBox_GainModeState_256E.SuspendLayout();
+            this.groupBox_FlatFieldCorrection_256E.SuspendLayout();
+            this.panel_SensorControl_160E.SuspendLayout();
             this.groupBox_FluxParameters_160E.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_WindowReflectedTemperature)).BeginInit();
@@ -278,9 +295,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_WindowTransmission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_SceneEmissivity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_BackgroundTemperature)).BeginInit();
-            this.tabPage_GainControl.SuspendLayout();
-            this.groupBox_GainModeState.SuspendLayout();
-            this.groupBox_FlatFieldCorrection.SuspendLayout();
+            this.groupBox_GainModeState_160E.SuspendLayout();
+            this.groupBox_FlatFieldCorrection_160E.SuspendLayout();
             this.tabPage_RoiManager.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
@@ -1188,7 +1204,6 @@
             // 
             this.tableLayoutPanelMain.SetColumnSpan(this.tabControl3, 2);
             this.tabControl3.Controls.Add(this.tabPage_SensorControl);
-            this.tabControl3.Controls.Add(this.tabPage_GainControl);
             this.tabControl3.Controls.Add(this.tabPage_RoiManager);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Enabled = false;
@@ -1200,8 +1215,8 @@
             // 
             // tabPage_SensorControl
             // 
-            this.tabPage_SensorControl.Controls.Add(this.groupBox_FluxParameters_256E);
-            this.tabPage_SensorControl.Controls.Add(this.groupBox_FluxParameters_160E);
+            this.tabPage_SensorControl.Controls.Add(this.panel_SensorControl_256E);
+            this.tabPage_SensorControl.Controls.Add(this.panel_SensorControl_160E);
             this.tabPage_SensorControl.Location = new System.Drawing.Point(4, 24);
             this.tabPage_SensorControl.Name = "tabPage_SensorControl";
             this.tabPage_SensorControl.Padding = new System.Windows.Forms.Padding(3);
@@ -1210,29 +1225,60 @@
             this.tabPage_SensorControl.Text = "Sensor Control";
             this.tabPage_SensorControl.UseVisualStyleBackColor = true;
             // 
+            // panel_SensorControl_256E
+            // 
+            this.panel_SensorControl_256E.Controls.Add(this.button_StoreUserSensorConfig_256E);
+            this.panel_SensorControl_256E.Controls.Add(this.button_RestoreDefaultSensorConfig_256E);
+            this.panel_SensorControl_256E.Controls.Add(this.groupBox_FluxParameters_256E);
+            this.panel_SensorControl_256E.Controls.Add(this.groupBox_GainModeState_256E);
+            this.panel_SensorControl_256E.Controls.Add(this.groupBox_FlatFieldCorrection_256E);
+            this.panel_SensorControl_256E.Location = new System.Drawing.Point(0, 0);
+            this.panel_SensorControl_256E.Name = "panel_SensorControl_256E";
+            this.panel_SensorControl_256E.Size = new System.Drawing.Size(719, 240);
+            this.panel_SensorControl_256E.TabIndex = 14;
+            this.panel_SensorControl_256E.Visible = false;
+            // 
+            // button_StoreUserSensorConfig_256E
+            // 
+            this.button_StoreUserSensorConfig_256E.Location = new System.Drawing.Point(489, 189);
+            this.button_StoreUserSensorConfig_256E.Name = "button_StoreUserSensorConfig_256E";
+            this.button_StoreUserSensorConfig_256E.Size = new System.Drawing.Size(104, 45);
+            this.button_StoreUserSensorConfig_256E.TabIndex = 16;
+            this.button_StoreUserSensorConfig_256E.Text = "Store Config Permanently";
+            this.button_StoreUserSensorConfig_256E.UseVisualStyleBackColor = true;
+            this.button_StoreUserSensorConfig_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // button_RestoreDefaultSensorConfig_256E
+            // 
+            this.button_RestoreDefaultSensorConfig_256E.Location = new System.Drawing.Point(599, 189);
+            this.button_RestoreDefaultSensorConfig_256E.Name = "button_RestoreDefaultSensorConfig_256E";
+            this.button_RestoreDefaultSensorConfig_256E.Size = new System.Drawing.Size(114, 45);
+            this.button_RestoreDefaultSensorConfig_256E.TabIndex = 12;
+            this.button_RestoreDefaultSensorConfig_256E.Text = "Restore to Factory Default";
+            this.button_RestoreDefaultSensorConfig_256E.UseVisualStyleBackColor = true;
+            this.button_RestoreDefaultSensorConfig_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
             // groupBox_FluxParameters_256E
             // 
             this.groupBox_FluxParameters_256E.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox_FluxParameters_256E.Location = new System.Drawing.Point(3, 3);
+            this.groupBox_FluxParameters_256E.Location = new System.Drawing.Point(6, 3);
             this.groupBox_FluxParameters_256E.Name = "groupBox_FluxParameters_256E";
-            this.groupBox_FluxParameters_256E.Size = new System.Drawing.Size(527, 155);
+            this.groupBox_FluxParameters_256E.Size = new System.Drawing.Size(467, 155);
             this.groupBox_FluxParameters_256E.TabIndex = 13;
             this.groupBox_FluxParameters_256E.TabStop = false;
             this.groupBox_FluxParameters_256E.Text = "Flux Parameters";
-            this.groupBox_FluxParameters_256E.Visible = false;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.label_FluxParam256E_DistanceTitle, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button_SetDefaultFluxParameters_256E, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.label_FluxParam256E_EmissivityTitle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox_FluxParam256E_EmissivityRange, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_GetFluxParameters_256E, 1, 0);
@@ -1260,7 +1306,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(515, 130);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(455, 130);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // label_FluxParam256E_DistanceTitle
@@ -1268,23 +1314,12 @@
             this.label_FluxParam256E_DistanceTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_FluxParam256E_DistanceTitle.AutoSize = true;
-            this.label_FluxParam256E_DistanceTitle.Location = new System.Drawing.Point(130, 104);
+            this.label_FluxParam256E_DistanceTitle.Location = new System.Drawing.Point(55, 104);
             this.label_FluxParam256E_DistanceTitle.Name = "label_FluxParam256E_DistanceTitle";
-            this.label_FluxParam256E_DistanceTitle.Size = new System.Drawing.Size(58, 26);
+            this.label_FluxParam256E_DistanceTitle.Size = new System.Drawing.Size(133, 26);
             this.label_FluxParam256E_DistanceTitle.TabIndex = 25;
-            this.label_FluxParam256E_DistanceTitle.Text = "Distance :";
+            this.label_FluxParam256E_DistanceTitle.Text = "Distance (Not support) :";
             this.label_FluxParam256E_DistanceTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // button_SetDefaultFluxParameters_256E
-            // 
-            this.button_SetDefaultFluxParameters_256E.Location = new System.Drawing.Point(459, 3);
-            this.button_SetDefaultFluxParameters_256E.Name = "button_SetDefaultFluxParameters_256E";
-            this.tableLayoutPanel1.SetRowSpan(this.button_SetDefaultFluxParameters_256E, 5);
-            this.button_SetDefaultFluxParameters_256E.Size = new System.Drawing.Size(54, 124);
-            this.button_SetDefaultFluxParameters_256E.TabIndex = 12;
-            this.button_SetDefaultFluxParameters_256E.Text = "Set to Factory Default";
-            this.button_SetDefaultFluxParameters_256E.UseVisualStyleBackColor = true;
-            this.button_SetDefaultFluxParameters_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
             // label_FluxParam256E_EmissivityTitle
             // 
@@ -1600,33 +1635,164 @@
             this.textBox_FluxParam256E_DistanceRange.Text = "0.00 ~ 200.00";
             this.textBox_FluxParam256E_DistanceRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // groupBox_GainModeState_256E
+            // 
+            this.groupBox_GainModeState_256E.Controls.Add(this.button_SetGainModeState_256E);
+            this.groupBox_GainModeState_256E.Controls.Add(this.button_GetGainModeState_256E);
+            this.groupBox_GainModeState_256E.Controls.Add(this.radioButton_GainModeStateLow_256E);
+            this.groupBox_GainModeState_256E.Controls.Add(this.radioButton_GainModeStateHigh_256E);
+            this.groupBox_GainModeState_256E.Location = new System.Drawing.Point(489, 3);
+            this.groupBox_GainModeState_256E.Name = "groupBox_GainModeState_256E";
+            this.groupBox_GainModeState_256E.Size = new System.Drawing.Size(224, 74);
+            this.groupBox_GainModeState_256E.TabIndex = 15;
+            this.groupBox_GainModeState_256E.TabStop = false;
+            this.groupBox_GainModeState_256E.Text = "Gain Mode State";
+            // 
+            // button_SetGainModeState_256E
+            // 
+            this.button_SetGainModeState_256E.Location = new System.Drawing.Point(162, 24);
+            this.button_SetGainModeState_256E.Name = "button_SetGainModeState_256E";
+            this.button_SetGainModeState_256E.Size = new System.Drawing.Size(49, 42);
+            this.button_SetGainModeState_256E.TabIndex = 19;
+            this.button_SetGainModeState_256E.Text = "Set";
+            this.button_SetGainModeState_256E.UseVisualStyleBackColor = true;
+            this.button_SetGainModeState_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // button_GetGainModeState_256E
+            // 
+            this.button_GetGainModeState_256E.Location = new System.Drawing.Point(110, 24);
+            this.button_GetGainModeState_256E.Name = "button_GetGainModeState_256E";
+            this.button_GetGainModeState_256E.Size = new System.Drawing.Size(49, 42);
+            this.button_GetGainModeState_256E.TabIndex = 18;
+            this.button_GetGainModeState_256E.Text = "Get";
+            this.button_GetGainModeState_256E.UseVisualStyleBackColor = true;
+            this.button_GetGainModeState_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // radioButton_GainModeStateLow_256E
+            // 
+            this.radioButton_GainModeStateLow_256E.AutoSize = true;
+            this.radioButton_GainModeStateLow_256E.Location = new System.Drawing.Point(9, 47);
+            this.radioButton_GainModeStateLow_256E.Name = "radioButton_GainModeStateLow_256E";
+            this.radioButton_GainModeStateLow_256E.Size = new System.Drawing.Size(47, 19);
+            this.radioButton_GainModeStateLow_256E.TabIndex = 1;
+            this.radioButton_GainModeStateLow_256E.TabStop = true;
+            this.radioButton_GainModeStateLow_256E.Text = "Low";
+            this.radioButton_GainModeStateLow_256E.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_GainModeStateHigh_256E
+            // 
+            this.radioButton_GainModeStateHigh_256E.AutoSize = true;
+            this.radioButton_GainModeStateHigh_256E.Location = new System.Drawing.Point(9, 22);
+            this.radioButton_GainModeStateHigh_256E.Name = "radioButton_GainModeStateHigh_256E";
+            this.radioButton_GainModeStateHigh_256E.Size = new System.Drawing.Size(51, 19);
+            this.radioButton_GainModeStateHigh_256E.TabIndex = 0;
+            this.radioButton_GainModeStateHigh_256E.TabStop = true;
+            this.radioButton_GainModeStateHigh_256E.Text = "High";
+            this.radioButton_GainModeStateHigh_256E.UseVisualStyleBackColor = true;
+            // 
+            // groupBox_FlatFieldCorrection_256E
+            // 
+            this.groupBox_FlatFieldCorrection_256E.Controls.Add(this.button_SetFlatFieldCorrectionMode_256E);
+            this.groupBox_FlatFieldCorrection_256E.Controls.Add(this.button_GetFlatFieldCorrectionMode_256E);
+            this.groupBox_FlatFieldCorrection_256E.Controls.Add(this.radioButton_FlatFieldCorrectionManual_256E);
+            this.groupBox_FlatFieldCorrection_256E.Controls.Add(this.button_RunFlatFieldCorrection_256E);
+            this.groupBox_FlatFieldCorrection_256E.Controls.Add(this.radioButton_FlatFieldCorrectionAutomatic_256E);
+            this.groupBox_FlatFieldCorrection_256E.Location = new System.Drawing.Point(489, 83);
+            this.groupBox_FlatFieldCorrection_256E.Name = "groupBox_FlatFieldCorrection_256E";
+            this.groupBox_FlatFieldCorrection_256E.Size = new System.Drawing.Size(224, 74);
+            this.groupBox_FlatFieldCorrection_256E.TabIndex = 14;
+            this.groupBox_FlatFieldCorrection_256E.TabStop = false;
+            this.groupBox_FlatFieldCorrection_256E.Text = "Flat Field Correction";
+            // 
+            // button_SetFlatFieldCorrectionMode_256E
+            // 
+            this.button_SetFlatFieldCorrectionMode_256E.Location = new System.Drawing.Point(162, 19);
+            this.button_SetFlatFieldCorrectionMode_256E.Name = "button_SetFlatFieldCorrectionMode_256E";
+            this.button_SetFlatFieldCorrectionMode_256E.Size = new System.Drawing.Size(49, 23);
+            this.button_SetFlatFieldCorrectionMode_256E.TabIndex = 18;
+            this.button_SetFlatFieldCorrectionMode_256E.Text = "Set";
+            this.button_SetFlatFieldCorrectionMode_256E.UseVisualStyleBackColor = true;
+            this.button_SetFlatFieldCorrectionMode_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // button_GetFlatFieldCorrectionMode_256E
+            // 
+            this.button_GetFlatFieldCorrectionMode_256E.Location = new System.Drawing.Point(110, 19);
+            this.button_GetFlatFieldCorrectionMode_256E.Name = "button_GetFlatFieldCorrectionMode_256E";
+            this.button_GetFlatFieldCorrectionMode_256E.Size = new System.Drawing.Size(50, 23);
+            this.button_GetFlatFieldCorrectionMode_256E.TabIndex = 17;
+            this.button_GetFlatFieldCorrectionMode_256E.Text = "Get";
+            this.button_GetFlatFieldCorrectionMode_256E.UseVisualStyleBackColor = true;
+            this.button_GetFlatFieldCorrectionMode_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // radioButton_FlatFieldCorrectionManual_256E
+            // 
+            this.radioButton_FlatFieldCorrectionManual_256E.AutoSize = true;
+            this.radioButton_FlatFieldCorrectionManual_256E.Location = new System.Drawing.Point(8, 45);
+            this.radioButton_FlatFieldCorrectionManual_256E.Name = "radioButton_FlatFieldCorrectionManual_256E";
+            this.radioButton_FlatFieldCorrectionManual_256E.Size = new System.Drawing.Size(65, 19);
+            this.radioButton_FlatFieldCorrectionManual_256E.TabIndex = 16;
+            this.radioButton_FlatFieldCorrectionManual_256E.TabStop = true;
+            this.radioButton_FlatFieldCorrectionManual_256E.Text = "Manual";
+            this.radioButton_FlatFieldCorrectionManual_256E.UseVisualStyleBackColor = true;
+            // 
+            // button_RunFlatFieldCorrection_256E
+            // 
+            this.button_RunFlatFieldCorrection_256E.Location = new System.Drawing.Point(110, 44);
+            this.button_RunFlatFieldCorrection_256E.Name = "button_RunFlatFieldCorrection_256E";
+            this.button_RunFlatFieldCorrection_256E.Size = new System.Drawing.Size(101, 23);
+            this.button_RunFlatFieldCorrection_256E.TabIndex = 14;
+            this.button_RunFlatFieldCorrection_256E.Text = "Run";
+            this.button_RunFlatFieldCorrection_256E.UseVisualStyleBackColor = true;
+            this.button_RunFlatFieldCorrection_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // radioButton_FlatFieldCorrectionAutomatic_256E
+            // 
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.AutoSize = true;
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.Location = new System.Drawing.Point(8, 22);
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.Name = "radioButton_FlatFieldCorrectionAutomatic_256E";
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.Size = new System.Drawing.Size(81, 19);
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.TabIndex = 15;
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.TabStop = true;
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.Text = "Automatic";
+            this.radioButton_FlatFieldCorrectionAutomatic_256E.UseVisualStyleBackColor = true;
+            // 
+            // panel_SensorControl_160E
+            // 
+            this.panel_SensorControl_160E.Controls.Add(this.groupBox_FluxParameters_160E);
+            this.panel_SensorControl_160E.Controls.Add(this.groupBox_GainModeState_160E);
+            this.panel_SensorControl_160E.Controls.Add(this.groupBox_FlatFieldCorrection_160E);
+            this.panel_SensorControl_160E.Controls.Add(this.button_RestoreDefaultFluxParameters_160E);
+            this.panel_SensorControl_160E.Location = new System.Drawing.Point(0, 0);
+            this.panel_SensorControl_160E.Name = "panel_SensorControl_160E";
+            this.panel_SensorControl_160E.Size = new System.Drawing.Size(719, 244);
+            this.panel_SensorControl_160E.TabIndex = 15;
+            this.panel_SensorControl_160E.Visible = false;
+            // 
             // groupBox_FluxParameters_160E
             // 
             this.groupBox_FluxParameters_160E.Controls.Add(this.tableLayoutPanel6);
-            this.groupBox_FluxParameters_160E.Location = new System.Drawing.Point(3, 3);
+            this.groupBox_FluxParameters_160E.Location = new System.Drawing.Point(6, 3);
             this.groupBox_FluxParameters_160E.Name = "groupBox_FluxParameters_160E";
-            this.groupBox_FluxParameters_160E.Size = new System.Drawing.Size(527, 233);
+            this.groupBox_FluxParameters_160E.Size = new System.Drawing.Size(467, 233);
             this.groupBox_FluxParameters_160E.TabIndex = 12;
             this.groupBox_FluxParameters_160E.TabStop = false;
             this.groupBox_FluxParameters_160E.Text = "Flux Parameters";
-            this.groupBox_FluxParameters_160E.Visible = false;
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 7;
+            this.tableLayoutPanel6.ColumnCount = 6;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.Controls.Add(this.label_FluxParam160E_WindowReflectedTemperatureUnit, 3, 7);
             this.tableLayoutPanel6.Controls.Add(this.label_FluxParam160E_AtmosphericTemperatureUnit, 3, 5);
             this.tableLayoutPanel6.Controls.Add(this.label_FluxParam160E_WindowTemperatureUnit, 3, 3);
             this.tableLayoutPanel6.Controls.Add(this.label_FluxParam160E_BackgroundTemperatureUnit, 3, 1);
             this.tableLayoutPanel6.Controls.Add(this.numericUpDown_FluxParam160E_WindowReflectedTemperature, 2, 7);
-            this.tableLayoutPanel6.Controls.Add(this.button_SetDefaultFluxParameters_160E, 6, 0);
             this.tableLayoutPanel6.Controls.Add(this.numericUpDown_FluxParam160E_WindowReflection, 2, 6);
             this.tableLayoutPanel6.Controls.Add(this.numericUpDown_FluxParam160E_AtmosphericTemperature, 2, 5);
             this.tableLayoutPanel6.Controls.Add(this.numericUpDown_FluxParam160E_AtmosphericTransmission, 2, 4);
@@ -1663,7 +1829,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(515, 208);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(455, 208);
             this.tableLayoutPanel6.TabIndex = 10;
             // 
             // label_FluxParam160E_WindowReflectedTemperatureUnit
@@ -1742,17 +1908,6 @@
             0,
             65536});
             this.numericUpDown_FluxParam160E_WindowReflectedTemperature.ValueChanged += new System.EventHandler(this.numericUpDown_FluxParam160E_WindowReflectedTemperature_ValueChanged);
-            // 
-            // button_SetDefaultFluxParameters_160E
-            // 
-            this.button_SetDefaultFluxParameters_160E.Location = new System.Drawing.Point(459, 3);
-            this.button_SetDefaultFluxParameters_160E.Name = "button_SetDefaultFluxParameters_160E";
-            this.tableLayoutPanel6.SetRowSpan(this.button_SetDefaultFluxParameters_160E, 8);
-            this.button_SetDefaultFluxParameters_160E.Size = new System.Drawing.Size(54, 202);
-            this.button_SetDefaultFluxParameters_160E.TabIndex = 12;
-            this.button_SetDefaultFluxParameters_160E.Text = "Set to Factory Default";
-            this.button_SetDefaultFluxParameters_160E.UseVisualStyleBackColor = true;
-            this.button_SetDefaultFluxParameters_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
             // numericUpDown_FluxParam160E_WindowReflection
             // 
@@ -2190,150 +2345,148 @@
             this.label_FluxParam160E_BackgroundTemperatureTitle.Text = "Background Temperature :";
             this.label_FluxParam160E_BackgroundTemperatureTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tabPage_GainControl
+            // groupBox_GainModeState_160E
             // 
-            this.tabPage_GainControl.Controls.Add(this.groupBox_GainModeState);
-            this.tabPage_GainControl.Controls.Add(this.groupBox_FlatFieldCorrection);
-            this.tabPage_GainControl.Location = new System.Drawing.Point(4, 24);
-            this.tabPage_GainControl.Name = "tabPage_GainControl";
-            this.tabPage_GainControl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_GainControl.Size = new System.Drawing.Size(719, 240);
-            this.tabPage_GainControl.TabIndex = 3;
-            this.tabPage_GainControl.Text = "Gain Control";
-            this.tabPage_GainControl.UseVisualStyleBackColor = true;
+            this.groupBox_GainModeState_160E.Controls.Add(this.button_SetGainModeState_160E);
+            this.groupBox_GainModeState_160E.Controls.Add(this.button_GetGainModeState_160E);
+            this.groupBox_GainModeState_160E.Controls.Add(this.radioButton_GainModeStateAuto_160E);
+            this.groupBox_GainModeState_160E.Controls.Add(this.radioButton_GainModeStateLow_160E);
+            this.groupBox_GainModeState_160E.Controls.Add(this.radioButton_GainModeStateHigh_160E);
+            this.groupBox_GainModeState_160E.Location = new System.Drawing.Point(489, 3);
+            this.groupBox_GainModeState_160E.Name = "groupBox_GainModeState_160E";
+            this.groupBox_GainModeState_160E.Size = new System.Drawing.Size(224, 100);
+            this.groupBox_GainModeState_160E.TabIndex = 18;
+            this.groupBox_GainModeState_160E.TabStop = false;
+            this.groupBox_GainModeState_160E.Text = "Gain Mode State";
             // 
-            // groupBox_GainModeState
+            // button_SetGainModeState_160E
             // 
-            this.groupBox_GainModeState.Controls.Add(this.button_SetGainModeState);
-            this.groupBox_GainModeState.Controls.Add(this.button_GetGainModeState);
-            this.groupBox_GainModeState.Controls.Add(this.radioButton_GainModeStateAuto);
-            this.groupBox_GainModeState.Controls.Add(this.radioButton_GainModeStateLow);
-            this.groupBox_GainModeState.Controls.Add(this.radioButton_GainModeStateHigh);
-            this.groupBox_GainModeState.Location = new System.Drawing.Point(12, 95);
-            this.groupBox_GainModeState.Name = "groupBox_GainModeState";
-            this.groupBox_GainModeState.Size = new System.Drawing.Size(224, 100);
-            this.groupBox_GainModeState.TabIndex = 15;
-            this.groupBox_GainModeState.TabStop = false;
-            this.groupBox_GainModeState.Text = "Gain Mode State";
+            this.button_SetGainModeState_160E.Location = new System.Drawing.Point(162, 24);
+            this.button_SetGainModeState_160E.Name = "button_SetGainModeState_160E";
+            this.button_SetGainModeState_160E.Size = new System.Drawing.Size(49, 67);
+            this.button_SetGainModeState_160E.TabIndex = 19;
+            this.button_SetGainModeState_160E.Text = "Set";
+            this.button_SetGainModeState_160E.UseVisualStyleBackColor = true;
+            this.button_SetGainModeState_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
-            // button_SetGainModeState
+            // button_GetGainModeState_160E
             // 
-            this.button_SetGainModeState.Location = new System.Drawing.Point(162, 24);
-            this.button_SetGainModeState.Name = "button_SetGainModeState";
-            this.button_SetGainModeState.Size = new System.Drawing.Size(49, 67);
-            this.button_SetGainModeState.TabIndex = 19;
-            this.button_SetGainModeState.Text = "Set";
-            this.button_SetGainModeState.UseVisualStyleBackColor = true;
-            this.button_SetGainModeState.Click += new System.EventHandler(this.button_SensorControl_Click);
+            this.button_GetGainModeState_160E.Location = new System.Drawing.Point(110, 24);
+            this.button_GetGainModeState_160E.Name = "button_GetGainModeState_160E";
+            this.button_GetGainModeState_160E.Size = new System.Drawing.Size(49, 67);
+            this.button_GetGainModeState_160E.TabIndex = 18;
+            this.button_GetGainModeState_160E.Text = "Get";
+            this.button_GetGainModeState_160E.UseVisualStyleBackColor = true;
+            this.button_GetGainModeState_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
-            // button_GetGainModeState
+            // radioButton_GainModeStateAuto_160E
             // 
-            this.button_GetGainModeState.Location = new System.Drawing.Point(110, 24);
-            this.button_GetGainModeState.Name = "button_GetGainModeState";
-            this.button_GetGainModeState.Size = new System.Drawing.Size(49, 67);
-            this.button_GetGainModeState.TabIndex = 18;
-            this.button_GetGainModeState.Text = "Get";
-            this.button_GetGainModeState.UseVisualStyleBackColor = true;
-            this.button_GetGainModeState.Click += new System.EventHandler(this.button_SensorControl_Click);
+            this.radioButton_GainModeStateAuto_160E.AutoSize = true;
+            this.radioButton_GainModeStateAuto_160E.Location = new System.Drawing.Point(9, 72);
+            this.radioButton_GainModeStateAuto_160E.Name = "radioButton_GainModeStateAuto_160E";
+            this.radioButton_GainModeStateAuto_160E.Size = new System.Drawing.Size(81, 19);
+            this.radioButton_GainModeStateAuto_160E.TabIndex = 2;
+            this.radioButton_GainModeStateAuto_160E.TabStop = true;
+            this.radioButton_GainModeStateAuto_160E.Text = "Automatic";
+            this.radioButton_GainModeStateAuto_160E.UseVisualStyleBackColor = true;
             // 
-            // radioButton_GainModeStateAuto
+            // radioButton_GainModeStateLow_160E
             // 
-            this.radioButton_GainModeStateAuto.AutoSize = true;
-            this.radioButton_GainModeStateAuto.Location = new System.Drawing.Point(9, 72);
-            this.radioButton_GainModeStateAuto.Name = "radioButton_GainModeStateAuto";
-            this.radioButton_GainModeStateAuto.Size = new System.Drawing.Size(81, 19);
-            this.radioButton_GainModeStateAuto.TabIndex = 2;
-            this.radioButton_GainModeStateAuto.TabStop = true;
-            this.radioButton_GainModeStateAuto.Text = "Automatic";
-            this.radioButton_GainModeStateAuto.UseVisualStyleBackColor = true;
+            this.radioButton_GainModeStateLow_160E.AutoSize = true;
+            this.radioButton_GainModeStateLow_160E.Location = new System.Drawing.Point(9, 47);
+            this.radioButton_GainModeStateLow_160E.Name = "radioButton_GainModeStateLow_160E";
+            this.radioButton_GainModeStateLow_160E.Size = new System.Drawing.Size(47, 19);
+            this.radioButton_GainModeStateLow_160E.TabIndex = 1;
+            this.radioButton_GainModeStateLow_160E.TabStop = true;
+            this.radioButton_GainModeStateLow_160E.Text = "Low";
+            this.radioButton_GainModeStateLow_160E.UseVisualStyleBackColor = true;
             // 
-            // radioButton_GainModeStateLow
+            // radioButton_GainModeStateHigh_160E
             // 
-            this.radioButton_GainModeStateLow.AutoSize = true;
-            this.radioButton_GainModeStateLow.Location = new System.Drawing.Point(9, 47);
-            this.radioButton_GainModeStateLow.Name = "radioButton_GainModeStateLow";
-            this.radioButton_GainModeStateLow.Size = new System.Drawing.Size(47, 19);
-            this.radioButton_GainModeStateLow.TabIndex = 1;
-            this.radioButton_GainModeStateLow.TabStop = true;
-            this.radioButton_GainModeStateLow.Text = "Low";
-            this.radioButton_GainModeStateLow.UseVisualStyleBackColor = true;
+            this.radioButton_GainModeStateHigh_160E.AutoSize = true;
+            this.radioButton_GainModeStateHigh_160E.Location = new System.Drawing.Point(9, 22);
+            this.radioButton_GainModeStateHigh_160E.Name = "radioButton_GainModeStateHigh_160E";
+            this.radioButton_GainModeStateHigh_160E.Size = new System.Drawing.Size(51, 19);
+            this.radioButton_GainModeStateHigh_160E.TabIndex = 0;
+            this.radioButton_GainModeStateHigh_160E.TabStop = true;
+            this.radioButton_GainModeStateHigh_160E.Text = "High";
+            this.radioButton_GainModeStateHigh_160E.UseVisualStyleBackColor = true;
             // 
-            // radioButton_GainModeStateHigh
+            // groupBox_FlatFieldCorrection_160E
             // 
-            this.radioButton_GainModeStateHigh.AutoSize = true;
-            this.radioButton_GainModeStateHigh.Location = new System.Drawing.Point(9, 22);
-            this.radioButton_GainModeStateHigh.Name = "radioButton_GainModeStateHigh";
-            this.radioButton_GainModeStateHigh.Size = new System.Drawing.Size(51, 19);
-            this.radioButton_GainModeStateHigh.TabIndex = 0;
-            this.radioButton_GainModeStateHigh.TabStop = true;
-            this.radioButton_GainModeStateHigh.Text = "High";
-            this.radioButton_GainModeStateHigh.UseVisualStyleBackColor = true;
+            this.groupBox_FlatFieldCorrection_160E.Controls.Add(this.button_SetFlatFieldCorrectionMode_160E);
+            this.groupBox_FlatFieldCorrection_160E.Controls.Add(this.button_GetFlatFieldCorrectionMode_160E);
+            this.groupBox_FlatFieldCorrection_160E.Controls.Add(this.radioButton_FlatFieldCorrectionManual_160E);
+            this.groupBox_FlatFieldCorrection_160E.Controls.Add(this.button_RunFlatFieldCorrection_160E);
+            this.groupBox_FlatFieldCorrection_160E.Controls.Add(this.radioButton_FlatFieldCorrectionAutomatic_160E);
+            this.groupBox_FlatFieldCorrection_160E.Location = new System.Drawing.Point(489, 109);
+            this.groupBox_FlatFieldCorrection_160E.Name = "groupBox_FlatFieldCorrection_160E";
+            this.groupBox_FlatFieldCorrection_160E.Size = new System.Drawing.Size(224, 74);
+            this.groupBox_FlatFieldCorrection_160E.TabIndex = 17;
+            this.groupBox_FlatFieldCorrection_160E.TabStop = false;
+            this.groupBox_FlatFieldCorrection_160E.Text = "Flat Field Correction";
             // 
-            // groupBox_FlatFieldCorrection
+            // button_SetFlatFieldCorrectionMode_160E
             // 
-            this.groupBox_FlatFieldCorrection.Controls.Add(this.button_SetFlatFieldCorrectionMode);
-            this.groupBox_FlatFieldCorrection.Controls.Add(this.button_GetFlatFieldCorrectionMode);
-            this.groupBox_FlatFieldCorrection.Controls.Add(this.radioButton_FlatFieldCorrectionManual);
-            this.groupBox_FlatFieldCorrection.Controls.Add(this.button_RunFlatFieldCorrection);
-            this.groupBox_FlatFieldCorrection.Controls.Add(this.radioButton_FlatFieldCorrectionAutomatic);
-            this.groupBox_FlatFieldCorrection.Location = new System.Drawing.Point(12, 15);
-            this.groupBox_FlatFieldCorrection.Name = "groupBox_FlatFieldCorrection";
-            this.groupBox_FlatFieldCorrection.Size = new System.Drawing.Size(224, 74);
-            this.groupBox_FlatFieldCorrection.TabIndex = 14;
-            this.groupBox_FlatFieldCorrection.TabStop = false;
-            this.groupBox_FlatFieldCorrection.Text = "Flat Field Correction";
+            this.button_SetFlatFieldCorrectionMode_160E.Location = new System.Drawing.Point(162, 19);
+            this.button_SetFlatFieldCorrectionMode_160E.Name = "button_SetFlatFieldCorrectionMode_160E";
+            this.button_SetFlatFieldCorrectionMode_160E.Size = new System.Drawing.Size(49, 23);
+            this.button_SetFlatFieldCorrectionMode_160E.TabIndex = 18;
+            this.button_SetFlatFieldCorrectionMode_160E.Text = "Set";
+            this.button_SetFlatFieldCorrectionMode_160E.UseVisualStyleBackColor = true;
+            this.button_SetFlatFieldCorrectionMode_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
-            // button_SetFlatFieldCorrectionMode
+            // button_GetFlatFieldCorrectionMode_160E
             // 
-            this.button_SetFlatFieldCorrectionMode.Location = new System.Drawing.Point(162, 19);
-            this.button_SetFlatFieldCorrectionMode.Name = "button_SetFlatFieldCorrectionMode";
-            this.button_SetFlatFieldCorrectionMode.Size = new System.Drawing.Size(49, 23);
-            this.button_SetFlatFieldCorrectionMode.TabIndex = 18;
-            this.button_SetFlatFieldCorrectionMode.Text = "Set";
-            this.button_SetFlatFieldCorrectionMode.UseVisualStyleBackColor = true;
-            this.button_SetFlatFieldCorrectionMode.Click += new System.EventHandler(this.button_SensorControl_Click);
+            this.button_GetFlatFieldCorrectionMode_160E.Location = new System.Drawing.Point(110, 19);
+            this.button_GetFlatFieldCorrectionMode_160E.Name = "button_GetFlatFieldCorrectionMode_160E";
+            this.button_GetFlatFieldCorrectionMode_160E.Size = new System.Drawing.Size(50, 23);
+            this.button_GetFlatFieldCorrectionMode_160E.TabIndex = 17;
+            this.button_GetFlatFieldCorrectionMode_160E.Text = "Get";
+            this.button_GetFlatFieldCorrectionMode_160E.UseVisualStyleBackColor = true;
+            this.button_GetFlatFieldCorrectionMode_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
-            // button_GetFlatFieldCorrectionMode
+            // radioButton_FlatFieldCorrectionManual_160E
             // 
-            this.button_GetFlatFieldCorrectionMode.Location = new System.Drawing.Point(110, 19);
-            this.button_GetFlatFieldCorrectionMode.Name = "button_GetFlatFieldCorrectionMode";
-            this.button_GetFlatFieldCorrectionMode.Size = new System.Drawing.Size(50, 23);
-            this.button_GetFlatFieldCorrectionMode.TabIndex = 17;
-            this.button_GetFlatFieldCorrectionMode.Text = "Get";
-            this.button_GetFlatFieldCorrectionMode.UseVisualStyleBackColor = true;
-            this.button_GetFlatFieldCorrectionMode.Click += new System.EventHandler(this.button_SensorControl_Click);
+            this.radioButton_FlatFieldCorrectionManual_160E.AutoSize = true;
+            this.radioButton_FlatFieldCorrectionManual_160E.Location = new System.Drawing.Point(8, 45);
+            this.radioButton_FlatFieldCorrectionManual_160E.Name = "radioButton_FlatFieldCorrectionManual_160E";
+            this.radioButton_FlatFieldCorrectionManual_160E.Size = new System.Drawing.Size(65, 19);
+            this.radioButton_FlatFieldCorrectionManual_160E.TabIndex = 16;
+            this.radioButton_FlatFieldCorrectionManual_160E.TabStop = true;
+            this.radioButton_FlatFieldCorrectionManual_160E.Text = "Manual";
+            this.radioButton_FlatFieldCorrectionManual_160E.UseVisualStyleBackColor = true;
             // 
-            // radioButton_FlatFieldCorrectionManual
+            // button_RunFlatFieldCorrection_160E
             // 
-            this.radioButton_FlatFieldCorrectionManual.AutoSize = true;
-            this.radioButton_FlatFieldCorrectionManual.Location = new System.Drawing.Point(8, 45);
-            this.radioButton_FlatFieldCorrectionManual.Name = "radioButton_FlatFieldCorrectionManual";
-            this.radioButton_FlatFieldCorrectionManual.Size = new System.Drawing.Size(65, 19);
-            this.radioButton_FlatFieldCorrectionManual.TabIndex = 16;
-            this.radioButton_FlatFieldCorrectionManual.TabStop = true;
-            this.radioButton_FlatFieldCorrectionManual.Text = "Manual";
-            this.radioButton_FlatFieldCorrectionManual.UseVisualStyleBackColor = true;
+            this.button_RunFlatFieldCorrection_160E.Location = new System.Drawing.Point(110, 44);
+            this.button_RunFlatFieldCorrection_160E.Name = "button_RunFlatFieldCorrection_160E";
+            this.button_RunFlatFieldCorrection_160E.Size = new System.Drawing.Size(101, 23);
+            this.button_RunFlatFieldCorrection_160E.TabIndex = 14;
+            this.button_RunFlatFieldCorrection_160E.Text = "Run";
+            this.button_RunFlatFieldCorrection_160E.UseVisualStyleBackColor = true;
+            this.button_RunFlatFieldCorrection_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
-            // button_RunFlatFieldCorrection
+            // radioButton_FlatFieldCorrectionAutomatic_160E
             // 
-            this.button_RunFlatFieldCorrection.Location = new System.Drawing.Point(110, 44);
-            this.button_RunFlatFieldCorrection.Name = "button_RunFlatFieldCorrection";
-            this.button_RunFlatFieldCorrection.Size = new System.Drawing.Size(101, 23);
-            this.button_RunFlatFieldCorrection.TabIndex = 14;
-            this.button_RunFlatFieldCorrection.Text = "Run";
-            this.button_RunFlatFieldCorrection.UseVisualStyleBackColor = true;
-            this.button_RunFlatFieldCorrection.Click += new System.EventHandler(this.button_SensorControl_Click);
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.AutoSize = true;
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.Location = new System.Drawing.Point(8, 22);
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.Name = "radioButton_FlatFieldCorrectionAutomatic_160E";
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.Size = new System.Drawing.Size(81, 19);
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.TabIndex = 15;
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.TabStop = true;
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.Text = "Automatic";
+            this.radioButton_FlatFieldCorrectionAutomatic_160E.UseVisualStyleBackColor = true;
             // 
-            // radioButton_FlatFieldCorrectionAutomatic
+            // button_RestoreDefaultFluxParameters_160E
             // 
-            this.radioButton_FlatFieldCorrectionAutomatic.AutoSize = true;
-            this.radioButton_FlatFieldCorrectionAutomatic.Location = new System.Drawing.Point(8, 22);
-            this.radioButton_FlatFieldCorrectionAutomatic.Name = "radioButton_FlatFieldCorrectionAutomatic";
-            this.radioButton_FlatFieldCorrectionAutomatic.Size = new System.Drawing.Size(81, 19);
-            this.radioButton_FlatFieldCorrectionAutomatic.TabIndex = 15;
-            this.radioButton_FlatFieldCorrectionAutomatic.TabStop = true;
-            this.radioButton_FlatFieldCorrectionAutomatic.Text = "Automatic";
-            this.radioButton_FlatFieldCorrectionAutomatic.UseVisualStyleBackColor = true;
+            this.button_RestoreDefaultFluxParameters_160E.Location = new System.Drawing.Point(489, 197);
+            this.button_RestoreDefaultFluxParameters_160E.Name = "button_RestoreDefaultFluxParameters_160E";
+            this.button_RestoreDefaultFluxParameters_160E.Size = new System.Drawing.Size(224, 30);
+            this.button_RestoreDefaultFluxParameters_160E.TabIndex = 12;
+            this.button_RestoreDefaultFluxParameters_160E.Text = "Restore Flux Parameters to Default";
+            this.button_RestoreDefaultFluxParameters_160E.UseVisualStyleBackColor = true;
+            this.button_RestoreDefaultFluxParameters_160E.Click += new System.EventHandler(this.button_SensorControl_Click);
             // 
             // tabPage_RoiManager
             // 
@@ -2979,7 +3132,7 @@
             this.pictureBox_Preview.Location = new System.Drawing.Point(7, 5);
             this.pictureBox_Preview.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_Preview.Name = "pictureBox_Preview";
-            this.pictureBox_Preview.Size = new System.Drawing.Size(480, 361);
+            this.pictureBox_Preview.Size = new System.Drawing.Size(480, 360);
             this.pictureBox_Preview.TabIndex = 0;
             this.pictureBox_Preview.TabStop = false;
             this.pictureBox_Preview.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Preview_Paint);
@@ -3126,6 +3279,7 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPage_SensorControl.ResumeLayout(false);
+            this.panel_SensorControl_256E.ResumeLayout(false);
             this.groupBox_FluxParameters_256E.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -3134,6 +3288,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_AtmosphericTemperature)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_AmbientReflectionTemperature)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_Distance)).EndInit();
+            this.groupBox_GainModeState_256E.ResumeLayout(false);
+            this.groupBox_GainModeState_256E.PerformLayout();
+            this.groupBox_FlatFieldCorrection_256E.ResumeLayout(false);
+            this.groupBox_FlatFieldCorrection_256E.PerformLayout();
+            this.panel_SensorControl_160E.ResumeLayout(false);
             this.groupBox_FluxParameters_160E.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
@@ -3145,11 +3304,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_WindowTransmission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_SceneEmissivity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam160E_BackgroundTemperature)).EndInit();
-            this.tabPage_GainControl.ResumeLayout(false);
-            this.groupBox_GainModeState.ResumeLayout(false);
-            this.groupBox_GainModeState.PerformLayout();
-            this.groupBox_FlatFieldCorrection.ResumeLayout(false);
-            this.groupBox_FlatFieldCorrection.PerformLayout();
+            this.groupBox_GainModeState_160E.ResumeLayout(false);
+            this.groupBox_GainModeState_160E.PerformLayout();
+            this.groupBox_FlatFieldCorrection_160E.ResumeLayout(false);
+            this.groupBox_FlatFieldCorrection_160E.PerformLayout();
             this.tabPage_RoiManager.ResumeLayout(false);
             this.tabPage_RoiManager.PerformLayout();
             this.tableLayoutPanel14.ResumeLayout(false);
@@ -3256,7 +3414,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_FluxParam160E_AtmosphericTransmission;
         private System.Windows.Forms.NumericUpDown numericUpDown_FluxParam160E_WindowTemperature;
         private System.Windows.Forms.NumericUpDown numericUpDown_FluxParam160E_WindowReflectedTemperature;
-        private System.Windows.Forms.Button button_SetDefaultFluxParameters_160E;
+        private System.Windows.Forms.Button button_RestoreDefaultFluxParameters_160E;
         private System.Windows.Forms.Button button_GetSensorInformation;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label_ProductModelNameTitle;
@@ -3305,7 +3463,7 @@
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel_PreviewSize;
         private System.Windows.Forms.GroupBox groupBox_FluxParameters_256E;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button_SetDefaultFluxParameters_256E;
+        private System.Windows.Forms.Button button_RestoreDefaultSensorConfig_256E;
         private System.Windows.Forms.Label label_FluxParam256E_EmissivityTitle;
         private System.Windows.Forms.TextBox textBox_FluxParam256E_EmissivityRange;
         private System.Windows.Forms.Button button_GetFluxParameters_256E;
@@ -3330,27 +3488,21 @@
         private System.Windows.Forms.Label label_FluxParam160E_AtmosphericTransmissionTitle;
         private System.Windows.Forms.Label label_FluxParam160E_AtmosphericTemperatureTitle;
         private System.Windows.Forms.Label label_FluxParam160E_BackgroundTemperatureTitle;
-        private System.Windows.Forms.TabPage tabPage_GainControl;
-        private System.Windows.Forms.GroupBox groupBox_GainModeState;
-        private System.Windows.Forms.Button button_SetGainModeState;
-        private System.Windows.Forms.Button button_GetGainModeState;
-        private System.Windows.Forms.RadioButton radioButton_GainModeStateAuto;
-        private System.Windows.Forms.RadioButton radioButton_GainModeStateLow;
-        private System.Windows.Forms.RadioButton radioButton_GainModeStateHigh;
-        private System.Windows.Forms.GroupBox groupBox_FlatFieldCorrection;
-        private System.Windows.Forms.Button button_SetFlatFieldCorrectionMode;
-        private System.Windows.Forms.Button button_GetFlatFieldCorrectionMode;
-        private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionManual;
-        private System.Windows.Forms.Button button_RunFlatFieldCorrection;
-        private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionAutomatic;
+        private System.Windows.Forms.GroupBox groupBox_GainModeState_256E;
+        private System.Windows.Forms.Button button_SetGainModeState_256E;
+        private System.Windows.Forms.Button button_GetGainModeState_256E;
+        private System.Windows.Forms.RadioButton radioButton_GainModeStateLow_256E;
+        private System.Windows.Forms.RadioButton radioButton_GainModeStateHigh_256E;
+        private System.Windows.Forms.GroupBox groupBox_FlatFieldCorrection_256E;
+        private System.Windows.Forms.Button button_SetFlatFieldCorrectionMode_256E;
+        private System.Windows.Forms.Button button_GetFlatFieldCorrectionMode_256E;
+        private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionManual_256E;
+        private System.Windows.Forms.Button button_RunFlatFieldCorrection_256E;
+        private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionAutomatic_256E;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_ListROI;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button button_RemoveAllRoi;
-        private System.Windows.Forms.Label label_FluxParam256E_DistanceTitle;
-        private System.Windows.Forms.NumericUpDown numericUpDown_FluxParam256E_Distance;
-        private System.Windows.Forms.Label label_FluxParam256E_DistanceUnit;
-        private System.Windows.Forms.TextBox textBox_FluxParam256E_DistanceRange;
         private System.Windows.Forms.Button button_RemoveRoiItem;
         private System.Windows.Forms.Button button_AddRoiItem;
         private System.Windows.Forms.RadioButton rbtn_RoiEllipse;
@@ -3389,6 +3541,25 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_spotX;
         private System.Windows.Forms.TextBox textBox_spotY;
+        private System.Windows.Forms.Panel panel_SensorControl_256E;
+        private System.Windows.Forms.GroupBox groupBox_GainModeState_160E;
+        private System.Windows.Forms.Button button_SetGainModeState_160E;
+        private System.Windows.Forms.Button button_GetGainModeState_160E;
+        private System.Windows.Forms.RadioButton radioButton_GainModeStateAuto_160E;
+        private System.Windows.Forms.RadioButton radioButton_GainModeStateLow_160E;
+        private System.Windows.Forms.RadioButton radioButton_GainModeStateHigh_160E;
+        private System.Windows.Forms.GroupBox groupBox_FlatFieldCorrection_160E;
+        private System.Windows.Forms.Button button_SetFlatFieldCorrectionMode_160E;
+        private System.Windows.Forms.Button button_GetFlatFieldCorrectionMode_160E;
+        private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionManual_160E;
+        private System.Windows.Forms.Button button_RunFlatFieldCorrection_160E;
+        private System.Windows.Forms.RadioButton radioButton_FlatFieldCorrectionAutomatic_160E;
+        private System.Windows.Forms.Panel panel_SensorControl_160E;
+        private System.Windows.Forms.Button button_StoreUserSensorConfig_256E;
+        private System.Windows.Forms.Label label_FluxParam256E_DistanceTitle;
+        private System.Windows.Forms.NumericUpDown numericUpDown_FluxParam256E_Distance;
+        private System.Windows.Forms.Label label_FluxParam256E_DistanceUnit;
+        private System.Windows.Forms.TextBox textBox_FluxParam256E_DistanceRange;
     }
 }
 

@@ -76,7 +76,122 @@ namespace ThermoCamSDK
                         
                         break;
 
-                    case "button_SetDefaultFluxParameters_160E":
+                    case "button_GetGainModeState_160E":
+                        int gainModeState_160E = mCamera.Control.GetGainModeState();
+
+                        if (gainModeState_160E == 0) // High
+                        {
+                            radioButton_GainModeStateHigh_160E.Checked = true;
+                            radioButton_GainModeStateLow_160E.Checked = false;
+                            radioButton_GainModeStateAuto_160E.Checked = false;
+                        }
+                        else if (gainModeState_160E == 1) // Low
+                        {
+                            radioButton_GainModeStateHigh_160E.Checked = false;
+                            radioButton_GainModeStateLow_160E.Checked = true;
+                            radioButton_GainModeStateAuto_160E.Checked = false;
+                        }
+                        else if (gainModeState_160E == 2) // Auto
+                        {
+                            radioButton_GainModeStateHigh_160E.Checked = false;
+                            radioButton_GainModeStateLow_160E.Checked = false;
+                            radioButton_GainModeStateAuto_160E.Checked = true;
+                        }
+                        else
+                        {
+                            radioButton_GainModeStateHigh_160E.Checked = false;
+                            radioButton_GainModeStateLow_160E.Checked = false;
+                            radioButton_GainModeStateAuto_160E.Checked = false;
+
+                            MessageBox.Show("Fail to get Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                        }
+
+                        break;
+
+                    case "button_SetGainModeState_160E":
+                        int gainModeStateSet_160E = -1;
+
+                        button_SetGainModeState_160E.Text = "Wait...";
+                        button_SetGainModeState_160E.Enabled = false;
+
+                        if ((radioButton_GainModeStateHigh_160E.Checked == true) && (radioButton_GainModeStateLow_160E.Checked == false) && (radioButton_GainModeStateAuto_160E.Checked == false))
+                            gainModeStateSet_160E = 0; // High
+                        else if ((radioButton_GainModeStateHigh_160E.Checked == false) && (radioButton_GainModeStateLow_160E.Checked == true) && (radioButton_GainModeStateAuto_160E.Checked == false))
+                            gainModeStateSet_160E = 1; // Low
+                        else if ((radioButton_GainModeStateHigh_160E.Checked == false) && (radioButton_GainModeStateLow_160E.Checked == false) && (radioButton_GainModeStateAuto_160E.Checked == true))
+                            gainModeStateSet_160E = 2; // Auto
+
+                        if ((gainModeStateSet_160E != -1) && mCamera.Control.SetGainModeState(gainModeStateSet_160E))
+                        {
+                            MessageBox.Show("Success to set Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fail to set Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                        }
+
+                        button_SetGainModeState_160E.Text = "Set";
+                        button_SetGainModeState_160E.Enabled = true;
+
+                        break;
+
+                    case "button_GetFlatFieldCorrectionMode_160E":
+                        int ffcMode_160E = mCamera.Control.GetFlatFieldCorrectionMode();
+
+                        if (ffcMode_160E == 0) // Manual
+                        {
+                            radioButton_FlatFieldCorrectionManual_160E.Checked = true;
+                            radioButton_FlatFieldCorrectionAutomatic_160E.Checked = false;
+                        }
+                        else if (ffcMode_160E == 1) // Automatic
+                        {
+                            radioButton_FlatFieldCorrectionManual_160E.Checked = false;
+                            radioButton_FlatFieldCorrectionAutomatic_160E.Checked = true;
+                        }
+                        else
+                        {
+                            radioButton_FlatFieldCorrectionManual_160E.Checked = false;
+                            radioButton_FlatFieldCorrectionAutomatic_160E.Checked = false;
+
+                            MessageBox.Show("Fail to get Flat Field Correction Mode", "Flat Field Correction", MessageBoxButtons.OK);
+                        }
+
+                        break;
+
+                    case "button_SetFlatFieldCorrectionMode_160E":
+                        int ffcModeSet_160E = -1;
+
+                        if ((radioButton_FlatFieldCorrectionManual_160E.Checked == true) && (radioButton_FlatFieldCorrectionAutomatic_160E.Checked == false))
+                            ffcModeSet_160E = 0; // Manual
+                        else if ((radioButton_FlatFieldCorrectionManual_160E.Checked == false) && (radioButton_FlatFieldCorrectionAutomatic_160E.Checked == true))
+                            ffcModeSet_160E = 1; // Automatic
+
+                        if (ffcModeSet_160E != -1)
+                            mCamera.Control.SetFlatFieldCorrectionMode(ffcModeSet_160E);
+                        else
+                            MessageBox.Show("Fail to set Flat Field Correction Mode", "Flat Field Correction", MessageBoxButtons.OK);
+
+                        break;
+
+                    case "button_RunFlatFieldCorrection_160E":
+                        button_RunFlatFieldCorrection_160E.Text = "Wait...";
+                        button_RunFlatFieldCorrection_160E.Enabled = false;
+
+                        if (mCamera.Control.RunFlatFieldCorrection())
+                        {
+                            MessageBox.Show("Success to run Flat Field Correction", "Flat Field Correction", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fail to run Flat Field Correction", "Flat Field Correction", MessageBoxButtons.OK);
+                        }
+
+                        button_RunFlatFieldCorrection_160E.Text = "Run";
+                        button_RunFlatFieldCorrection_160E.Enabled = true;
+
+                        break;
+
+                    case "button_RestoreDefaultFluxParameters_160E":
                         if (mCamera.Control.SetDefaultFluxParameters(out double sceneEmissivityDef, out double backgroundTemperatureDef,
                                                                      out double windowTransmissionDef, out double windowTemperatureDef,
                                                                      out double atmosphericTransmissionDef, out double atmosphericTemperatureDef,
@@ -109,11 +224,11 @@ namespace ThermoCamSDK
                             textBox_FluxParam160E_WindowReflectedTemperatureRange.Enabled = true;
                             button_SetFluxParameters_160E.Enabled = true;
 
-                            MessageBox.Show("Succes to set Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
+                            MessageBox.Show("Succes to restore Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            MessageBox.Show("Fail to set Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
+                            MessageBox.Show("Fail to restore Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
                         }
 
                         break;
@@ -168,85 +283,95 @@ namespace ThermoCamSDK
 
                         break;
 
-                    case "button_SetDefaultFluxParameters_256E":
-                        button_SetDefaultFluxParameters_256E.Text = "Wait...";
-                        button_SetDefaultFluxParameters_256E.Enabled = false;
+                    case "button_GetGainModeState_256E":
+                        int gainModeState_256E = mCamera.Control.GetGainModeState();
 
-                        if (mCamera.Control.SetDefaultFluxParameters(out double emissivityDef, out double atmosphericTransmittanceDef,
-                                                                     out double ambientAtmosphericTemperatureDef, out double ambientReflectionTemperatureDef,
-                                                                     out double distanceDef))
+                        if (gainModeState_256E == 0) // High
                         {
-                            numericUpDown_FluxParam256E_Emissivity.Value = Convert.ToDecimal(emissivityDef);
-                            numericUpDown_FluxParam256E_AtmosphericTransmittance.Value = Convert.ToDecimal(atmosphericTransmittanceDef);
-                            numericUpDown_FluxParam256E_AtmosphericTemperature.Value = Convert.ToDecimal(ambientAtmosphericTemperatureDef);
-                            numericUpDown_FluxParam256E_AmbientReflectionTemperature.Value = Convert.ToDecimal(ambientReflectionTemperatureDef);
-                            numericUpDown_FluxParam256E_Distance.Value = Convert.ToDecimal(distanceDef);
-
-                            numericUpDown_FluxParam256E_Emissivity.Enabled = true;
-                            numericUpDown_FluxParam256E_AtmosphericTransmittance.Enabled = true;
-                            numericUpDown_FluxParam256E_AtmosphericTemperature.Enabled = true;
-                            numericUpDown_FluxParam256E_AmbientReflectionTemperature.Enabled = true;
-                            numericUpDown_FluxParam256E_Distance.Enabled = true;
-                            textBox_FluxParam256E_EmissivityRange.Enabled = true;
-                            textBox_FluxParam256E_AtmosphericTransmittanceRange.Enabled = true;
-                            textBox_FluxParam256E_AtmosphericTemperatureRange.Enabled = true;
-                            textBox_FluxParam256E_AmbientReflectionTemperatureRange.Enabled = true;
-                            textBox_FluxParam256E_DistanceRange.Enabled = true;
-                            button_SetFluxParameters_256E.Enabled = true;
-
-                            MessageBox.Show("Succes to set Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
+                            radioButton_GainModeStateHigh_256E.Checked = true;
+                            radioButton_GainModeStateLow_256E.Checked = false;
+                        }
+                        else if (gainModeState_256E == 1) // Low
+                        {
+                            radioButton_GainModeStateHigh_256E.Checked = false;
+                            radioButton_GainModeStateLow_256E.Checked = true;
                         }
                         else
                         {
-                            MessageBox.Show("Fail to set Factory Default Flux Parameters.", "Flux Parameters", MessageBoxButtons.OK);
-                        }
+                            radioButton_GainModeStateHigh_256E.Checked = false;
+                            radioButton_GainModeStateLow_256E.Checked = false;
 
-                        button_SetDefaultFluxParameters_256E.Text = "Set to Factory Default";
-                        button_SetDefaultFluxParameters_256E.Enabled = true;
+                            MessageBox.Show("Fail to get Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                        }
 
                         break;
 
-                    case "button_GetFlatFieldCorrectionMode":
-                        int ffcMode = mCamera.Control.GetFlatFieldCorrectionMode();
+                    case "button_SetGainModeState_256E":
+                        int gainModeStateSet_256E = -1;
 
-                        if (ffcMode == 0) // Manual
+                        button_SetGainModeState_256E.Text = "Wait...";
+                        button_SetGainModeState_256E.Enabled = false;
+
+                        if ((radioButton_GainModeStateHigh_256E.Checked == true) && (radioButton_GainModeStateLow_256E.Checked == false))
+                            gainModeStateSet_256E = 0; // High
+                        else if ((radioButton_GainModeStateHigh_256E.Checked == false) && (radioButton_GainModeStateLow_256E.Checked == true))
+                            gainModeStateSet_256E = 1; // Low
+
+                        if ((gainModeStateSet_256E != -1) && mCamera.Control.SetGainModeState(gainModeStateSet_256E))
                         {
-                            radioButton_FlatFieldCorrectionManual.Checked = true;
-                            radioButton_FlatFieldCorrectionAutomatic.Checked = false;
-                        }
-                        else if (ffcMode == 1) // Automatic
-                        {
-                            radioButton_FlatFieldCorrectionManual.Checked = false;
-                            radioButton_FlatFieldCorrectionAutomatic.Checked = true;
+                            MessageBox.Show("Success to set Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            radioButton_FlatFieldCorrectionManual.Checked = false;
-                            radioButton_FlatFieldCorrectionAutomatic.Checked = false;
+                            MessageBox.Show("Fail to set Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                        }
+
+                        button_SetGainModeState_256E.Text = "Set";
+                        button_SetGainModeState_256E.Enabled = true;
+
+                        break;
+
+                    case "button_GetFlatFieldCorrectionMode_256E":
+                        int ffcMode_256E = mCamera.Control.GetFlatFieldCorrectionMode();
+
+                        if (ffcMode_256E == 0) // Manual
+                        {
+                            radioButton_FlatFieldCorrectionManual_256E.Checked = true;
+                            radioButton_FlatFieldCorrectionAutomatic_256E.Checked = false;
+                        }
+                        else if (ffcMode_256E == 1) // Automatic
+                        {
+                            radioButton_FlatFieldCorrectionManual_256E.Checked = false;
+                            radioButton_FlatFieldCorrectionAutomatic_256E.Checked = true;
+                        }
+                        else
+                        {
+                            radioButton_FlatFieldCorrectionManual_256E.Checked = false;
+                            radioButton_FlatFieldCorrectionAutomatic_256E.Checked = false;
 
                             MessageBox.Show("Fail to get Flat Field Correction Mode", "Flat Field Correction", MessageBoxButtons.OK);
                         }
-                        
+
                         break;
 
-                    case "button_SetFlatFieldCorrectionMode":
-                        int ffcModeSet = -1;
+                    case "button_SetFlatFieldCorrectionMode_256E":
+                        int ffcModeSet_256E = -1;
 
-                        if ((radioButton_FlatFieldCorrectionManual.Checked == true) && (radioButton_FlatFieldCorrectionAutomatic.Checked == false))
-                            ffcModeSet = 0; // Manual
-                        else if ((radioButton_FlatFieldCorrectionManual.Checked == false) && (radioButton_FlatFieldCorrectionAutomatic.Checked == true))
-                            ffcModeSet = 1; // Automatic
+                        if ((radioButton_FlatFieldCorrectionManual_256E.Checked == true) && (radioButton_FlatFieldCorrectionAutomatic_256E.Checked == false))
+                            ffcModeSet_256E = 0; // Manual
+                        else if ((radioButton_FlatFieldCorrectionManual_256E.Checked == false) && (radioButton_FlatFieldCorrectionAutomatic_256E.Checked == true))
+                            ffcModeSet_256E = 1; // Automatic
 
-                        if (ffcModeSet != -1)
-                            mCamera.Control.SetFlatFieldCorrectionMode(ffcModeSet);
+                        if (ffcModeSet_256E != -1)
+                            mCamera.Control.SetFlatFieldCorrectionMode(ffcModeSet_256E);
                         else
                             MessageBox.Show("Fail to set Flat Field Correction Mode", "Flat Field Correction", MessageBoxButtons.OK);
-                        
+
                         break;
 
-                    case "button_RunFlatFieldCorrection":
-                        button_RunFlatFieldCorrection.Text = "Wait...";
-                        button_RunFlatFieldCorrection.Enabled = false;
+                    case "button_RunFlatFieldCorrection_256E":
+                        button_RunFlatFieldCorrection_256E.Text = "Wait...";
+                        button_RunFlatFieldCorrection_256E.Enabled = false;
 
                         if (mCamera.Control.RunFlatFieldCorrection())
                         {
@@ -257,67 +382,69 @@ namespace ThermoCamSDK
                             MessageBox.Show("Fail to run Flat Field Correction", "Flat Field Correction", MessageBoxButtons.OK);
                         }
 
-                        button_RunFlatFieldCorrection.Text = "Run";
-                        button_RunFlatFieldCorrection.Enabled = true;
-                        
-                        break;
-
-                    case "button_GetGainModeState":
-                        int gainModeState = mCamera.Control.GetGainModeState();
-
-                        if (gainModeState == 0) // High
-                        {
-                            radioButton_GainModeStateHigh.Checked = true;
-                            radioButton_GainModeStateLow.Checked = false;
-                            radioButton_GainModeStateAuto.Checked = false;
-                        }
-                        else if (gainModeState == 1) // Low
-                        {
-                            radioButton_GainModeStateHigh.Checked = false;
-                            radioButton_GainModeStateLow.Checked = true;
-                            radioButton_GainModeStateAuto.Checked = false;
-                        }
-                        else if (gainModeState == 2) // Auto
-                        {
-                            radioButton_GainModeStateHigh.Checked = false;
-                            radioButton_GainModeStateLow.Checked = false;
-                            radioButton_GainModeStateAuto.Checked = true;
-                        }
-                        else
-                        {
-                            radioButton_GainModeStateHigh.Checked = false;
-                            radioButton_GainModeStateLow.Checked = false;
-                            radioButton_GainModeStateAuto.Checked = false;
-
-                            MessageBox.Show("Fail to get Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
-                        }
+                        button_RunFlatFieldCorrection_256E.Text = "Run";
+                        button_RunFlatFieldCorrection_256E.Enabled = true;
 
                         break;
 
-                    case "button_SetGainModeState":
-                        int gainModeStateSet = -1;
-
-                        button_SetGainModeState.Text = "Wait...";
-                        button_SetGainModeState.Enabled = false;
-
-                        if ((radioButton_GainModeStateHigh.Checked == true) && (radioButton_GainModeStateLow.Checked == false) && (radioButton_GainModeStateAuto.Checked == false))
-                            gainModeStateSet = 0; // High
-                        else if ((radioButton_GainModeStateHigh.Checked == false) && (radioButton_GainModeStateLow.Checked == true) && (radioButton_GainModeStateAuto.Checked == false))
-                            gainModeStateSet = 1; // Low
-                        else if ((radioButton_GainModeStateHigh.Checked == false) && (radioButton_GainModeStateLow.Checked == false) && (radioButton_GainModeStateAuto.Checked == true))
-                            gainModeStateSet = 2; // Auto
-
-                        if ((gainModeStateSet != -1) && mCamera.Control.SetGainModeState(gainModeStateSet))
+                    case "button_StoreUserSensorConfig_256E":
+                        if (mCamera.Control.StoreUserSensorConfig())
                         {
-                            MessageBox.Show("Success to set Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                            MessageBox.Show("Success to store user sensor configurations", "Sensor Control", MessageBoxButtons.OK);
                         }
                         else
                         {
-                            MessageBox.Show("Fail to set Gain Mode State", "Gain Mode", MessageBoxButtons.OK);
+                            MessageBox.Show("Fail to run Flat Field Correction", "Sensor Control", MessageBoxButtons.OK);
+                        }
+                        break;
+
+                    case "button_RestoreDefaultSensorConfig_256E":
+                        button_RestoreDefaultSensorConfig_256E.Text = "Wait...";
+                        button_RestoreDefaultSensorConfig_256E.Enabled = false;
+
+                        if (this.captureThread != null && this.captureThread.IsAlive)
+                        {
+                            // force to terminate frameThread
+                            this.captureThread.Interrupt();
+                            // Wait for frameThread to end.
+                            this.captureThread.Join();
+
+                            System.Threading.Thread.Sleep(1000);
                         }
 
-                        button_SetGainModeState.Text = "Set";
-                        button_SetGainModeState.Enabled = true;
+                        mCamera.Control.RestoreDefaultSensorConfig();
+
+                        System.Threading.Thread.Sleep(1000);
+
+                        mCamera.Close();
+                        mCamera = null;
+
+                        System.Threading.Thread.Sleep(1000);
+
+                        Application.EnableVisualStyles();
+                        DialogResult rebootDialog = MessageBox.Show("Reboot... Reconnect camera device.", "ThermoCamApp", MessageBoxButtons.OK);
+                        switch (rebootDialog)
+                        {
+                            case DialogResult.OK:
+                                tabControl2.Enabled = false;
+                                tabControl3.Enabled = false;
+                                comboBox_ColorMap.Enabled = false;
+                                comboBox_TemperatureUnit.Enabled = false;
+                                button_ConnectLocalCamera.Enabled = false;
+                                button_ScanLocalCamera.Enabled = false;
+                                button_ConnectRemoteCamera.Enabled = false;
+                                button_ScanRemoteCamera.Enabled = false;
+                                System.Threading.Thread.Sleep(2000);
+                                button_ConnectLocalCamera.Text = "Connect";
+                                button_ConnectLocalCamera.Enabled = true;
+                                button_ScanLocalCamera.Enabled = true;
+                                button_ConnectRemoteCamera.Text = "Connect";
+                                button_ConnectRemoteCamera.Enabled = true;
+                                button_ScanRemoteCamera.Enabled = true;
+                                button_RestoreDefaultSensorConfig_256E.Text = "Restore to Factory Default";
+                                button_RestoreDefaultSensorConfig_256E.Enabled = true;
+                                break;
+                        }
 
                         break;
                 }

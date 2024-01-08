@@ -134,11 +134,12 @@
             </code>
             </summary>
         </member>
-        <member name="M:ThermoEngine.Camera.SendPacket(ThermoEngine.Packet)">
+        <member name="M:ThermoEngine.Camera.SendPacket(ThermoEngine.Packet,System.Int32)">
             <summary>
             Sends packet data to camera device to control camera functions
             </summary>
             <param name="packet">packet data to be transfered</param>
+            <param name="timeout">timeout, default = 3000ms</param>
             <returns>
             True if this method opens camera connection successfully;
             otherwise false if an exception is raised.
@@ -368,7 +369,7 @@
             <param name="atmosphericTransmittance">obtained ratio value for atmospheric transmittance, 0.01 ~ 1</param>
             <param name="atmosphericTemperature">obtained Celsius value for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
             <param name="ambientReflectionTemperature">obtained Celsius value for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
-            <param name="distance">obtained meter value for distance, 0 ~ 200</param>
+            <param name="distance">obtained meter value for distance, 0 ~ 200, Not support</param>
             <returns>
             True if this method gets values from device successfully;
             otherwise, false if an exception is raised.
@@ -422,7 +423,7 @@
             <param name="atmosphericTransmittance">ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
             <param name="atmosphericTemperature">Celsius value to be set for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
             <param name="ambientReflectionTemperature">Celsius value to be set for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
-            <param name="distance">meter value to be set for distance, 0 ~ 200</param>
+            <param name="distance">meter value to be set for distance, 0 ~ 200, Not support</param>
             <returns>
             True if this method gets values from device successfully;
             otherwise, false if an exception is raised.
@@ -476,7 +477,7 @@
             <param name="atmosphericTransmittance">obtained default ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
             <param name="atmosphericTemperature">obtained default Celsius value to be set for atmospheric temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
             <param name="ambientReflectionTemperature">obtained default Celsius value to be set for ambient reflection temperature, -43.15 ~ 226.85 (high gain), -43.15 ~ 626.85 (low gain)</param>
-            <param name="distance">obtained default meter value to be set for distance, 0 ~ 200</param>
+            <param name="distance">obtained default meter value to be set for distance, 0 ~ 200, Not support</param>
             <returns>
             True if this method gets values from device successfully;
             otherwise, false if an exception is raised.
@@ -490,6 +491,31 @@
                 ambientReflectionTemperature  -43.15   226.85(high gain)/626.85(low gain)  26.85   ℃
                 distance                      0        200                                 0.25    m
             </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetGainModeState">
+            <summary>
+            Gets Gain Mode state of camera sensor
+            </summary>
+            <returns>
+            0 if mode is high or 1 if mode is low or 2 if mode is auto;
+            otherwise, -1 if an exception is raised.
+            </returns>
+            <remarks>
+            The parameter state, "2 = auto" is only support for ThermoCam160E.
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetGainModeState(System.Int32)">
+            <summary>
+            Sets Gain Mode state of camera sensor
+            </summary>
+            <param name="state">Gain Mode state value to be set, 0 = high or 1 = low or 2 = auto</param>
+            <returns>
+            True if this method sets state to device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            The parameter state, "2 = auto" is only support for ThermoCam160E.
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetFlatFieldCorrectionMode">
@@ -519,6 +545,31 @@
             True if camera sensor executes Flat Field Correction successfully;
             otherwise, false if an exception is raised.
             </returns>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.StoreUserSensorConfig">
+            <summary>
+            Stores user configurations of camera sensor permanently
+            </summary>
+            <returns>
+            True if camera sensor stores user configuraitons successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            Only support for ThermoCam256E.
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.RestoreDefaultSensorConfig">
+            <summary>
+            Restores sensor configurations to factory default of camera sensor
+            </summary>
+            <returns>
+            True if camera sensor restores sensor configuraitons successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            Device will reboot automatically.
+            Only support for ThermoCam256E.
+            </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.ConvertRawToCelsius(System.Double)">
             <summary>
@@ -630,196 +681,6 @@
             otherwise, false if an exception is raised.
             </returns>
             <remark>Device will reboot automatically.</remark>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.GetGainModeState">
-            <summary>
-            Gets Gain Mode state of camera sensor
-            </summary>
-            <returns>
-            0 if mode is high or 1 if mode is low or 2 if mode is auto;
-            otherwise, -1 if an exception is raised.
-            </returns>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.SetGainModeState(System.Int32)">
-            <summary>
-            Sets Gain Mode state of camera sensor
-            </summary>
-            <param name="state">Gain Mode state value to be set, 0 = high or 1 = low or 2 = auto</param>
-            <returns>
-            True if this method sets state to device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.GetGainModeObject(System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@)">
-            <summary>
-            Gets Gain Mode Object of camera sensor
-            </summary>
-            <param name="roiStartColumn">obtained start column position in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
-            <param name="roiStartRow">obtained start row position in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
-            <param name="roiEndColumn">obtained end column position in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
-            <param name="roiEndRow">obtained end row position in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
-            <param name="thresholdPopH2L">obtained population threshold in percent of gain mode ROI used to determine when an Auto switch to Low (while in High) should occur, 0 ~ 100</param>
-            <param name="thresholdPopL2H">obtained population threshold in percent of gain mode ROI used to determine when an Auto switch to High (while in Low) should occur, 0 ~ 100</param>
-            <param name="thresholdCelH2L">obtained temperature threshold in Celsius used to determine when an Auto switch to Low (while in High) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
-            <param name="thresholdCelL2H">obtained temperature threshold in Celsius used to determine when an Auto switch to High (while in Low) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
-            <param name="thresholdKelH2L">obtained temperature threshold in Kelvin used to determine when an Auto switch to Low (while in High) should occur in TLinear mode, 0 ~ 900</param>
-            <param name="thresholdKelL2H">obtained temperature threshold in Kelvin used to determine when an Auto switch to High (while in Low) should occur in TLinear mode, 0 ~ 900</param>
-            <param name="roiPopSize">obtained population size in pixels within ROI, 0 ~ 19200</param>
-            <param name="tlinearEnable">obtained T-Linear enable state, 0 = false or 1 = true</param>
-            <param name="fluxThresholdH2L">obtained flux threshold counts calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>\
-            <param name="fluxThresholdL2H">obtained flux threshold counts calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>
-            <returns>
-            True if this method gets values from device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-            <remarks>
-            <code>
-                Parameter         Minimum  Maximum  Default     Unit
-                roiStartColumn    0        159      0           Pixels
-                roiStartRow       0        119      0           Pixels
-                roiEndColumn      0        159      159         Pixels
-                roiEndRow         0        119      119         Pixels
-                thresholdPopH2L   0        100      25          %
-                thresholdPopL2H   0        100      90          %
-                thresholdCelH2L   0        600      115         ℃
-                thresholdCelL2H   0        600      85          ℃
-                thresholdKelH2L   0        900      388         Κ
-                thresholdKelL2H   0        900      358         Κ
-                roiPopSize        0        19200    19200       Pixels
-                tlinearEnable     0        1        0           Boolean
-                fluxThresholdH2L  0        16383    Calibrated  Counts
-                                                    per camera
-                fluxThresholdL2H  0        16383    Calibrated  Counts
-                                                    per camera
-            </code>
-            </remarks>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.SetGainModeObject(System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
-            <summary>
-            Sets Gain Mode Object of camera sensor
-            </summary>
-            <param name="roiStartColumn">start column position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
-            <param name="roiStartRow">start row position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
-            <param name="roiEndColumn">end column position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 159</param>
-            <param name="roiEndRow">end row position to be set in pixels for specified ROI to use for gain mode switching, 0 ~ 119</param>
-            <param name="thresholdPopH2L">population threshold to be set in percent of gain mode ROI used to determine when an Auto switch to Low (while in High) should occur, 0 ~ 100</param>
-            <param name="thresholdPopL2H">population threshold to be set in percent of gain mode ROI used to determine when an Auto switch to High (while in Low) should occur, 0 ~ 100</param>
-            <param name="thresholdCelH2L">temperature threshold to be set in Celsius used to determine when an Auto switch to Low (while in High) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
-            <param name="thresholdCelL2H">temperature threshold to be set in Celsius used to determine when an Auto switch to High (while in Low) should occur in Radiometry enabled / TLinear disabled mode, 0 ~ 600</param>
-            <param name="thresholdKelH2L">temperature threshold to be set in Kelvin used to determine when an Auto switch to Low (while in High) should occur in TLinear mode, 0 ~ 900</param>
-            <param name="thresholdKelL2H">temperature threshold to be set in Kelvin used to determine when an Auto switch to High (while in Low) should occur in TLinear mode, 0 ~ 900</param>
-            <param name="roiPopSize">population size to be set in pixels within ROI, 0 ~ 19200</param>
-            <param name="tlinearEnable">T-Linear enable state to be set, 0 = false or 1 = true</param>
-            <param name="fluxThresholdH2L">flux threshold counts to be set calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>\
-            <param name="fluxThresholdL2H">flux threshold counts to be set calculated from desired temperature when an Auto switch to Low (while in High) should occur, 0 ~ 16383</param>
-            <returns>
-            True if this method gets values from device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-            <remarks>
-            <code>
-                Parameter         Minimum  Maximum  Default     Unit
-                roiStartColumn    0        159      0           Pixels
-                roiStartRow       0        119      0           Pixels
-                roiEndColumn      0        159      159         Pixels
-                roiEndRow         0        119      119         Pixels
-                thresholdPopH2L   0        100      25          %
-                thresholdPopL2H   0        100      90          %
-                thresholdCelH2L   0        600      115         ℃
-                thresholdCelL2H   0        600      85          ℃
-                thresholdKelH2L   0        900      388         Κ
-                thresholdKelL2H   0        900      358         Κ
-                roiPopSize        0        19200    19200       Pixels
-                tlinearEnable     0        1        0           Boolean
-                fluxThresholdH2L  0        16383    Calibrated  Counts
-                                                    per camera
-                fluxThresholdL2H  0        16383    Calibrated  Counts
-                                                    per camera
-            </code>
-            </remarks>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.SetDefaultGainModeObject">
-            <summary>
-            Sets Gain Mode Object of camera sensor to factory default values
-            </summary>
-            <returns>
-            True if this method sets values to device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-            <remarks>
-            <code>
-                Parameter         Minimum  Maximum  Default     Unit
-                roiStartColumn    0        159      0           Pixels
-                roiStartRow       0        119      0           Pixels
-                roiEndColumn      0        159      159         Pixels
-                roiEndRow         0        119      119         Pixels
-                thresholdPopH2L   0        100      25          %
-                thresholdPopL2H   0        100      90          %
-                thresholdCelH2L   0        600      115         ℃
-                thresholdCelL2H   0        600      85          ℃
-                thresholdKelH2L   0        900      388         Κ
-                thresholdKelL2H   0        900      358         Κ
-                roiPopSize        0        19200    19200       Pixels
-                tlinearEnable     0        1        0           Boolean
-                fluxThresholdH2L  0        16383    Calibrated  Counts
-                                                    per camera
-                fluxThresholdL2H  0        16383    Calibrated  Counts
-                                                    per camera
-            </code>
-            </remarks>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.GetSecureConfiguration(System.String,System.String@,System.String@,System.String@)">
-            <summary>
-            Gets secure admin configuration of camera device
-            </summary>
-            <param name="password">key value for admin password authentication</param>
-            <param name="prodSN">obtained value for product serial number</param>
-            <param name="hwVer">obtained value for hardware version</param>
-            <param name="mac">obtained value for MAC address</param>
-            <returns>
-            True if this method gets values from device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-            <remarks>This method is for internal use only</remarks>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.SetSecureConfiguration(System.String,System.String,System.String,System.String)">
-            <summary>
-            Sets secure admin configuration of camera device
-            </summary>
-            <param name="password">key value for admin password authentication</param>
-            <param name="prodSN">value to be set for product serial number</param>
-            <param name="hwVer">value to be set for hardware version</param>
-            <param name="mac">value to be set for MAC address</param>
-            <returns>
-            True if this method sets values to device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-            <remarks>This method is for internal use only</remarks>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.SetDefaultSecureConfiguration(System.String,System.String@,System.String@,System.String@)">
-            <summary>
-            Sets secure admin configuration of camera device to factory default values
-            </summary>
-            <param name="password">key value for admin password authentication</param>
-            <param name="prodSN">obtained default value to be set for product serial number</param>
-            <param name="hwVer">obtained default value to be set for hardware version</param>
-            <param name="mac">obtained default value to be set for MAC address</param>
-            <returns>
-            True if this method sets values to device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-        </member>
-        <member name="M:ThermoEngine.ICameraControl.ChangeSecureAdminPassword(System.String,System.String)">
-            <summary>
-            Changes secure admin password of camera device
-            </summary>
-            <param name="currentPW">current key value for admin password authentication</param>
-            <param name="newPW">new key value to be change for admin password authentication</param>
-            <returns>
-            True if this method changes value on device successfully;
-            otherwise, false if an exception is raised.
-            </returns>
-            <remarks>This method is for internal use only</remarks>
         </member>
         <member name="T:ThermoEngine.CamInfo">
             <summary>
