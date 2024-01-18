@@ -49,6 +49,11 @@
             Temperature unit symbol
             </summary>
         </member>
+        <member name="P:ThermoEngine.Camera.NoiseFiltering">
+            <summary>
+            Video noise filtering on/off
+            </summary>
+        </member>
         <member name="M:ThermoEngine.Camera.Open(ThermoEngine.LocalCamInfo)">
             <summary>
             Opens local camera device connection via USB UVC and CDC
@@ -333,7 +338,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
-            Gets flux parameters of camera sensor for ThermoCam160E
+            Gets flux parameters of camera sensor for TMC160
             </summary>
             <param name="sceneEmissivity">obtained ratio value for scene emissivity, 0.01 ~ 1</param>
             <param name="backgroundTemperature">obtained Celsius value for background temperature, -273.15 ~ 382.2</param>
@@ -363,7 +368,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
-            Gets flux parameters of camera sensor for ThermoCam256E
+            Gets flux parameters of camera sensor for TMC256
             </summary>
             <param name="emissivity">obtained ratio value for emissivity, 0.01 ~ 1</param>
             <param name="atmosphericTransmittance">obtained ratio value for atmospheric transmittance, 0.01 ~ 1</param>
@@ -387,7 +392,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Sets flux parameters of camera sensor for ThermoCam160E
+            Sets flux parameters of camera sensor for TMC160
             </summary>
             <param name="sceneEmissivity">ratio value to be set for scene emissivity, 0.01 ~ 1</param>
             <param name="backgroundTemperature">Celsius value to be set for background temperature, -273.15 ~ 382.2</param>
@@ -417,7 +422,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Sets flux parameters of camera sensor for ThermoCam256E
+            Sets flux parameters of camera sensor for TMC256
             </summary>
             <param name="emissivity">ratio value to be set for emissivity, 0.01 ~ 1</param>
             <param name="atmosphericTransmittance">ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
@@ -441,7 +446,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
-            Sets flux parameters of camera sensor to factory default values for ThermoCam160E
+            Sets flux parameters of camera sensor to factory default values for TMC160
             </summary>
             <param name="sceneEmissivity">obtained default ratio value for scene emissivity, 0.01 ~ 1</param>
             <param name="backgroundTemperature">obtained default Celsius value for background temperature, -273.15 ~ 382.2</param>
@@ -471,7 +476,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
-            Sets flux parameters of camera sensor to factory default values for ThermoCam256E
+            Sets flux parameters of camera sensor to factory default values for TMC256
             </summary>
             <param name="emissivity">obtained default ratio value to be set for emissivity, 0.01 ~ 1</param>
             <param name="atmosphericTransmittance">obtained default ratio value to be set for atmospheric transmittance, 0.01 ~ 1</param>
@@ -502,7 +507,7 @@
             otherwise, -1 if an exception is raised.
             </returns>
             <remarks>
-            The parameter state, "2 = auto" is only support for ThermoCam160E.
+            The parameter state, "2 = auto" is only support for TMC160.
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetGainModeState(System.Int32)">
@@ -515,7 +520,43 @@
             otherwise, false if an exception is raised.
             </returns>
             <remarks>
-            The parameter state, "2 = auto" is only support for ThermoCam160E.
+            The parameter state, "2 = auto" is only support for TMC160.
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.GetFlatFieldCorrectionParameters(System.Double@,System.Double@)">
+            <summary>
+            Gets Flat Field Correction parameters of camera sensor for TMC256
+            </summary>
+            <param name="maxInterval">obtained time value in seconds for maximum interval, 5 ~ 655</param>
+            <param name="autoTriggerThreshold">obtained count value for automatic trigger threshold, 0 ~ 65535</param>
+            <returns>
+            True if this method gets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                     Minimum  Maximum                             Default Unit
+                maxInterval                   5        655                                 90      s
+                autoTriggerThreshold          0        65535                               5       Counts
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ThermoEngine.ICameraControl.SetFlatFieldCorrectionParameters(System.Double,System.Double)">
+            <summary>
+            Sets Flat Field Correction parameters of camera sensor for TMC256
+            </summary>
+            <param name="maxInterval">time value in seconds to be set for maximum interval, 5 ~ 655</param>
+            <param name="autoTriggerThreshold">count value to be set for automatic trigger threshold, 0 ~ 65535</param>
+            <returns>
+            True if this method sets values from device successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+            <remarks>
+            <code>
+                Parameter                     Minimum  Maximum                             Default Unit
+                maxInterval                   5        655                                 90      s
+                autoTriggerThreshold          0        65535                               5       Counts
+            </code>
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetFlatFieldCorrectionMode">
@@ -555,7 +596,7 @@
             otherwise, false if an exception is raised.
             </returns>
             <remarks>
-            Only support for ThermoCam256E.
+            Only support for TMC256.
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.RestoreDefaultSensorConfig">
@@ -568,7 +609,7 @@
             </returns>
             <remarks>
             Device will reboot automatically.
-            Only support for ThermoCam256E.
+            Only support for TMC256.
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.ConvertRawToCelsius(System.Double)">
@@ -783,6 +824,11 @@
         <member name="F:ThermoEngine.Frame._colorMap">
             <summary>
             Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted
+            </summary>
+        </member>
+        <member name="F:ThermoEngine.Frame._noiseFilter">
+            <summary>
+            Noise filtering on/off
             </summary>
         </member>
         <member name="M:ThermoEngine.Frame.GetPixel(System.Int32,System.Int32)">

@@ -112,6 +112,17 @@
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage_SensorControl = new System.Windows.Forms.TabPage();
             this.panel_SensorControl_256E = new System.Windows.Forms.Panel();
+            this.groupBox_FFCParameters_256E = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.label_FFCParam256E_MaxIntervalTitle = new System.Windows.Forms.Label();
+            this.textBox_FFCParam256E_MaxIntervalRange = new System.Windows.Forms.TextBox();
+            this.button_GetFFCParameters_256E = new System.Windows.Forms.Button();
+            this.button_SetFFCParameters_256E = new System.Windows.Forms.Button();
+            this.numericUpDown_FFCParam256E_MaxInterval = new System.Windows.Forms.NumericUpDown();
+            this.label_FFCParam256E_AutoTriggerThresholdTitle = new System.Windows.Forms.Label();
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold = new System.Windows.Forms.NumericUpDown();
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange = new System.Windows.Forms.TextBox();
+            this.label_FFCParam256E_MaxIntervalUnit = new System.Windows.Forms.Label();
             this.button_StoreUserSensorConfig_256E = new System.Windows.Forms.Button();
             this.button_RestoreDefaultSensorConfig_256E = new System.Windows.Forms.Button();
             this.groupBox_FluxParameters_256E = new System.Windows.Forms.GroupBox();
@@ -241,6 +252,7 @@
             this.label_AverageTemperature = new System.Windows.Forms.Label();
             this.label_MaximumTemperature = new System.Windows.Forms.Label();
             this.panel_Preview = new System.Windows.Forms.Panel();
+            this.checkBox_NoiseFiltering = new System.Windows.Forms.CheckBox();
             this.label_ColorMap = new System.Windows.Forms.Label();
             this.comboBox_ColorMap = new System.Windows.Forms.ComboBox();
             this.label_TemperatureUnit = new System.Windows.Forms.Label();
@@ -275,6 +287,10 @@
             this.tabControl3.SuspendLayout();
             this.tabPage_SensorControl.SuspendLayout();
             this.panel_SensorControl_256E.SuspendLayout();
+            this.groupBox_FFCParameters_256E.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FFCParam256E_MaxInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FFCParam256E_AutoTriggerThreshold)).BeginInit();
             this.groupBox_FluxParameters_256E.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FluxParam256E_Emissivity)).BeginInit();
@@ -1227,6 +1243,7 @@
             // 
             // panel_SensorControl_256E
             // 
+            this.panel_SensorControl_256E.Controls.Add(this.groupBox_FFCParameters_256E);
             this.panel_SensorControl_256E.Controls.Add(this.button_StoreUserSensorConfig_256E);
             this.panel_SensorControl_256E.Controls.Add(this.button_RestoreDefaultSensorConfig_256E);
             this.panel_SensorControl_256E.Controls.Add(this.groupBox_FluxParameters_256E);
@@ -1237,6 +1254,174 @@
             this.panel_SensorControl_256E.Size = new System.Drawing.Size(719, 240);
             this.panel_SensorControl_256E.TabIndex = 14;
             this.panel_SensorControl_256E.Visible = false;
+            // 
+            // groupBox_FFCParameters_256E
+            // 
+            this.groupBox_FFCParameters_256E.Controls.Add(this.tableLayoutPanel10);
+            this.groupBox_FFCParameters_256E.Location = new System.Drawing.Point(6, 160);
+            this.groupBox_FFCParameters_256E.Name = "groupBox_FFCParameters_256E";
+            this.groupBox_FFCParameters_256E.Size = new System.Drawing.Size(467, 77);
+            this.groupBox_FFCParameters_256E.TabIndex = 17;
+            this.groupBox_FFCParameters_256E.TabStop = false;
+            this.groupBox_FFCParameters_256E.Text = "FFC Parameters";
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 6;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.Controls.Add(this.label_FFCParam256E_MaxIntervalTitle, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.textBox_FFCParam256E_MaxIntervalRange, 4, 0);
+            this.tableLayoutPanel10.Controls.Add(this.button_GetFFCParameters_256E, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.button_SetFFCParameters_256E, 5, 0);
+            this.tableLayoutPanel10.Controls.Add(this.numericUpDown_FFCParam256E_MaxInterval, 2, 0);
+            this.tableLayoutPanel10.Controls.Add(this.label_FFCParam256E_AutoTriggerThresholdTitle, 0, 1);
+            this.tableLayoutPanel10.Controls.Add(this.numericUpDown_FFCParam256E_AutoTriggerThreshold, 2, 1);
+            this.tableLayoutPanel10.Controls.Add(this.textBox_FFCParam256E_AutoTriggerThresholdRange, 4, 1);
+            this.tableLayoutPanel10.Controls.Add(this.label_FFCParam256E_MaxIntervalUnit, 3, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(6, 19);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 2;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(455, 52);
+            this.tableLayoutPanel10.TabIndex = 10;
+            // 
+            // label_FFCParam256E_MaxIntervalTitle
+            // 
+            this.label_FFCParam256E_MaxIntervalTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_FFCParam256E_MaxIntervalTitle.AutoSize = true;
+            this.label_FFCParam256E_MaxIntervalTitle.Location = new System.Drawing.Point(78, 0);
+            this.label_FFCParam256E_MaxIntervalTitle.Name = "label_FFCParam256E_MaxIntervalTitle";
+            this.label_FFCParam256E_MaxIntervalTitle.Size = new System.Drawing.Size(110, 26);
+            this.label_FFCParam256E_MaxIntervalTitle.TabIndex = 1;
+            this.label_FFCParam256E_MaxIntervalTitle.Text = "Maximum Interval :";
+            this.label_FFCParam256E_MaxIntervalTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox_FFCParam256E_MaxIntervalRange
+            // 
+            this.textBox_FFCParam256E_MaxIntervalRange.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_FFCParam256E_MaxIntervalRange.Enabled = false;
+            this.textBox_FFCParam256E_MaxIntervalRange.Location = new System.Drawing.Point(319, 3);
+            this.textBox_FFCParam256E_MaxIntervalRange.Name = "textBox_FFCParam256E_MaxIntervalRange";
+            this.textBox_FFCParam256E_MaxIntervalRange.ReadOnly = true;
+            this.textBox_FFCParam256E_MaxIntervalRange.Size = new System.Drawing.Size(94, 23);
+            this.textBox_FFCParam256E_MaxIntervalRange.TabIndex = 9;
+            this.textBox_FFCParam256E_MaxIntervalRange.Text = "5 ~ 655";
+            this.textBox_FFCParam256E_MaxIntervalRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button_GetFFCParameters_256E
+            // 
+            this.button_GetFFCParameters_256E.Location = new System.Drawing.Point(194, 3);
+            this.button_GetFFCParameters_256E.Name = "button_GetFFCParameters_256E";
+            this.tableLayoutPanel10.SetRowSpan(this.button_GetFFCParameters_256E, 2);
+            this.button_GetFFCParameters_256E.Size = new System.Drawing.Size(33, 46);
+            this.button_GetFFCParameters_256E.TabIndex = 6;
+            this.button_GetFFCParameters_256E.Text = "Get";
+            this.button_GetFFCParameters_256E.UseVisualStyleBackColor = true;
+            this.button_GetFFCParameters_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // button_SetFFCParameters_256E
+            // 
+            this.button_SetFFCParameters_256E.Enabled = false;
+            this.button_SetFFCParameters_256E.Location = new System.Drawing.Point(419, 3);
+            this.button_SetFFCParameters_256E.Name = "button_SetFFCParameters_256E";
+            this.tableLayoutPanel10.SetRowSpan(this.button_SetFFCParameters_256E, 2);
+            this.button_SetFFCParameters_256E.Size = new System.Drawing.Size(34, 46);
+            this.button_SetFFCParameters_256E.TabIndex = 6;
+            this.button_SetFFCParameters_256E.Text = "Set";
+            this.button_SetFFCParameters_256E.UseVisualStyleBackColor = true;
+            this.button_SetFFCParameters_256E.Click += new System.EventHandler(this.button_SensorControl_Click);
+            // 
+            // numericUpDown_FFCParam256E_MaxInterval
+            // 
+            this.numericUpDown_FFCParam256E_MaxInterval.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.numericUpDown_FFCParam256E_MaxInterval.Enabled = false;
+            this.numericUpDown_FFCParam256E_MaxInterval.Location = new System.Drawing.Point(233, 3);
+            this.numericUpDown_FFCParam256E_MaxInterval.Maximum = new decimal(new int[] {
+            655,
+            0,
+            0,
+            0});
+            this.numericUpDown_FFCParam256E_MaxInterval.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_FFCParam256E_MaxInterval.Name = "numericUpDown_FFCParam256E_MaxInterval";
+            this.numericUpDown_FFCParam256E_MaxInterval.Size = new System.Drawing.Size(60, 23);
+            this.numericUpDown_FFCParam256E_MaxInterval.TabIndex = 12;
+            this.numericUpDown_FFCParam256E_MaxInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown_FFCParam256E_MaxInterval.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numericUpDown_FFCParam256E_MaxInterval.Value = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numericUpDown_FFCParam256E_MaxInterval.ValueChanged += new System.EventHandler(this.numericUpDown_FFCParam256E_MaxInterval_ValueChanged);
+            // 
+            // label_FFCParam256E_AutoTriggerThresholdTitle
+            // 
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.AutoSize = true;
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.Location = new System.Drawing.Point(25, 26);
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.Name = "label_FFCParam256E_AutoTriggerThresholdTitle";
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.Size = new System.Drawing.Size(163, 26);
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.TabIndex = 10;
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.Text = "Automatic Trigger Threshold :";
+            this.label_FFCParam256E_AutoTriggerThresholdTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // numericUpDown_FFCParam256E_AutoTriggerThreshold
+            // 
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Enabled = false;
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Location = new System.Drawing.Point(233, 29);
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Name = "numericUpDown_FFCParam256E_AutoTriggerThreshold";
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Size = new System.Drawing.Size(60, 23);
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.TabIndex = 14;
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_FFCParam256E_AutoTriggerThreshold.ValueChanged += new System.EventHandler(this.numericUpDown_FFCParam256E_AutoTriggerThreshold_ValueChanged);
+            // 
+            // textBox_FFCParam256E_AutoTriggerThresholdRange
+            // 
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.Enabled = false;
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.Location = new System.Drawing.Point(319, 29);
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.Name = "textBox_FFCParam256E_AutoTriggerThresholdRange";
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.ReadOnly = true;
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.Size = new System.Drawing.Size(94, 23);
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.TabIndex = 9;
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.Text = "0 ~ 65535";
+            this.textBox_FFCParam256E_AutoTriggerThresholdRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label_FFCParam256E_MaxIntervalUnit
+            // 
+            this.label_FFCParam256E_MaxIntervalUnit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label_FFCParam256E_MaxIntervalUnit.AutoSize = true;
+            this.label_FFCParam256E_MaxIntervalUnit.Location = new System.Drawing.Point(300, 5);
+            this.label_FFCParam256E_MaxIntervalUnit.Margin = new System.Windows.Forms.Padding(0);
+            this.label_FFCParam256E_MaxIntervalUnit.Name = "label_FFCParam256E_MaxIntervalUnit";
+            this.label_FFCParam256E_MaxIntervalUnit.Size = new System.Drawing.Size(12, 15);
+            this.label_FFCParam256E_MaxIntervalUnit.TabIndex = 28;
+            this.label_FFCParam256E_MaxIntervalUnit.Text = "s";
             // 
             // button_StoreUserSensorConfig_256E
             // 
@@ -3037,6 +3222,7 @@
             // 
             this.panel_Preview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_Preview.BackColor = System.Drawing.Color.White;
+            this.panel_Preview.Controls.Add(this.checkBox_NoiseFiltering);
             this.panel_Preview.Controls.Add(this.label_ColorMap);
             this.panel_Preview.Controls.Add(this.comboBox_ColorMap);
             this.panel_Preview.Controls.Add(this.label_TemperatureUnit);
@@ -3047,10 +3233,23 @@
             this.panel_Preview.Size = new System.Drawing.Size(491, 34);
             this.panel_Preview.TabIndex = 2;
             // 
+            // checkBox_NoiseFiltering
+            // 
+            this.checkBox_NoiseFiltering.AutoSize = true;
+            this.checkBox_NoiseFiltering.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox_NoiseFiltering.Location = new System.Drawing.Point(190, 9);
+            this.checkBox_NoiseFiltering.Name = "checkBox_NoiseFiltering";
+            this.checkBox_NoiseFiltering.Size = new System.Drawing.Size(102, 19);
+            this.checkBox_NoiseFiltering.TabIndex = 5;
+            this.checkBox_NoiseFiltering.Text = "Noise Filtering";
+            this.checkBox_NoiseFiltering.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox_NoiseFiltering.UseVisualStyleBackColor = true;
+            this.checkBox_NoiseFiltering.CheckedChanged += new System.EventHandler(this.checkBox_NoiseFiltering_CheckedChanged);
+            // 
             // label_ColorMap
             // 
             this.label_ColorMap.AutoSize = true;
-            this.label_ColorMap.Location = new System.Drawing.Point(7, 10);
+            this.label_ColorMap.Location = new System.Drawing.Point(3, 10);
             this.label_ColorMap.Name = "label_ColorMap";
             this.label_ColorMap.Size = new System.Drawing.Size(63, 15);
             this.label_ColorMap.TabIndex = 3;
@@ -3083,7 +3282,7 @@
             "Cividis",
             "Twilight",
             "TwilightShifted"});
-            this.comboBox_ColorMap.Location = new System.Drawing.Point(79, 6);
+            this.comboBox_ColorMap.Location = new System.Drawing.Point(72, 6);
             this.comboBox_ColorMap.Name = "comboBox_ColorMap";
             this.comboBox_ColorMap.Size = new System.Drawing.Size(97, 23);
             this.comboBox_ColorMap.TabIndex = 2;
@@ -3092,7 +3291,7 @@
             // label_TemperatureUnit
             // 
             this.label_TemperatureUnit.AutoSize = true;
-            this.label_TemperatureUnit.Location = new System.Drawing.Point(290, 10);
+            this.label_TemperatureUnit.Location = new System.Drawing.Point(309, 10);
             this.label_TemperatureUnit.Name = "label_TemperatureUnit";
             this.label_TemperatureUnit.Size = new System.Drawing.Size(73, 15);
             this.label_TemperatureUnit.TabIndex = 1;
@@ -3108,7 +3307,7 @@
             "Celsius(℃)",
             "Fahrenheit(℉)",
             "Kelvin(Κ)"});
-            this.comboBox_TemperatureUnit.Location = new System.Drawing.Point(370, 6);
+            this.comboBox_TemperatureUnit.Location = new System.Drawing.Point(388, 6);
             this.comboBox_TemperatureUnit.Name = "comboBox_TemperatureUnit";
             this.comboBox_TemperatureUnit.Size = new System.Drawing.Size(97, 23);
             this.comboBox_TemperatureUnit.TabIndex = 0;
@@ -3280,6 +3479,11 @@
             this.tabControl3.ResumeLayout(false);
             this.tabPage_SensorControl.ResumeLayout(false);
             this.panel_SensorControl_256E.ResumeLayout(false);
+            this.groupBox_FFCParameters_256E.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FFCParam256E_MaxInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FFCParam256E_AutoTriggerThreshold)).EndInit();
             this.groupBox_FluxParameters_256E.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -3560,6 +3764,18 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_FluxParam256E_Distance;
         private System.Windows.Forms.Label label_FluxParam256E_DistanceUnit;
         private System.Windows.Forms.TextBox textBox_FluxParam256E_DistanceRange;
+        private System.Windows.Forms.GroupBox groupBox_FFCParameters_256E;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.Label label_FFCParam256E_MaxIntervalTitle;
+        private System.Windows.Forms.TextBox textBox_FFCParam256E_MaxIntervalRange;
+        private System.Windows.Forms.Button button_GetFFCParameters_256E;
+        private System.Windows.Forms.Button button_SetFFCParameters_256E;
+        private System.Windows.Forms.NumericUpDown numericUpDown_FFCParam256E_MaxInterval;
+        private System.Windows.Forms.Label label_FFCParam256E_AutoTriggerThresholdTitle;
+        private System.Windows.Forms.NumericUpDown numericUpDown_FFCParam256E_AutoTriggerThreshold;
+        private System.Windows.Forms.TextBox textBox_FFCParam256E_AutoTriggerThresholdRange;
+        private System.Windows.Forms.Label label_FFCParam256E_MaxIntervalUnit;
+        private System.Windows.Forms.CheckBox checkBox_NoiseFiltering;
     }
 }
 

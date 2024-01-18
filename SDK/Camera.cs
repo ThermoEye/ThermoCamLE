@@ -128,6 +128,14 @@ namespace ThermoCamSDK
                 mCamera.TempUnit = (TempUnit)comboBox_TemperatureUnit.SelectedIndex;
             }
         }
+
+        private void checkBox_NoiseFiltering_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mCamera != null)
+            {
+                mCamera.NoiseFiltering = checkBox_NoiseFiltering.Checked;
+            }
+        }
         #endregion
 
         #region Local Camera
@@ -320,11 +328,15 @@ namespace ThermoCamSDK
             switch (mCamera.Name)
             {
                 case "ThermoCam160E":
+                case "TMC160E":
+                case "TMC160B":
                     panel_SensorControl_160E.Visible = true;
                     panel_SensorControl_256E.Visible = false;
                     break;
 
                 case "ThermoCam256E":
+                case "TMC256E":
+                case "TMC256B":
                     panel_SensorControl_160E.Visible = false;
                     panel_SensorControl_256E.Visible = true;
                     break;

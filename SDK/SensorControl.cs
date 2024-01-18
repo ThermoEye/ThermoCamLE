@@ -331,6 +331,40 @@ namespace ThermoCamSDK
 
                         break;
 
+                    case "button_GetFFCParameters_256E":
+                        if (mCamera.Control.GetFlatFieldCorrectionParameters(out double maxInterval, out double autoTriggerThreshold))
+                        {
+                            numericUpDown_FFCParam256E_MaxInterval.Value = Convert.ToDecimal(maxInterval);
+                            numericUpDown_FFCParam256E_AutoTriggerThreshold.Value = Convert.ToDecimal(autoTriggerThreshold);
+
+                            numericUpDown_FFCParam256E_MaxInterval.Enabled = true;
+                            numericUpDown_FFCParam256E_AutoTriggerThreshold.Enabled = true;
+                            textBox_FFCParam256E_MaxIntervalRange.Enabled = true;
+                            textBox_FFCParam256E_AutoTriggerThresholdRange.Enabled = true;
+                            button_SetFFCParameters_256E.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fail to get FFC Parameters.", "FFC Parameters", MessageBoxButtons.OK);
+                        }
+
+                        break;
+
+                    case "button_SetFFCParameters_256E":
+                        double maxIntervalSet = Convert.ToDouble(numericUpDown_FFCParam256E_MaxInterval.Value);
+                        double autoTriggerThresholdSet = Convert.ToDouble(numericUpDown_FFCParam256E_AutoTriggerThreshold.Value);
+
+                        if (mCamera.Control.SetFlatFieldCorrectionParameters(maxIntervalSet, autoTriggerThresholdSet))
+                        {
+                            MessageBox.Show("Succes to set FFC Parameters.", "FFC Parameters", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fail to set FFC Parameters.", "FFC Parameters", MessageBoxButtons.OK);
+                        }
+
+                        break;
+
                     case "button_GetFlatFieldCorrectionMode_256E":
                         int ffcMode_256E = mCamera.Control.GetFlatFieldCorrectionMode();
 
@@ -528,6 +562,16 @@ namespace ThermoCamSDK
         }
 
         private void numericUpDown_FluxParam256E_Distance_ValueChanged(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void numericUpDown_FFCParam256E_MaxInterval_ValueChanged(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void numericUpDown_FFCParam256E_AutoTriggerThreshold_ValueChanged(object sender, EventArgs e)
         {
             Refresh();
         }
