@@ -86,15 +86,15 @@ namespace ThermoCamSDK
                                 {
                                     var shape = (RoiSpot)item;
                                     // draw shape
-                                    g.DrawEllipse(new Pen(Color.Cyan, 1), shape.Spot.X - 1, shape.Spot.Y - 1, 2, 2);
+                                    g.DrawEllipse(new Pen(Color.Cyan, 1), (shape.Spot.X - 1), (shape.Spot.Y - 1), 2, 2);
                                     // draw object id
                                     strDraw = $"ROI{shape.Index}";
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.Cyan, shape.Spot.X - sizeDraw.Width/2, shape.Spot.Y - 14);
+                                    g.DrawString(strDraw, font, Brushes.Cyan, (shape.Spot.X - sizeDraw.Width / 2), (shape.Spot.Y - 14));
                                     // draw temp
                                     strDraw = GetTempStringUnit(shape.MaxLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.Green, shape.Spot.X - sizeDraw.Width/2, shape.Spot.Y + 6);
+                                    g.DrawString(strDraw, font, Brushes.Green, (shape.Spot.X - sizeDraw.Width / 2), (shape.Spot.Y + 6));
                                 }
                                 break;
 
@@ -105,17 +105,21 @@ namespace ThermoCamSDK
                                     g.DrawLine(new Pen(Color.GreenYellow, 1), shape.Start.X, shape.Start.Y, shape.End.X, shape.End.Y);
                                     // draw object id
                                     strDraw = $"ROI{shape.Index}";
-                                    g.DrawString(strDraw, font, Brushes.Cyan, shape.Start.X, shape.Start.Y - 14);
+                                    g.DrawString(strDraw, font, Brushes.Cyan, shape.Start.X, (shape.Start.Y - 14));
                                     // draw max temp
-                                    g.FillPolygon(Brushes.OrangeRed, new Point[] { new Point(shape.MaxLoc.Location.X, shape.MaxLoc.Location.Y), new Point(shape.MaxLoc.Location.X - 4, shape.MaxLoc.Location.Y - 4), new Point(shape.MaxLoc.Location.X + 4, shape.MaxLoc.Location.Y - 4) });
+                                    g.FillPolygon(Brushes.OrangeRed, new Point[] { new Point(shape.MaxLoc.Location.X, shape.MaxLoc.Location.Y), new Point((shape.MaxLoc.Location.X - 4), (shape.MaxLoc.Location.Y - 4)), new Point((shape.MaxLoc.Location.X + 4), (shape.MaxLoc.Location.Y - 4)) });
                                     strDraw = GetTempStringUnit(shape.MaxLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.OrangeRed, shape.MaxLoc.Location.X - sizeDraw.Width/2, shape.MaxLoc.Location.Y - 16);
+                                    g.DrawString(strDraw, font, Brushes.OrangeRed, (shape.MaxLoc.Location.X - sizeDraw.Width / 2), (shape.MaxLoc.Location.Y - 16));
                                     // draw min temp
-                                    g.FillPolygon(Brushes.DodgerBlue, new Point[] { new Point(shape.MinLoc.Location.X, shape.MinLoc.Location.Y), new Point(shape.MinLoc.Location.X - 4, shape.MinLoc.Location.Y + 4), new Point(shape.MinLoc.Location.X + 4, shape.MinLoc.Location.Y + 4) });
+                                    g.FillPolygon(Brushes.DodgerBlue, new Point[] { new Point(shape.MinLoc.Location.X, shape.MinLoc.Location.Y), new Point((shape.MinLoc.Location.X - 4), (shape.MinLoc.Location.Y + 4)), new Point((shape.MinLoc.Location.X + 4), (shape.MinLoc.Location.Y + 4)) });
                                     strDraw = GetTempStringUnit(shape.MinLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.DodgerBlue, shape.MinLoc.Location.X - sizeDraw.Width/2, shape.MinLoc.Location.Y + 4);
+                                    g.DrawString(strDraw, font, Brushes.DodgerBlue, (shape.MinLoc.Location.X - sizeDraw.Width / 2), (shape.MinLoc.Location.Y + 4));
+                                    // draw average temp
+                                    strDraw = GetTempStringUnit(shape.AvgLoc.Value);
+                                    sizeDraw = g.MeasureString(strDraw, font);
+                                    g.DrawString(strDraw, font, Brushes.White, (shape.Start.X + (shape.End.X - shape.Start.X) / 2 - sizeDraw.Width / 2), (shape.Start.Y + (shape.End.Y - shape.Start.Y) / 2 + 2));
                                 }
                                 break;
 
@@ -126,17 +130,21 @@ namespace ThermoCamSDK
                                     g.DrawRectangle(new Pen(Color.Red, 1), shape.Rect);
                                     // draw object id
                                     strDraw = $"ROI{shape.Index}";
-                                    g.DrawString(strDraw, font, Brushes.Cyan, shape.Rect.X, shape.Rect.Y - 14);
+                                    g.DrawString(strDraw, font, Brushes.Cyan, shape.Rect.X, (shape.Rect.Y - 14));
                                     // draw max temp
-                                    g.FillPolygon(Brushes.OrangeRed, new Point[] { new Point(shape.MaxLoc.Location.X, shape.MaxLoc.Location.Y), new Point(shape.MaxLoc.Location.X - 4, shape.MaxLoc.Location.Y - 4), new Point(shape.MaxLoc.Location.X + 4, shape.MaxLoc.Location.Y - 4) });
+                                    g.FillPolygon(Brushes.OrangeRed, new Point[] { new Point(shape.MaxLoc.Location.X, shape.MaxLoc.Location.Y), new Point((shape.MaxLoc.Location.X - 4), (shape.MaxLoc.Location.Y - 4)), new Point((shape.MaxLoc.Location.X + 4), (shape.MaxLoc.Location.Y - 4)) });
                                     strDraw = GetTempStringUnit(shape.MaxLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.OrangeRed, shape.MaxLoc.Location.X - sizeDraw.Width/2, shape.MaxLoc.Location.Y - 16);
+                                    g.DrawString(strDraw, font, Brushes.OrangeRed, (shape.MaxLoc.Location.X - sizeDraw.Width / 2), (shape.MaxLoc.Location.Y - 16));
                                     // draw min temp
-                                    g.FillPolygon(Brushes.DodgerBlue, new Point[] { new Point(shape.MinLoc.Location.X, shape.MinLoc.Location.Y), new Point(shape.MinLoc.Location.X - 4, shape.MinLoc.Location.Y + 4), new Point(shape.MinLoc.Location.X + 4, shape.MinLoc.Location.Y + 4) });
+                                    g.FillPolygon(Brushes.DodgerBlue, new Point[] { new Point(shape.MinLoc.Location.X, shape.MinLoc.Location.Y), new Point((shape.MinLoc.Location.X - 4), (shape.MinLoc.Location.Y + 4)), new Point((shape.MinLoc.Location.X + 4), (shape.MinLoc.Location.Y + 4)) });
                                     strDraw = GetTempStringUnit(shape.MinLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.DodgerBlue, shape.MinLoc.Location.X - sizeDraw.Width / 2, shape.MinLoc.Location.Y + 4);
+                                    g.DrawString(strDraw, font, Brushes.DodgerBlue, (shape.MinLoc.Location.X - sizeDraw.Width / 2), (shape.MinLoc.Location.Y + 4));
+                                    // draw average temp
+                                    strDraw = GetTempStringUnit(shape.AvgLoc.Value);
+                                    sizeDraw = g.MeasureString(strDraw, font);
+                                    g.DrawString(strDraw, font, Brushes.White, (shape.Rect.X + shape.Rect.Width / 2 - sizeDraw.Width / 2), (shape.Rect.Y + shape.Rect.Height + 2));
                                 }
                                 break;
 
@@ -148,17 +156,21 @@ namespace ThermoCamSDK
                                     // draw object id
                                     strDraw = $"ROI{shape.Index}";
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.Cyan, shape.Ellipse.X + shape.Ellipse.Width/2 - sizeDraw.Width/2, shape.Ellipse.Y - 14);
+                                    g.DrawString(strDraw, font, Brushes.Cyan, (shape.Ellipse.X + shape.Ellipse.Width / 2 - sizeDraw.Width / 2), (shape.Ellipse.Y - 14));
                                     // draw max temp
-                                    g.FillPolygon(Brushes.OrangeRed, new Point[] { new Point(shape.MaxLoc.Location.X, shape.MaxLoc.Location.Y), new Point(shape.MaxLoc.Location.X - 4, shape.MaxLoc.Location.Y - 4), new Point(shape.MaxLoc.Location.X + 4, shape.MaxLoc.Location.Y - 4) });
+                                    g.FillPolygon(Brushes.OrangeRed, new Point[] { new Point(shape.MaxLoc.Location.X, shape.MaxLoc.Location.Y), new Point((shape.MaxLoc.Location.X - 4), (shape.MaxLoc.Location.Y - 4)), new Point((shape.MaxLoc.Location.X + 4), (shape.MaxLoc.Location.Y - 4)) });
                                     strDraw = GetTempStringUnit(shape.MaxLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.OrangeRed, shape.MaxLoc.Location.X - sizeDraw.Width/2, shape.MaxLoc.Location.Y - 16);
+                                    g.DrawString(strDraw, font, Brushes.OrangeRed, (shape.MaxLoc.Location.X - sizeDraw.Width / 2), (shape.MaxLoc.Location.Y - 16));
                                     // draw min temp
-                                    g.FillPolygon(Brushes.DodgerBlue, new Point[] { new Point(shape.MinLoc.Location.X, shape.MinLoc.Location.Y), new Point(shape.MinLoc.Location.X - 4, shape.MinLoc.Location.Y + 4), new Point(shape.MinLoc.Location.X + 4, shape.MinLoc.Location.Y + 4) });
+                                    g.FillPolygon(Brushes.DodgerBlue, new Point[] { new Point(shape.MinLoc.Location.X, shape.MinLoc.Location.Y), new Point((shape.MinLoc.Location.X - 4), (shape.MinLoc.Location.Y + 4)), new Point((shape.MinLoc.Location.X + 4), (shape.MinLoc.Location.Y + 4)) });
                                     strDraw = GetTempStringUnit(shape.MinLoc.Value);
                                     sizeDraw = g.MeasureString(strDraw, font);
-                                    g.DrawString(strDraw, font, Brushes.DodgerBlue, shape.MinLoc.Location.X - sizeDraw.Width/2, shape.MinLoc.Location.Y + 4);
+                                    g.DrawString(strDraw, font, Brushes.DodgerBlue, (shape.MinLoc.Location.X - sizeDraw.Width / 2), (shape.MinLoc.Location.Y + 4));
+                                    // draw average temp
+                                    strDraw = GetTempStringUnit(shape.AvgLoc.Value);
+                                    sizeDraw = g.MeasureString(strDraw, font);
+                                    g.DrawString(strDraw, font, Brushes.White, (shape.Ellipse.X + shape.Ellipse.Width / 2 - sizeDraw.Width / 2), (shape.Ellipse.Y + shape.Ellipse.Height + 2));
                                 }
                                 break;
 

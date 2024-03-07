@@ -124,8 +124,28 @@ namespace ThermoCamSDK
                         if (result == DialogResult.OK)
                         {
                             textBox_SoftwareUpdateFilePath.Text = openFileDialog.FileName;
-                            button_StartSoftwareUpdate.Text = "Start";
-                            button_StartSoftwareUpdate.Enabled = true;
+
+                            bool verify = mCamera.Control.CheckFirmware(textBox_SoftwareUpdateFilePath.Text,
+                                                                        out string vendorName, out string productName,
+                                                                        out string versionName, out string buildTime,
+                                                                        out int fileSize);
+
+                            label_BinaryVendorName.Text = vendorName;
+                            label_BinaryProductName.Text = productName;
+                            label_BinaryVersion.Text = versionName;
+                            label_BinaryBuildTime.Text = buildTime;
+                            label_BinarySize.Text = fileSize.ToString();
+
+                            if (verify)
+                            {
+                                button_StartSoftwareUpdate.Text = "Start";
+                                button_StartSoftwareUpdate.Enabled = true;
+                            }
+                            else
+                            {
+                                button_StartSoftwareUpdate.Text = "Reselect proper binary file";
+                                button_StartSoftwareUpdate.Enabled = false;
+                            }
                         }
                         else if (result == DialogResult.Cancel)
                         {
@@ -170,7 +190,40 @@ namespace ThermoCamSDK
                             }
                             else
                             {
+                                mCamera.Close();
+                                mCamera = null;
+
+                                System.Threading.Thread.Sleep(1000);
+
                                 label_SoftwareUpdateStatus.Text = "File open fail.";
+
+                                Application.EnableVisualStyles();
+                                DialogResult dr = MessageBox.Show("Please check firmware binary file.", "Software Update", MessageBoxButtons.OK);
+                                switch (dr)
+                                {
+                                    case DialogResult.OK:
+                                        label_SoftwareUpdateStatus.Text = string.Empty;
+                                        progressBar_SoftwareUpdate.Value = 0;
+                                        textBox_SoftwareUpdateFilePath.Text = string.Empty;
+                                        button_StartSoftwareUpdate.Text = "Browse and Select Binary File";
+                                        button_SoftwareUpdateFileBrowse.Enabled = true;
+                                        tabControl2.Enabled = false;
+                                        tabControl3.Enabled = false;
+                                        comboBox_ColorMap.Enabled = false;
+                                        comboBox_TemperatureUnit.Enabled = false;
+                                        button_ConnectLocalCamera.Enabled = false;
+                                        button_ScanLocalCamera.Enabled = false;
+                                        button_ConnectRemoteCamera.Enabled = false;
+                                        button_ScanRemoteCamera.Enabled = false;
+                                        System.Threading.Thread.Sleep(2000);
+                                        button_ConnectLocalCamera.Text = "Connect";
+                                        button_ConnectLocalCamera.Enabled = true;
+                                        button_ScanLocalCamera.Enabled = true;
+                                        button_ConnectRemoteCamera.Text = "Connect";
+                                        button_ConnectRemoteCamera.Enabled = true;
+                                        button_ScanRemoteCamera.Enabled = true;
+                                        break;
+                                }
                             }
                         }
 

@@ -82,6 +82,18 @@
             this.label_SensorModelName = new System.Windows.Forms.Label();
             this.button_GetSensorInformation = new System.Windows.Forms.Button();
             this.groupBox_SoftwareUpdate = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel_BinaryInforation = new System.Windows.Forms.TableLayoutPanel();
+            this.label_BinaryInformationTitle = new System.Windows.Forms.Label();
+            this.label_BinarySizeTitle = new System.Windows.Forms.Label();
+            this.label_BinaryVendorNameTitle = new System.Windows.Forms.Label();
+            this.label_BinaryProductNameTitle = new System.Windows.Forms.Label();
+            this.label_BinaryVersionTitle = new System.Windows.Forms.Label();
+            this.label_BinaryBuildTimeTitle = new System.Windows.Forms.Label();
+            this.label_BinaryVendorName = new System.Windows.Forms.Label();
+            this.label_BinaryProductName = new System.Windows.Forms.Label();
+            this.label_BinaryVersion = new System.Windows.Forms.Label();
+            this.label_BinaryBuildTime = new System.Windows.Forms.Label();
+            this.label_BinarySize = new System.Windows.Forms.Label();
             this.button_SoftwareUpdateFileBrowse = new System.Windows.Forms.Button();
             this.textBox_SoftwareUpdateFilePath = new System.Windows.Forms.TextBox();
             this.button_StartSoftwareUpdate = new System.Windows.Forms.Button();
@@ -280,6 +292,7 @@
             this.groupBox_SensorInformation.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.groupBox_SoftwareUpdate.SuspendLayout();
+            this.tableLayoutPanel_BinaryInforation.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tabPage_Network.SuspendLayout();
             this.groupBox_NetworkConfiguration.SuspendLayout();
@@ -888,6 +901,7 @@
             // 
             // groupBox_SoftwareUpdate
             // 
+            this.groupBox_SoftwareUpdate.Controls.Add(this.tableLayoutPanel_BinaryInforation);
             this.groupBox_SoftwareUpdate.Controls.Add(this.button_SoftwareUpdateFileBrowse);
             this.groupBox_SoftwareUpdate.Controls.Add(this.textBox_SoftwareUpdateFilePath);
             this.groupBox_SoftwareUpdate.Controls.Add(this.button_StartSoftwareUpdate);
@@ -896,15 +910,148 @@
             this.groupBox_SoftwareUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox_SoftwareUpdate.Location = new System.Drawing.Point(4, 301);
             this.groupBox_SoftwareUpdate.Name = "groupBox_SoftwareUpdate";
-            this.groupBox_SoftwareUpdate.Size = new System.Drawing.Size(345, 138);
+            this.groupBox_SoftwareUpdate.Size = new System.Drawing.Size(345, 264);
             this.groupBox_SoftwareUpdate.TabIndex = 3;
             this.groupBox_SoftwareUpdate.TabStop = false;
             this.groupBox_SoftwareUpdate.Text = "Software Update";
             // 
+            // tableLayoutPanel_BinaryInforation
+            // 
+            this.tableLayoutPanel_BinaryInforation.ColumnCount = 2;
+            this.tableLayoutPanel_BinaryInforation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.88957F));
+            this.tableLayoutPanel_BinaryInforation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.11043F));
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryInformationTitle, 0, 0);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinarySizeTitle, 0, 5);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryVendorNameTitle, 0, 1);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryProductNameTitle, 0, 2);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryVersionTitle, 0, 3);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryBuildTimeTitle, 0, 4);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryVendorName, 1, 1);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryProductName, 1, 2);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryVersion, 1, 3);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinaryBuildTime, 1, 4);
+            this.tableLayoutPanel_BinaryInforation.Controls.Add(this.label_BinarySize, 1, 5);
+            this.tableLayoutPanel_BinaryInforation.Location = new System.Drawing.Point(10, 22);
+            this.tableLayoutPanel_BinaryInforation.Name = "tableLayoutPanel_BinaryInforation";
+            this.tableLayoutPanel_BinaryInforation.RowCount = 6;
+            this.tableLayoutPanel_BinaryInforation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_BinaryInforation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_BinaryInforation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_BinaryInforation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_BinaryInforation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_BinaryInforation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_BinaryInforation.Size = new System.Drawing.Size(326, 120);
+            this.tableLayoutPanel_BinaryInforation.TabIndex = 9;
+            // 
+            // label_BinaryInformationTitle
+            // 
+            this.label_BinaryInformationTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_BinaryInformationTitle.AutoSize = true;
+            this.label_BinaryInformationTitle.Location = new System.Drawing.Point(3, 2);
+            this.label_BinaryInformationTitle.Name = "label_BinaryInformationTitle";
+            this.label_BinaryInformationTitle.Size = new System.Drawing.Size(106, 15);
+            this.label_BinaryInformationTitle.TabIndex = 0;
+            this.label_BinaryInformationTitle.Text = "Binary Information";
+            // 
+            // label_BinarySizeTitle
+            // 
+            this.label_BinarySizeTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_BinarySizeTitle.AutoSize = true;
+            this.label_BinarySizeTitle.Location = new System.Drawing.Point(80, 102);
+            this.label_BinarySizeTitle.Name = "label_BinarySizeTitle";
+            this.label_BinarySizeTitle.Size = new System.Drawing.Size(33, 15);
+            this.label_BinarySizeTitle.TabIndex = 4;
+            this.label_BinarySizeTitle.Text = "Size :";
+            // 
+            // label_BinaryVendorNameTitle
+            // 
+            this.label_BinaryVendorNameTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_BinaryVendorNameTitle.AutoSize = true;
+            this.label_BinaryVendorNameTitle.Location = new System.Drawing.Point(28, 22);
+            this.label_BinaryVendorNameTitle.Name = "label_BinaryVendorNameTitle";
+            this.label_BinaryVendorNameTitle.Size = new System.Drawing.Size(85, 15);
+            this.label_BinaryVendorNameTitle.TabIndex = 1;
+            this.label_BinaryVendorNameTitle.Text = "Vendor Name :";
+            // 
+            // label_BinaryProductNameTitle
+            // 
+            this.label_BinaryProductNameTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_BinaryProductNameTitle.AutoSize = true;
+            this.label_BinaryProductNameTitle.Location = new System.Drawing.Point(23, 42);
+            this.label_BinaryProductNameTitle.Name = "label_BinaryProductNameTitle";
+            this.label_BinaryProductNameTitle.Size = new System.Drawing.Size(90, 15);
+            this.label_BinaryProductNameTitle.TabIndex = 2;
+            this.label_BinaryProductNameTitle.Text = "Product Name :";
+            // 
+            // label_BinaryVersionTitle
+            // 
+            this.label_BinaryVersionTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_BinaryVersionTitle.AutoSize = true;
+            this.label_BinaryVersionTitle.Location = new System.Drawing.Point(62, 62);
+            this.label_BinaryVersionTitle.Name = "label_BinaryVersionTitle";
+            this.label_BinaryVersionTitle.Size = new System.Drawing.Size(51, 15);
+            this.label_BinaryVersionTitle.TabIndex = 3;
+            this.label_BinaryVersionTitle.Text = "Version :";
+            // 
+            // label_BinaryBuildTimeTitle
+            // 
+            this.label_BinaryBuildTimeTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_BinaryBuildTimeTitle.AutoSize = true;
+            this.label_BinaryBuildTimeTitle.Location = new System.Drawing.Point(44, 82);
+            this.label_BinaryBuildTimeTitle.Name = "label_BinaryBuildTimeTitle";
+            this.label_BinaryBuildTimeTitle.Size = new System.Drawing.Size(69, 15);
+            this.label_BinaryBuildTimeTitle.TabIndex = 5;
+            this.label_BinaryBuildTimeTitle.Text = "Build Time :";
+            // 
+            // label_BinaryVendorName
+            // 
+            this.label_BinaryVendorName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_BinaryVendorName.AutoSize = true;
+            this.label_BinaryVendorName.Location = new System.Drawing.Point(119, 22);
+            this.label_BinaryVendorName.Name = "label_BinaryVendorName";
+            this.label_BinaryVendorName.Size = new System.Drawing.Size(0, 15);
+            this.label_BinaryVendorName.TabIndex = 6;
+            // 
+            // label_BinaryProductName
+            // 
+            this.label_BinaryProductName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_BinaryProductName.AutoSize = true;
+            this.label_BinaryProductName.Location = new System.Drawing.Point(119, 42);
+            this.label_BinaryProductName.Name = "label_BinaryProductName";
+            this.label_BinaryProductName.Size = new System.Drawing.Size(0, 15);
+            this.label_BinaryProductName.TabIndex = 7;
+            // 
+            // label_BinaryVersion
+            // 
+            this.label_BinaryVersion.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_BinaryVersion.AutoSize = true;
+            this.label_BinaryVersion.Location = new System.Drawing.Point(119, 62);
+            this.label_BinaryVersion.Name = "label_BinaryVersion";
+            this.label_BinaryVersion.Size = new System.Drawing.Size(0, 15);
+            this.label_BinaryVersion.TabIndex = 8;
+            // 
+            // label_BinaryBuildTime
+            // 
+            this.label_BinaryBuildTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_BinaryBuildTime.AutoSize = true;
+            this.label_BinaryBuildTime.Location = new System.Drawing.Point(119, 82);
+            this.label_BinaryBuildTime.Name = "label_BinaryBuildTime";
+            this.label_BinaryBuildTime.Size = new System.Drawing.Size(0, 15);
+            this.label_BinaryBuildTime.TabIndex = 9;
+            // 
+            // label_BinarySize
+            // 
+            this.label_BinarySize.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_BinarySize.AutoSize = true;
+            this.label_BinarySize.Location = new System.Drawing.Point(119, 102);
+            this.label_BinarySize.Name = "label_BinarySize";
+            this.label_BinarySize.Size = new System.Drawing.Size(0, 15);
+            this.label_BinarySize.TabIndex = 10;
+            // 
             // button_SoftwareUpdateFileBrowse
             // 
             this.button_SoftwareUpdateFileBrowse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_SoftwareUpdateFileBrowse.Location = new System.Drawing.Point(10, 74);
+            this.button_SoftwareUpdateFileBrowse.Location = new System.Drawing.Point(10, 204);
             this.button_SoftwareUpdateFileBrowse.Name = "button_SoftwareUpdateFileBrowse";
             this.button_SoftwareUpdateFileBrowse.Size = new System.Drawing.Size(63, 23);
             this.button_SoftwareUpdateFileBrowse.TabIndex = 8;
@@ -915,7 +1062,7 @@
             // textBox_SoftwareUpdateFilePath
             // 
             this.textBox_SoftwareUpdateFilePath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_SoftwareUpdateFilePath.Location = new System.Drawing.Point(79, 74);
+            this.textBox_SoftwareUpdateFilePath.Location = new System.Drawing.Point(79, 204);
             this.textBox_SoftwareUpdateFilePath.Name = "textBox_SoftwareUpdateFilePath";
             this.textBox_SoftwareUpdateFilePath.ReadOnly = true;
             this.textBox_SoftwareUpdateFilePath.Size = new System.Drawing.Size(257, 23);
@@ -925,7 +1072,7 @@
             // 
             this.button_StartSoftwareUpdate.Enabled = false;
             this.button_StartSoftwareUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_StartSoftwareUpdate.Location = new System.Drawing.Point(10, 104);
+            this.button_StartSoftwareUpdate.Location = new System.Drawing.Point(10, 234);
             this.button_StartSoftwareUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_StartSoftwareUpdate.Name = "button_StartSoftwareUpdate";
             this.button_StartSoftwareUpdate.Size = new System.Drawing.Size(326, 23);
@@ -939,7 +1086,7 @@
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.12613F));
             this.tableLayoutPanel5.Controls.Add(this.label_SoftwareUpdateStatus, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(10, 22);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(10, 152);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -957,7 +1104,7 @@
             // 
             // progressBar_SoftwareUpdate
             // 
-            this.progressBar_SoftwareUpdate.Location = new System.Drawing.Point(10, 45);
+            this.progressBar_SoftwareUpdate.Location = new System.Drawing.Point(10, 175);
             this.progressBar_SoftwareUpdate.Name = "progressBar_SoftwareUpdate";
             this.progressBar_SoftwareUpdate.Size = new System.Drawing.Size(326, 23);
             this.progressBar_SoftwareUpdate.TabIndex = 0;
@@ -3281,7 +3428,9 @@
             "Viridis",
             "Cividis",
             "Twilight",
-            "TwilightShifted"});
+            "TwilightShifted",
+            "Turbo",
+            "DeepGreen"});
             this.comboBox_ColorMap.Location = new System.Drawing.Point(72, 6);
             this.comboBox_ColorMap.Name = "comboBox_ColorMap";
             this.comboBox_ColorMap.Size = new System.Drawing.Size(97, 23);
@@ -3470,6 +3619,8 @@
             this.tableLayoutPanel8.PerformLayout();
             this.groupBox_SoftwareUpdate.ResumeLayout(false);
             this.groupBox_SoftwareUpdate.PerformLayout();
+            this.tableLayoutPanel_BinaryInforation.ResumeLayout(false);
+            this.tableLayoutPanel_BinaryInforation.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tabPage_Network.ResumeLayout(false);
@@ -3776,6 +3927,18 @@
         private System.Windows.Forms.TextBox textBox_FFCParam256E_AutoTriggerThresholdRange;
         private System.Windows.Forms.Label label_FFCParam256E_MaxIntervalUnit;
         private System.Windows.Forms.CheckBox checkBox_NoiseFiltering;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_BinaryInforation;
+        private System.Windows.Forms.Label label_BinaryInformationTitle;
+        private System.Windows.Forms.Label label_BinarySizeTitle;
+        private System.Windows.Forms.Label label_BinaryVendorNameTitle;
+        private System.Windows.Forms.Label label_BinaryProductNameTitle;
+        private System.Windows.Forms.Label label_BinaryVersionTitle;
+        private System.Windows.Forms.Label label_BinaryBuildTimeTitle;
+        private System.Windows.Forms.Label label_BinaryVendorName;
+        private System.Windows.Forms.Label label_BinaryProductName;
+        private System.Windows.Forms.Label label_BinaryVersion;
+        private System.Windows.Forms.Label label_BinaryBuildTime;
+        private System.Windows.Forms.Label label_BinarySize;
     }
 }
 

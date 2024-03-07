@@ -330,6 +330,8 @@ namespace ThermoCamSDK
                 case "ThermoCam160E":
                 case "TMC160E":
                 case "TMC160B":
+                case "TMC80E":
+                case "TMC80B":
                     panel_SensorControl_160E.Visible = true;
                     panel_SensorControl_256E.Visible = false;
                     break;

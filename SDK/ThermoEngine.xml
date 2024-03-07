@@ -36,7 +36,7 @@
         </member>
         <member name="P:ThermoEngine.Camera.ColorMap">
             <summary>
-            Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted
+            Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted / 21=Turbo / 22=DeepGreen
             </summary>
         </member>
         <member name="P:ThermoEngine.Camera.TempUnit">
@@ -338,7 +338,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
-            Gets flux parameters of camera sensor for TMC160
+            Gets flux parameters of camera sensor for TMC80 and TMC160
             </summary>
             <param name="sceneEmissivity">obtained ratio value for scene emissivity, 0.01 ~ 1</param>
             <param name="backgroundTemperature">obtained Celsius value for background temperature, -273.15 ~ 382.2</param>
@@ -392,7 +392,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetFluxParameters(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Sets flux parameters of camera sensor for TMC160
+            Sets flux parameters of camera sensor for TMC80 and TMC160
             </summary>
             <param name="sceneEmissivity">ratio value to be set for scene emissivity, 0.01 ~ 1</param>
             <param name="backgroundTemperature">Celsius value to be set for background temperature, -273.15 ~ 382.2</param>
@@ -446,7 +446,7 @@
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetDefaultFluxParameters(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
             <summary>
-            Sets flux parameters of camera sensor to factory default values for TMC160
+            Sets flux parameters of camera sensor to factory default values for TMC80 and TMC160
             </summary>
             <param name="sceneEmissivity">obtained default ratio value for scene emissivity, 0.01 ~ 1</param>
             <param name="backgroundTemperature">obtained default Celsius value for background temperature, -273.15 ~ 382.2</param>
@@ -507,7 +507,7 @@
             otherwise, -1 if an exception is raised.
             </returns>
             <remarks>
-            The parameter state, "2 = auto" is only support for TMC160.
+            The parameter state, "2 = auto" is only support for TMC80 and TMC160.
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.SetGainModeState(System.Int32)">
@@ -520,7 +520,7 @@
             otherwise, false if an exception is raised.
             </returns>
             <remarks>
-            The parameter state, "2 = auto" is only support for TMC160.
+            The parameter state, "2 = auto" is only support for TMC80 and TMC160.
             </remarks>
         </member>
         <member name="M:ThermoEngine.ICameraControl.GetFlatFieldCorrectionParameters(System.Double@,System.Double@)">
@@ -694,6 +694,21 @@
             otherwise, false if an exception is raised.
             </returns>
         </member>
+        <member name="M:ThermoEngine.ICameraControl.CheckFirmware(System.String,System.String@,System.String@,System.String@,System.String@,System.Int32@)">
+            <summary>
+            Checks verification of firmware file and read firmware binary information
+            </summary>
+            <param name="fwFilePath">firmware file path to be loaded</param>
+            <param name="vendorName">obtained vendor name</param>
+            <param name="productName">obtained product name</param>
+            <param name="versionName">obtained version name</param>
+            <param name="buildTime">obtained build time</param>
+            <param name="fileSize">obtained firmware binary size</param>
+            <returns>
+            True if the firmware file is suitable for update properly;
+            otherwise, -1 if an exception is raised.
+            </returns>
+        </member>
         <member name="M:ThermoEngine.ICameraControl.OpenFirmware(System.String)">
             <summary>
             Opens firmware file to update new firmware of camera device
@@ -823,7 +838,7 @@
         </member>
         <member name="F:ThermoEngine.Frame._colorMap">
             <summary>
-            Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted
+            Color Map, 0=Grayscale / 1=Autumn / 2=Bone / 3=Jet / 4=Winter / 5=Rainbow / 6=Ocean / 7=Summer / 8=Spring / 9=Cool / 10=Hsv / 11=Pink / 12=Hot / 13=Parula / 14=Magma / 15=Inferno / 16=Plasma / 17=Viridis / 18=Cividis / 19=Twilight / 20=TwilightShifted / 21=Turbo / 22=DeepGreen
             </summary>
         </member>
         <member name="F:ThermoEngine.Frame._noiseFilter">
@@ -1281,6 +1296,11 @@
             </summary>
             <value>The remote address.</value>
         </member>
+        <member name="M:ThermoEngine.Rtsp.IRtspTransport.NextCommandIndex">
+            <summary>
+            Get next command index. Increment at each call.
+            </summary>
+        </member>
         <member name="M:ThermoEngine.Rtsp.IRtspTransport.Close">
             <summary>
             Closes this instance.
@@ -1349,6 +1369,7 @@
             </summary>
             <param name="stringValue">A string value.</param>
             <returns>The port couple</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="stringValue"/> is <c>null</c>.</exception>
         </member>
         <member name="M:ThermoEngine.Rtsp.Messages.PortCouple.ToString">
             <summary>
@@ -1362,17 +1383,6 @@
             <summary>
             Class wich represent each message echanged on Rtsp socket.
             </summary>
-        </member>
-        <member name="M:ThermoEngine.Rtsp.Messages.RtspChunk.LogMessage">
-            <summary>
-            Logs the message to debug.
-            </summary>
-        </member>
-        <member name="M:ThermoEngine.Rtsp.Messages.RtspChunk.LogMessage(NLog.LogLevel)">
-            <summary>
-            Logs the message.
-            </summary>
-            <param name="aLevel">The log level.</param>
         </member>
         <member name="P:ThermoEngine.Rtsp.Messages.RtspChunk.Data">
             <summary>
@@ -1399,9 +1409,9 @@
             Message wich represent data. ($ limited message)
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.Messages.RtspData.LogMessage(NLog.LogLevel)">
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspData.ToString">
             <summary>
-            Logs the message to debug.
+            Create a string of the message for debug.
             </summary>
         </member>
         <member name="M:ThermoEngine.Rtsp.Messages.RtspData.Clone">
@@ -1501,11 +1511,16 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is empty</exception>
             <exception cref="T:System.ArgumentException"><paramref name="stream"/> can't be written.</exception>
         </member>
-        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.LogMessage(NLog.LogLevel)">
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.Prepare">
             <summary>
-            Logs the message.
+            Equivalent to <see cref="M:ThermoEngine.Rtsp.Messages.RtspMessage.SendTo(System.IO.Stream)"/> but without a stream, just a byte[] array to return
             </summary>
-            <param name="aLevel">A log level.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.ToString">
+            <summary>
+            Create a string of the message for debug.
+            </summary>
         </member>
         <member name="M:ThermoEngine.Rtsp.Messages.RtspMessage.Clone">
             <summary>
@@ -1778,6 +1793,34 @@
             A <see cref="T:System.String"/> that represents this instance.
             </returns>
         </member>
+        <member name="M:ThermoEngine.Rtsp.MulticastUDPSocket.#ctor(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.UDPSocket"/> class.
+            Used with Multicast mode with the Multicast Address and Port
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.MulticastUDPSocket.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="T:ThermoEngine.Rtsp.RtspDataEventArgs">
+            <summary>
+            Event args containing information for message events.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspDataEventArgs.#ctor(System.ReadOnlyMemory{System.Byte})">
+            <summary>
+            Initializes a new instance of the <see cref="!:RTSPDataEventArgs"/> class.
+            </summary>
+            <param name="data">A data.</param>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspDataEventArgs.Data">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
         <member name="T:ThermoEngine.Rtsp.RtspListener">
             <summary>
             Rtsp lister
@@ -1832,7 +1875,7 @@
             </summary>
             <param name="rtspChunkEventArgs">The <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> instance containing the event data.</param>
         </member>
-        <member name="M:ThermoEngine.Rtsp.RtspListener.DoJob">
+        <member name="M:ThermoEngine.Rtsp.RtspListener.DoJobAsync(System.Threading.CancellationToken)">
             <summary>
             Does the reading job.
             </summary>
@@ -1855,7 +1898,7 @@
             </summary>
             <exception cref="T:System.Net.Sockets.SocketException">Error during socket </exception>
         </member>
-        <member name="M:ThermoEngine.Rtsp.RtspListener.ReadOneMessage(System.IO.Stream)">
+        <member name="M:ThermoEngine.Rtsp.RtspListener.ReadOneMessageAsync(System.IO.Stream,System.Threading.CancellationToken)">
             <summary>
             Reads one message.
             </summary>
@@ -1870,7 +1913,7 @@
             <param name="asyncCallback">The async callback.</param>
             <param name="state">A state.</param>
         </member>
-        <member name="M:ThermoEngine.Rtsp.RtspListener.BeginSendData(System.Int32,System.Byte[],System.AsyncCallback,System.Object)">
+        <member name="M:ThermoEngine.Rtsp.RtspListener.BeginSendData(System.Int32,System.ReadOnlySpan{System.Byte},System.AsyncCallback,System.Object)">
             <summary>
             Begins the send data.
             </summary>
@@ -1886,6 +1929,20 @@
             <param name="result">The result.</param>
         </member>
         <member name="M:ThermoEngine.Rtsp.RtspListener.SendData(System.Int32,System.Byte[])">
+            <summary>
+            Send data (Synchronous)
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="frame">The frame.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.SendData(System.Int32,System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Send data (Synchronous)
+            </summary>
+            <param name="channel">The channel.</param>
+            <param name="frame">The frame.</param>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspListener.SendData(System.Int32,System.ReadOnlyMemory{System.Byte})">
             <summary>
             Send data (Synchronous)
             </summary>
@@ -1920,12 +1977,11 @@
             </summary>
             <param name="tcpConnection">The underlying TCP connection.</param>
         </member>
-        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.#ctor(System.String,System.Int32)">
+        <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.#ctor(System.Uri)">
             <summary>
             Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspTcpTransport"/> class.
             </summary>
-            <param name="aHost">A host.</param>
-            <param name="aPortNumber">A port number.</param>
+            <param name="uri">The RTSP uri to connect to.</param>
         </member>
         <member name="M:ThermoEngine.Rtsp.RtspTcpTransport.GetStream">
             <summary>
@@ -1959,7 +2015,7 @@
         </member>
         <member name="M:ThermoEngine.Rtsp.RtspUtils.RegisterUri">
             <summary>
-            Registers the URI.
+            Registers the rtsp scheùe for uri.
             </summary>
         </member>
         <member name="P:ThermoEngine.Rtsp.Sdp.Connection.NumberOfAddress">
@@ -2025,24 +2081,19 @@
             </summary>
             <value>The unicast address.</value>
         </member>
-        <member name="M:ThermoEngine.Rtsp.Sdp.SdpFile.Read(System.IO.TextReader)">
+        <member name="M:ThermoEngine.Rtsp.Sdp.SdpFile.Read(System.IO.TextReader,System.Boolean)">
             <summary>
             Reads the specified SDP stream.
             As define in RFC 4566
             </summary>
             <param name="sdpStream">The SDP stream.</param>
-            <returns></returns>
+            <param name="strictParsing">if set to <c>false</c> accept some error seen with camera.</param>
+            <returns>Parsed SDP file</returns>
         </member>
         <member name="M:ThermoEngine.Rtsp.UDPSocket.#ctor(System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.UDPSocket"/> class.
             Creates two new UDP sockets using the start and end Port range
-            </summary>
-        </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.#ctor(System.String,System.Int32,System.String,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.UDPSocket"/> class.
-            Used with Multicast mode with the Multicast Address and Port
             </summary>
         </member>
         <member name="M:ThermoEngine.Rtsp.UDPSocket.Start">
@@ -2057,26 +2108,35 @@
         </member>
         <member name="E:ThermoEngine.Rtsp.UDPSocket.DataReceived">
             <summary>
-            Occurs when message is received.
+            Occurs when data is received.
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.OnDataReceived(ThermoEngine.Rtsp.RtspChunkEventArgs)">
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.OnDataReceived(ThermoEngine.Rtsp.RtspDataEventArgs)">
             <summary>
             Raises the <see cref="E:DataReceived"/> event.
             </summary>
-            <param name="rtspChunkEventArgs">The <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> instance containing the event data.</param>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.DoWorkerJob(System.Net.Sockets.UdpClient,System.Int32)">
+        <member name="E:ThermoEngine.Rtsp.UDPSocket.ControlReceived">
+            <summary>
+            Occurs when control is received.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.OnControlReceived(ThermoEngine.Rtsp.RtspDataEventArgs)">
+            <summary>
+            Raises the <see cref="E:ControlReceived"/> event.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.DoWorkerJobAsync(System.Net.Sockets.UdpClient,System.Action{ThermoEngine.Rtsp.RtspDataEventArgs})">
             <summary>
             Does the video job.
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.Write_To_Data_Port(System.Byte[],System.String,System.Int32)">
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.WriteToDataPort(System.Byte[],System.String,System.Int32)">
             <summary>
             Write to the RTP Data Port
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.Write_To_Control_Port(System.Byte[],System.String,System.Int32)">
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.WriteToControlPort(System.Byte[],System.String,System.Int32)">
             <summary>
             Write to the RTP Control Port
             </summary>
