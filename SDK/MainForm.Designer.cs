@@ -533,6 +533,7 @@
             this.listBox_RemoteCameraScanList.Size = new System.Drawing.Size(203, 184);
             this.listBox_RemoteCameraScanList.TabIndex = 1;
             this.listBox_RemoteCameraScanList.Click += new System.EventHandler(this.listBox_RemoteCameraList_Click);
+            this.listBox_RemoteCameraScanList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_RemoteCameraList_MouseDoubleClick);
             // 
             // button_ScanRemoteCamera
             // 
@@ -588,6 +589,7 @@
             this.listBox_LocalCameraScanList.Size = new System.Drawing.Size(203, 184);
             this.listBox_LocalCameraScanList.TabIndex = 11;
             this.listBox_LocalCameraScanList.Click += new System.EventHandler(this.listBox_LocalCameraList_Click);
+            this.listBox_LocalCameraScanList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_LocalCameraList_MouseDoubleClick);
             // 
             // button_ScanLocalCamera
             // 

@@ -178,6 +178,72 @@ namespace ThermoCamSDK
             }
         }
 
+        private void listBox_LocalCameraList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (sender is ListBox listbox && listbox.SelectedIndex >= 0)
+            {
+                var items = listbox.Tag as LocalCamInfo[];
+                if (items != null)
+                {
+                    textBox_LocalCameraName.Text = items[listbox.SelectedIndex].Name;
+                    textBox_LocalCameraComPort.Text = items[listbox.SelectedIndex].ComPort;
+
+                    if (button_ConnectLocalCamera.Text == "Connect")
+                    {
+                        if (listBox_LocalCameraScanList.SelectedIndex < 0)
+                        {
+                            MessageBox.Show("Invalid Camera Index.", "Connect", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(textBox_LocalCameraName.Text))
+                        {
+                            MessageBox.Show("Invalid Camera Name.", "Connect", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(textBox_LocalCameraComPort.Text))
+                        {
+                            MessageBox.Show("Invalid COM Port.", "Connect", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (listBox_LocalCameraScanList.Tag == null)
+                        {
+                            MessageBox.Show("Invalid Camera List.", "Connect", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (mCamera == null)
+                        {
+                            mCamera = new ThermoEngine.LocalCamera();
+                            if (mCamera.Open((listBox_LocalCameraScanList.Tag as LocalCamInfo[])[listBox_LocalCameraScanList.SelectedIndex]))
+                            {
+                                this.captureThread = new Thread(new ThreadStart(frameCaptureThread));
+                                this.captureThread.Start();
+
+                                button_ConnectLocalCamera.Text = "Disconnect";
+                                ConnectCamera();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Fail to connect Local Camera.", "Connect", MessageBoxButtons.OK);
+
+                                button_ConnectLocalCamera.Text = "Connect";
+                                DisconnectCamera();
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DisconnectCamera();
+                        button_ConnectLocalCamera.Text = "Connect";
+                    }
+                }
+            }
+        }
+
         private void button_ConnectLocalCamera_Click(object sender, EventArgs e)
         {
             if(sender is Button btn)
@@ -277,6 +343,56 @@ namespace ThermoCamSDK
                     textBox_RemoteCameraIPAddress.Text = items[listbox.SelectedIndex].AddrIP;
                     textBox_RemoteCameraMACAddress.Text = items[listbox.SelectedIndex].AddrMAC;
                     textBox_RemoteCameraSerialNumber.Text = items[listbox.SelectedIndex].SerialNumber;
+                }
+            }
+        }
+
+        private void listBox_RemoteCameraList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (sender is ListBox listbox && listbox.SelectedIndex >= 0)
+            {
+                var items = listbox.Tag as RemoteCamInfo[];
+                if (items != null)
+                {
+                    textBox_RemoteCameraName.Text = items[listbox.SelectedIndex].Name;
+                    textBox_RemoteCameraIPAddress.Text = items[listbox.SelectedIndex].AddrIP;
+                    textBox_RemoteCameraMACAddress.Text = items[listbox.SelectedIndex].AddrMAC;
+                    textBox_RemoteCameraSerialNumber.Text = items[listbox.SelectedIndex].SerialNumber;
+
+                    if (button_ConnectRemoteCamera.Text == "Connect")
+                    {
+                        if (string.IsNullOrEmpty(textBox_RemoteCameraIPAddress.Text))
+                        {
+                            MessageBox.Show("Invalid AddrIP Address.", "Connect", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (mCamera == null)
+                        {
+                            mCamera = new ThermoEngine.RemoteCamera();
+                            if (mCamera.Open((listBox_RemoteCameraScanList.Tag as RemoteCamInfo[])[listBox_RemoteCameraScanList.SelectedIndex]))
+                            {
+                                this.captureThread = new Thread(new ThreadStart(frameCaptureThread));
+                                this.captureThread.Start();
+
+                                button_ConnectRemoteCamera.Text = "Disconnect";
+
+                                ConnectCamera();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Fail to connect Remote Camera.", "Connect", MessageBoxButtons.OK);
+
+                                DisconnectCamera();
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DisconnectCamera();
+                        button_ConnectRemoteCamera.Text = "Connect";
+                    }
                 }
             }
         }

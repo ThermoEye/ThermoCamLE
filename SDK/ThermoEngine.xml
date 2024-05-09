@@ -1279,6 +1279,23 @@
             </summary>
             <param name="index">point index</param>
         </member>
+        <member name="F:ThermoEngine.RTSPClient._playbackSession">
+            <summary>
+            If true, the client must send an "onvif-replay" header on every play request.
+            </summary>
+        </member>
+        <member name="E:ThermoEngine.RTSPClient.SetupMessageCompleted">
+            <summary>
+            Called when the Setup command are completed, so we can start the right Play message (with or without playback informations)
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ThermoEngine.RTSPClient.Play(System.DateTime,System.Double)" -->
+        <!-- Badly formed XML comment ignored for member "M:ThermoEngine.RTSPClient.Play(System.DateTime,System.DateTime,System.Double)" -->
+        <member name="F:ThermoEngine.Rtsp.BitStream.data">
+            <summary>
+            List only stores 0 or 1 (one 'bit' per List item)
+            </summary>
+        </member>
         <member name="T:ThermoEngine.Rtsp.IRtspTransport">
             <summary>
             Interface for Transport of Rtsp (TCP, TCP+SSL,..)
@@ -1629,7 +1646,7 @@
             <summary>
             Gets a value indicating whether this instance correspond to an OK response.
             </summary>
-            <value><c>true</c> if this instance is OK; otherwise, <c>false</c>.</value>
+            <value><see langword="true"/> if this instance is OK; otherwise, <see langword="false"/>.</value>
         </member>
         <member name="P:ThermoEngine.Rtsp.Messages.RtspResponse.Timeout">
             <summary>
@@ -1708,7 +1725,7 @@
             Gets or sets a value indicating whether this instance is multicast.
             </summary>
             <value>
-            	<c>true</c> if this instance is multicast; otherwise, <c>false</c>.
+            	<see langword="true"/> if this instance is multicast; otherwise, <see langword="false"/>.
             </value>
         </member>
         <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.Destination">
@@ -1733,7 +1750,7 @@
             <summary>
             Gets or sets a value indicating whether this instance is append.
             </summary>
-            <value><c>true</c> if this instance is append; otherwise, <c>false</c>.</value>
+            <value><see langword="true"/> if this instance is append; otherwise, <see langword="false"/>.</value>
         </member>
         <member name="P:ThermoEngine.Rtsp.Messages.RtspTransport.TTL">
             <summary>
@@ -1804,16 +1821,33 @@
             Stops this instance.
             </summary>
         </member>
+        <member name="T:ThermoEngine.Rtsp.RtspChunkEventArgs">
+            <summary>
+            Event args containing information for message events.
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.Rtsp.RtspChunkEventArgs.#ctor(ThermoEngine.Rtsp.Messages.RtspChunk)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> class.
+            </summary>
+            <param name="aMessage">A message.</param>
+        </member>
+        <member name="P:ThermoEngine.Rtsp.RtspChunkEventArgs.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
         <member name="T:ThermoEngine.Rtsp.RtspDataEventArgs">
             <summary>
             Event args containing information for message events.
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.RtspDataEventArgs.#ctor(System.ReadOnlyMemory{System.Byte})">
+        <member name="M:ThermoEngine.Rtsp.RtspDataEventArgs.#ctor(ThermoEngine.Rtsp.Messages.RtspData)">
             <summary>
             Initializes a new instance of the <see cref="!:RTSPDataEventArgs"/> class.
             </summary>
-            <param name="data">A data.</param>
+            <param name="data">Data .</param>
         </member>
         <member name="P:ThermoEngine.Rtsp.RtspDataEventArgs.Data">
             <summary>
@@ -1826,7 +1860,7 @@
             Rtsp lister
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.RtspListener.#ctor(ThermoEngine.Rtsp.IRtspTransport)">
+        <member name="M:ThermoEngine.Rtsp.RtspListener.#ctor(ThermoEngine.Rtsp.IRtspTransport,System.Buffers.MemoryPool{System.Byte})">
             <summary>
             Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspListener"/> class from a TCP connection.
             </summary>
@@ -1890,7 +1924,7 @@
             Sends the message.
             </summary>
             <param name="message">A message.</param>
-            <returns>true if it is Ok, otherwise false</returns>
+            <returns><see cref="!:true"/> if it is Ok, otherwise <see cref="!:false"/></returns>
         </member>
         <member name="M:ThermoEngine.Rtsp.RtspListener.Reconnect">
             <summary>
@@ -1949,23 +1983,6 @@
             <param name="channel">The channel.</param>
             <param name="frame">The frame.</param>
         </member>
-        <member name="T:ThermoEngine.Rtsp.RtspChunkEventArgs">
-            <summary>
-            Event args containing information for message events.
-            </summary>
-        </member>
-        <member name="M:ThermoEngine.Rtsp.RtspChunkEventArgs.#ctor(ThermoEngine.Rtsp.Messages.RtspChunk)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ThermoEngine.Rtsp.RtspChunkEventArgs"/> class.
-            </summary>
-            <param name="aMessage">A message.</param>
-        </member>
-        <member name="P:ThermoEngine.Rtsp.RtspChunkEventArgs.Message">
-            <summary>
-            Gets or sets the message.
-            </summary>
-            <value>The message.</value>
-        </member>
         <member name="T:ThermoEngine.Rtsp.RtspTcpTransport">
             <summary>
             TCP Connection for Rtsp
@@ -2022,11 +2039,11 @@
             <summary>
             Gets or sets the number of address specifed in connection.
             </summary>
-            <value>The number of address.</value>
+            <value>The number of the address.</value>
         </member>
         <member name="T:ThermoEngine.Rtsp.Sdp.Origin">
             <summary>
-            Object ot represent orgin in an Session Description Protocol 
+            Object ot represent orgin in an Session Description Protocol
             </summary>
         </member>
         <member name="M:ThermoEngine.Rtsp.Sdp.Origin.Parse(System.String)">
@@ -2034,7 +2051,7 @@
             Parses the specified origin string.
             </summary>
             <param name="originString">The string to convert to origin object.</param>
-            <returns></returns>
+            <returns>The parsed origin object</returns>
         </member>
         <member name="P:ThermoEngine.Rtsp.Sdp.Origin.Username">
             <summary>
@@ -2126,20 +2143,22 @@
             Raises the <see cref="E:ControlReceived"/> event.
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.DoWorkerJobAsync(System.Net.Sockets.UdpClient,System.Action{ThermoEngine.Rtsp.RtspDataEventArgs})">
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.DoWorkerJobAsync(System.Net.Sockets.UdpClient,System.Action{ThermoEngine.Rtsp.RtspDataEventArgs},System.Int32)">
             <summary>
             Does the video job.
             </summary>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.WriteToDataPort(System.Byte[],System.String,System.Int32)">
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.WriteToDataPort(System.ReadOnlySpan{System.Byte})">
             <summary>
             Write to the RTP Data Port
             </summary>
+            <param name="data">Buffer to send</param>
         </member>
-        <member name="M:ThermoEngine.Rtsp.UDPSocket.WriteToControlPort(System.Byte[],System.String,System.Int32)">
+        <member name="M:ThermoEngine.Rtsp.UDPSocket.WriteToControlPort(System.ReadOnlySpan{System.Byte})">
             <summary>
             Write to the RTP Control Port
             </summary>
+            <param name="data">Buffer to send</param>
         </member>
         <member name="T:ThermoEngine.TempUnit">
             <summary> 
