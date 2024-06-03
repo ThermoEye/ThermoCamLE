@@ -793,7 +793,12 @@
             IP address
             </summary>
         </member>
-        <member name="M:ThermoEngine.RemoteCamInfo.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="F:ThermoEngine.RemoteCamInfo.AdapterIP">
+            <summary>
+            Local Network Adapter IP address
+            </summary>
+        </member>
+        <member name="M:ThermoEngine.RemoteCamInfo.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the RemoteCamInfo class
             </summary>
@@ -817,14 +822,28 @@
             Inheritance class for remote camera control
             </summary>
         </member>
-        <member name="M:ThermoEngine.RemoteCamera.GetCameraList">
+        <member name="M:ThermoEngine.RemoteCamera.GetNetworkAdapterIPList">
+            <summary>
+            Gets local network adapter IP address list
+            </summary>
+            <returns>
+            IP address list if this method gets active local network adapters successfully;
+            otherwise, false if an exception is raised.
+            </returns>
+        </member>
+        <member name="M:ThermoEngine.RemoteCamera.GetCameraList(System.String)">
             <summary>
             Gets remote camera list
             </summary>
+            <param name="adapterIP">specified local network adapter IP address</param>
             <returns>
             Camera information list if this method gets connectable camera information successfully;
             otherwise, false if an exception is raised.
             </returns>
+            <remarks>
+            If you want to get all cameras that can be connected via multiple local network adapters, just call method without parameters as below:
+            <code>object list = RemoteCamera.GetCameraList();</code>
+            </remarks>
         </member>
         <member name="T:ThermoEngine.Frame">
             <summary>

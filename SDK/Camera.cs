@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using ThermoEngine;
@@ -320,6 +318,7 @@ namespace ThermoCamSDK
                 listBox_RemoteCameraScanList.SelectedIndex = 0;
 
                 RemoteCamInfo[] items = listBox_RemoteCameraScanList.Tag as RemoteCamInfo[];
+                textBox_RemoteCameraAdapterIP.Text = items[listBox_RemoteCameraScanList.SelectedIndex].AdapterIP;
                 textBox_RemoteCameraIPAddress.Text = items[listBox_RemoteCameraScanList.SelectedIndex].AddrIP;
                 textBox_RemoteCameraMACAddress.Text = items[listBox_RemoteCameraScanList.SelectedIndex].AddrMAC;
                 textBox_RemoteCameraSerialNumber.Text = items[listBox_RemoteCameraScanList.SelectedIndex].SerialNumber;
@@ -339,6 +338,7 @@ namespace ThermoCamSDK
                 var items = listbox.Tag as RemoteCamInfo[];
                 if(items != null)
                 {
+                    textBox_RemoteCameraAdapterIP.Text = items[listbox.SelectedIndex].AdapterIP;
                     textBox_RemoteCameraName.Text = items[listbox.SelectedIndex].Name;
                     textBox_RemoteCameraIPAddress.Text = items[listbox.SelectedIndex].AddrIP;
                     textBox_RemoteCameraMACAddress.Text = items[listbox.SelectedIndex].AddrMAC;
@@ -354,6 +354,7 @@ namespace ThermoCamSDK
                 var items = listbox.Tag as RemoteCamInfo[];
                 if (items != null)
                 {
+                    textBox_RemoteCameraAdapterIP.Text = items[listbox.SelectedIndex].AdapterIP;
                     textBox_RemoteCameraName.Text = items[listbox.SelectedIndex].Name;
                     textBox_RemoteCameraIPAddress.Text = items[listbox.SelectedIndex].AddrIP;
                     textBox_RemoteCameraMACAddress.Text = items[listbox.SelectedIndex].AddrMAC;

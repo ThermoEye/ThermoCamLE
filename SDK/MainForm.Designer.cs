@@ -38,6 +38,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_RemoteCamera = new System.Windows.Forms.TabPage();
+            this.textBox_RemoteCameraAdapterIP = new System.Windows.Forms.TextBox();
+            this.label_RemoteCameraAdapterIPTitle = new System.Windows.Forms.Label();
             this.textBox_RemoteCameraMACAddress = new System.Windows.Forms.TextBox();
             this.label_RemoteCameraMACAddressTitle = new System.Windows.Forms.Label();
             this.textBox_RemoteCameraSerialNumber = new System.Windows.Forms.TextBox();
@@ -424,6 +426,8 @@
             // 
             // tabPage_RemoteCamera
             // 
+            this.tabPage_RemoteCamera.Controls.Add(this.textBox_RemoteCameraAdapterIP);
+            this.tabPage_RemoteCamera.Controls.Add(this.label_RemoteCameraAdapterIPTitle);
             this.tabPage_RemoteCamera.Controls.Add(this.textBox_RemoteCameraMACAddress);
             this.tabPage_RemoteCamera.Controls.Add(this.label_RemoteCameraMACAddressTitle);
             this.tabPage_RemoteCamera.Controls.Add(this.textBox_RemoteCameraSerialNumber);
@@ -442,6 +446,23 @@
             this.tabPage_RemoteCamera.TabIndex = 1;
             this.tabPage_RemoteCamera.Text = "Remote Camera";
             this.tabPage_RemoteCamera.UseVisualStyleBackColor = true;
+            // 
+            // textBox_RemoteCameraAdapterIP
+            // 
+            this.textBox_RemoteCameraAdapterIP.Location = new System.Drawing.Point(95, 153);
+            this.textBox_RemoteCameraAdapterIP.Name = "textBox_RemoteCameraAdapterIP";
+            this.textBox_RemoteCameraAdapterIP.ReadOnly = true;
+            this.textBox_RemoteCameraAdapterIP.Size = new System.Drawing.Size(120, 23);
+            this.textBox_RemoteCameraAdapterIP.TabIndex = 12;
+            // 
+            // label_RemoteCameraAdapterIPTitle
+            // 
+            this.label_RemoteCameraAdapterIPTitle.AutoSize = true;
+            this.label_RemoteCameraAdapterIPTitle.Location = new System.Drawing.Point(23, 156);
+            this.label_RemoteCameraAdapterIPTitle.Name = "label_RemoteCameraAdapterIPTitle";
+            this.label_RemoteCameraAdapterIPTitle.Size = new System.Drawing.Size(68, 15);
+            this.label_RemoteCameraAdapterIPTitle.TabIndex = 11;
+            this.label_RemoteCameraAdapterIPTitle.Text = "Adapter IP :";
             // 
             // textBox_RemoteCameraMACAddress
             // 
@@ -508,12 +529,13 @@
             this.textBox_RemoteCameraIPAddress.Location = new System.Drawing.Point(95, 119);
             this.textBox_RemoteCameraIPAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox_RemoteCameraIPAddress.Name = "textBox_RemoteCameraIPAddress";
+            this.textBox_RemoteCameraIPAddress.ReadOnly = true;
             this.textBox_RemoteCameraIPAddress.Size = new System.Drawing.Size(120, 23);
             this.textBox_RemoteCameraIPAddress.TabIndex = 2;
             // 
             // button_ConnectRemoteCamera
             // 
-            this.button_ConnectRemoteCamera.Location = new System.Drawing.Point(12, 153);
+            this.button_ConnectRemoteCamera.Location = new System.Drawing.Point(12, 183);
             this.button_ConnectRemoteCamera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_ConnectRemoteCamera.Name = "button_ConnectRemoteCamera";
             this.button_ConnectRemoteCamera.Size = new System.Drawing.Size(203, 27);
@@ -527,17 +549,17 @@
             this.listBox_RemoteCameraScanList.FormattingEnabled = true;
             this.listBox_RemoteCameraScanList.HorizontalScrollbar = true;
             this.listBox_RemoteCameraScanList.ItemHeight = 15;
-            this.listBox_RemoteCameraScanList.Location = new System.Drawing.Point(12, 240);
+            this.listBox_RemoteCameraScanList.Location = new System.Drawing.Point(12, 255);
             this.listBox_RemoteCameraScanList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBox_RemoteCameraScanList.Name = "listBox_RemoteCameraScanList";
-            this.listBox_RemoteCameraScanList.Size = new System.Drawing.Size(203, 184);
+            this.listBox_RemoteCameraScanList.Size = new System.Drawing.Size(203, 169);
             this.listBox_RemoteCameraScanList.TabIndex = 1;
             this.listBox_RemoteCameraScanList.Click += new System.EventHandler(this.listBox_RemoteCameraList_Click);
             this.listBox_RemoteCameraScanList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_RemoteCameraList_MouseDoubleClick);
             // 
             // button_ScanRemoteCamera
             // 
-            this.button_ScanRemoteCamera.Location = new System.Drawing.Point(12, 208);
+            this.button_ScanRemoteCamera.Location = new System.Drawing.Point(11, 222);
             this.button_ScanRemoteCamera.Name = "button_ScanRemoteCamera";
             this.button_ScanRemoteCamera.Size = new System.Drawing.Size(204, 26);
             this.button_ScanRemoteCamera.TabIndex = 0;
@@ -3941,6 +3963,8 @@
         private System.Windows.Forms.Label label_BinaryVersion;
         private System.Windows.Forms.Label label_BinaryBuildTime;
         private System.Windows.Forms.Label label_BinarySize;
+        private System.Windows.Forms.Label label_RemoteCameraAdapterIPTitle;
+        private System.Windows.Forms.TextBox textBox_RemoteCameraAdapterIP;
     }
 }
 
